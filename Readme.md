@@ -1,7 +1,7 @@
 # Личный проект «Шесть городов» [![Build status][travis-image]][travis-url]
 
 * Студент: [Ольга Трегубова](https://up.htmlacademy.ru/react/3/user/982605).
-* Наставник: `Неизвестно`.
+* Наставник: [Александр Сушко](https://htmlacademy.ru/profile/sushko).
 
 ---
 
