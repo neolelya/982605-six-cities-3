@@ -10,6 +10,8 @@ const RENTAL_TITLES = [
   `Excellent location and free parking`,
 ];
 
+// something
+
 ReactDOM.render(
     <App rentalOffers={RENTAL_OFFER_COUNT} rentalTitles={RENTAL_TITLES} />,
     document.querySelector(`#root`)
