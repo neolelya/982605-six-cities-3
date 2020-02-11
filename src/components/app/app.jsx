@@ -2,10 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Main from '../main/main.jsx';
 
+const headerClickHandler = () => {};
+
 const App = (props) => {
   const {rentalOffers, rentalTitles} = props;
 
-  return <Main rentalOffers={rentalOffers} rentalTitles={rentalTitles} />;
+  return (
+    <Main
+      rentalOffers={rentalOffers}
+      rentalTitles={rentalTitles}
+      onHeaderClick={headerClickHandler}
+    />
+  );
 };
 
 App.propTypes = {
