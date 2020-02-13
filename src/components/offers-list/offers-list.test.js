@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import Main from './main.jsx';
+import OffersList from './offers-list.jsx';
 
 const RENTAL_OFFERS = [
   {
@@ -21,7 +21,7 @@ const RENTAL_OFFERS = [
     rentalRating: `79%`,
     rentalType: `Hostel`,
     isPremium: false,
-    isBookmark: false,
+    isBookmark: true,
   },
   {
     id: 3,
@@ -30,8 +30,8 @@ const RENTAL_OFFERS = [
     rentalPrice: 132,
     rentalRating: `90%`,
     rentalType: `House`,
-    isPremium: true,
-    isBookmark: true,
+    isPremium: false,
+    isBookmark: false,
   },
   {
     id: 4,
@@ -40,19 +40,15 @@ const RENTAL_OFFERS = [
     rentalPrice: 180,
     rentalRating: `98%`,
     rentalType: `Apartment`,
-    isPremium: true,
-    isBookmark: false,
+    isPremium: false,
+    isBookmark: true,
   },
 ];
 
-it(`Should render Main correctly`, () => {
+it(`Should render OffersList correctly`, () => {
   const tree = renderer
     .create(
-        <Main
-          rentalOfferCount={RENTAL_OFFERS.length}
-          onHeaderClick={() => {}}
-          rentalOffers={RENTAL_OFFERS}
-        />
+        <OffersList rentalCardsList={RENTAL_OFFERS} onHeaderClick={() => {}} />
     )
     .toJSON();
 

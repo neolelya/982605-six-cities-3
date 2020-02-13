@@ -1,16 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/app/app.jsx';
+import offers from './mocks/offers';
 
-const RENTAL_OFFER_COUNT = 4;
-const RENTAL_TITLES = [
-  `Beautiful & luxurious apartment at great location`,
-  `Wood and stone place`,
-  `Stylish and cozy place`,
-  `Excellent location and free parking`,
-];
+const handleHeaderClick = () => {};
 
 ReactDOM.render(
-    <App rentalOffers={RENTAL_OFFER_COUNT} rentalTitles={RENTAL_TITLES} />,
+    <App
+      rentalOfferCount={offers.length}
+      rentalOffers={offers}
+      onHeaderClick={handleHeaderClick}
+    />,
     document.querySelector(`#root`)
 );

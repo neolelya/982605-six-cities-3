@@ -2,23 +2,33 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Main from '../main/main.jsx';
 
-const headerClickHandler = () => {};
-
 const App = (props) => {
-  const {rentalOffers, rentalTitles} = props;
+  const {rentalOfferCount, rentalOffers, onHeaderClick} = props;
 
   return (
     <Main
+      rentalOfferCount={rentalOfferCount}
       rentalOffers={rentalOffers}
-      rentalTitles={rentalTitles}
-      onHeaderClick={headerClickHandler}
+      onHeaderClick={onHeaderClick}
     />
   );
 };
 
 App.propTypes = {
-  rentalOffers: PropTypes.number.isRequired,
-  rentalTitles: PropTypes.array.isRequired,
+  rentalOfferCount: PropTypes.number.isRequired,
+  rentalOffers: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        rentalTitle: PropTypes.string.isRequired,
+        rentalImage: PropTypes.string.isRequired,
+        rentalPrice: PropTypes.number.isRequired,
+        rentalRating: PropTypes.string,
+        rentalType: PropTypes.string.isRequired,
+        isPremium: PropTypes.bool.isRequired,
+        isBookmark: PropTypes.bool,
+      })
+  ).isRequired,
+  onHeaderClick: PropTypes.func.isRequired,
 };
 
 export default App;

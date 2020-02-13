@@ -1,8 +1,4 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
-import Main from './main.jsx';
-
-const RENTAL_OFFERS = [
+export default [
   {
     id: 1,
     rentalTitle: `Beautiful & luxurious apartment at great location`,
@@ -10,8 +6,8 @@ const RENTAL_OFFERS = [
     rentalPrice: 120,
     rentalRating: `85%`,
     rentalType: `Apartment`,
-    isPremium: true,
-    isBookmark: false,
+    isPremium: Boolean(Math.round(Math.random())),
+    isBookmark: Boolean(Math.round(Math.random())),
   },
   {
     id: 2,
@@ -20,8 +16,8 @@ const RENTAL_OFFERS = [
     rentalPrice: 80,
     rentalRating: `79%`,
     rentalType: `Hostel`,
-    isPremium: false,
-    isBookmark: false,
+    isPremium: Boolean(Math.round(Math.random())),
+    isBookmark: Boolean(Math.round(Math.random())),
   },
   {
     id: 3,
@@ -30,8 +26,8 @@ const RENTAL_OFFERS = [
     rentalPrice: 132,
     rentalRating: `90%`,
     rentalType: `House`,
-    isPremium: true,
-    isBookmark: true,
+    isPremium: Boolean(Math.round(Math.random())),
+    isBookmark: Boolean(Math.round(Math.random())),
   },
   {
     id: 4,
@@ -40,21 +36,7 @@ const RENTAL_OFFERS = [
     rentalPrice: 180,
     rentalRating: `98%`,
     rentalType: `Apartment`,
-    isPremium: true,
-    isBookmark: false,
+    isPremium: Boolean(Math.round(Math.random())),
+    isBookmark: Boolean(Math.round(Math.random())),
   },
 ];
-
-it(`Should render Main correctly`, () => {
-  const tree = renderer
-    .create(
-        <Main
-          rentalOfferCount={RENTAL_OFFERS.length}
-          onHeaderClick={() => {}}
-          rentalOffers={RENTAL_OFFERS}
-        />
-    )
-    .toJSON();
-
-  expect(tree).toMatchSnapshot();
-});
