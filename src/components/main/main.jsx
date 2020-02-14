@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import OffersList from '../offers-list/offers-list.jsx';
+import {OFFER_TYPES} from '../../consts';
 
 const Main = (props) => {
   const {rentalOfferCount, rentalOffers, onHeaderClick} = props;
@@ -131,13 +132,22 @@ Main.propTypes = {
   rentalOffers: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number.isRequired,
+        rentalHost: PropTypes.shape({
+          hostAvatar: PropTypes.string.isRequired,
+          hostName: PropTypes.string.isRequired,
+          isSuper: PropTypes.bool.isRequired,
+        }).isRequired,
         rentalTitle: PropTypes.string.isRequired,
-        rentalImage: PropTypes.string.isRequired,
+        rentalImages: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
         rentalPrice: PropTypes.number.isRequired,
-        rentalRating: PropTypes.string,
-        rentalType: PropTypes.string.isRequired,
+        rentalRating: PropTypes.number.isRequired,
+        rentalType: PropTypes.oneOf(OFFER_TYPES).isRequired,
         isPremium: PropTypes.bool.isRequired,
-        isBookmark: PropTypes.bool,
+        isBookmark: PropTypes.bool.isRequired,
+        rentalDescription: PropTypes.string.isRequired,
+        rentalRoomsQuantity: PropTypes.number.isRequired,
+        rentalMaxGuestsQuantity: PropTypes.number.isRequired,
+        rentalFeatures: PropTypes.array.isRequired,
       })
   ).isRequired,
   onHeaderClick: PropTypes.func.isRequired,

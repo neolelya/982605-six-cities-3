@@ -1,7 +1,8 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
+import Enzyme, {mount} from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 import {MemoryRouter} from 'react-router-dom';
-import OffersList from './offers-list.jsx';
+import App from './app.jsx';
 import {RentalFeature, RentalType} from '../../consts';
 
 const RENTAL_OFFER = {
@@ -67,14 +68,22 @@ const OFFERS_DATA = [
   }),
 ];
 
-it(`Should render OffersList correctly`, () => {
-  const tree = renderer
-    .create(
-        <MemoryRouter>
-          <OffersList rentalCardsList={OFFERS_DATA} onHeaderClick={() => {}} />
-        </MemoryRouter>
-    )
-    .toJSON();
+Enzyme.configure({
+  adapter: new Adapter(),
+});
 
-  expect(tree).toMatchSnapshot();
+it(`Should render Property component from App component`, () => {
+  const app = mount(
+      <MemoryRouter>
+        <App rentalOfferCount={OFFERS_DATA.length} rentalOffers={OFFERS_DATA} />
+      </MemoryRouter>
+  );
+
+  const headers = app.find(`.place-card__name a`);
+
+  headers.at(0).simulate(`click`, {button: 0});
+
+  const property = app.find(`.property`);
+
+  expect(property.length).toBe(1);
 });
