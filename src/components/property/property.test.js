@@ -1,11 +1,10 @@
 import React from 'react';
-import Enzyme, {shallow} from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-import RentalCard from './rental-card';
+import renderer from 'react-test-renderer';
+import Property from './property.jsx';
 import {RentalFeature, RentalType} from '../../consts';
 
-const RENTAL_OFFER = {
-  id: 1,
+const OFFER = {
+  id: 0,
   rentalHost: {
     hostName: `Angelina`,
     hostAvatar: `img/avatar-angelina.jpg`,
@@ -20,7 +19,7 @@ const RENTAL_OFFER = {
     `img/apartment-small-04.jpg`,
   ],
   rentalPrice: 120,
-  rentalRating: 5,
+  rentalRating: 3.4,
   rentalType: RentalType.APARTMENT,
   isPremium: true,
   isBookmark: true,
@@ -28,31 +27,10 @@ const RENTAL_OFFER = {
   rentalRoomsQuantity: 3,
   rentalMaxGuestsQuantity: 3,
   rentalFeatures: [RentalFeature.DRYER, RentalFeature.WASHINGMACHINE],
-  onMouseLeave: () => {},
 };
 
-Enzyme.configure({
-  adapter: new Adapter(),
-});
+it(`Should render Property correctly`, () => {
+  const tree = renderer.create(<Property offer={OFFER} />).toJSON();
 
-it(`Should RentalCard handle onMouseEnter and click events`, () => {
-  const onMouseEnter = jest.fn();
-  const onHeaderClick = jest.fn();
-
-  const rentalCard = shallow(
-      <RentalCard
-        {...RENTAL_OFFER}
-        onMouseEnter={onMouseEnter}
-        onHeaderClick={onHeaderClick}
-      />
-  );
-
-  const card = rentalCard.find(`.place-card`);
-  const header = rentalCard.find(`.place-card__name`);
-
-  card.simulate(`mouseenter`);
-  header.simulate(`click`);
-
-  expect(onMouseEnter).toHaveBeenCalledTimes(1);
-  expect(onHeaderClick).toHaveBeenCalledTimes(1);
+  expect(tree).toMatchSnapshot();
 });

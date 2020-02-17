@@ -1,11 +1,13 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
+import {MAX_RATING, OFFER_TYPES} from '../../consts';
 
 const RentalCard = (props) => {
   const {
     id,
     rentalTitle,
-    rentalImage,
+    rentalImages,
     rentalPrice,
     rentalRating,
     rentalType,
@@ -16,15 +18,15 @@ const RentalCard = (props) => {
     onMouseLeave,
   } = props;
 
+  const ratingPercent = (Math.round(rentalRating) * 100) / MAX_RATING;
+
   return (
     <article
       className="cities__place-card place-card"
       onMouseEnter={() => {
         onMouseEnter(id);
       }}
-      onMouseLeave={() => {
-        onMouseLeave();
-      }}
+      onMouseLeave={onMouseLeave}
     >
       {isPremium && (
         <div className="place-card__mark">
@@ -35,7 +37,7 @@ const RentalCard = (props) => {
         <a href="#">
           <img
             className="place-card__image"
-            src={rentalImage}
+            src={rentalImages[0]}
             width="260"
             height="200"
             alt="Place image"
@@ -62,12 +64,17 @@ const RentalCard = (props) => {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: rentalRating}}></span>
+            <span style={{width: `${ratingPercent}%`}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
-        <h2 className="place-card__name" onClick={onHeaderClick}>
-          <a href="#">{rentalTitle}</a>
+        <h2
+          className="place-card__name"
+          onClick={() => {
+            onHeaderClick(id);
+          }}
+        >
+          <Link to={{pathname: `/property/${id}`}}>{rentalTitle}</Link>
         </h2>
         <p className="place-card__type">{rentalType}</p>
       </div>
@@ -78,10 +85,10 @@ const RentalCard = (props) => {
 RentalCard.propTypes = {
   id: PropTypes.number.isRequired,
   rentalTitle: PropTypes.string.isRequired,
-  rentalImage: PropTypes.string.isRequired,
+  rentalImages: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   rentalPrice: PropTypes.number.isRequired,
-  rentalRating: PropTypes.string.isRequired,
-  rentalType: PropTypes.string.isRequired,
+  rentalRating: PropTypes.number.isRequired,
+  rentalType: PropTypes.oneOf(OFFER_TYPES).isRequired,
   isPremium: PropTypes.bool.isRequired,
   isBookmark: PropTypes.bool.isRequired,
   onHeaderClick: PropTypes.func.isRequired,

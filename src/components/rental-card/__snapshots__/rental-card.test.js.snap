@@ -78,7 +78,7 @@ exports[`Should render RentalCard correctly 1`] = `
         <span
           style={
             Object {
-              "width": "85%",
+              "width": "60%",
             }
           }
         />
@@ -94,7 +94,8 @@ exports[`Should render RentalCard correctly 1`] = `
       onClick={[Function]}
     >
       <a
-        href="#"
+        href="/property/0"
+        onClick={[Function]}
       >
         Beautiful & luxurious apartment at great location
       </a>

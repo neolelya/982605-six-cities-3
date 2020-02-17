@@ -29,7 +29,7 @@ class OffersList extends PureComponent {
             ({
               id,
               rentalTitle,
-              rentalImage,
+              rentalImages,
               rentalPrice,
               rentalRating,
               rentalType,
@@ -41,7 +41,7 @@ class OffersList extends PureComponent {
                   <RentalCard
                     id={id}
                     rentalTitle={rentalTitle}
-                    rentalImage={rentalImage}
+                    rentalImages={rentalImages}
                     rentalPrice={rentalPrice}
                     rentalRating={rentalRating}
                     rentalType={rentalType}
@@ -65,9 +65,9 @@ OffersList.propTypes = {
       PropTypes.shape({
         id: PropTypes.number.isRequired,
         rentalTitle: PropTypes.string.isRequired,
-        rentalImage: PropTypes.string.isRequired,
+        rentalImages: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
         rentalPrice: PropTypes.number.isRequired,
-        rentalRating: PropTypes.string,
+        rentalRating: PropTypes.number,
         rentalType: PropTypes.string.isRequired,
         isPremium: PropTypes.bool.isRequired,
         isBookmark: PropTypes.bool,
