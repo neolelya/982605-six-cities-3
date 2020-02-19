@@ -1,6 +1,6 @@
-import {OFFER_FEATURES, RentalFeature, RentalType, City} from '../consts';
+import {City, OFFER_FEATURES, RentalFeature, RentalType} from '../consts';
 
-export default [
+export const TEST_OFFERS = [
   {
     location: {
       city: City.AMSTERDAM,
@@ -13,7 +13,7 @@ export default [
         rentalHost: {
           hostName: `Angelina`,
           hostAvatar: `img/avatar-angelina.jpg`,
-          isSuper: Boolean(Math.round(Math.random())),
+          isSuper: true,
         },
         rentalTitle: `Beautiful & luxurious apartment at great location`,
         rentalImages: [
@@ -26,8 +26,8 @@ export default [
         rentalPrice: 120,
         rentalRating: 3.4,
         rentalType: RentalType.APARTMENT,
-        isPremium: Boolean(Math.round(Math.random())),
-        isBookmark: Boolean(Math.round(Math.random())),
+        isPremium: true,
+        isBookmark: true,
         rentalDescription: [
           `A bright and charming apartment with 1 bedroom, located close to Museum Square in one of the most cosmopolitan and vibrant districts of Amsterdam "de PIJP".`,
           `Perfect for short holidays, business trips.`,
@@ -42,7 +42,7 @@ export default [
         rentalHost: {
           hostName: `Max`,
           hostAvatar: `img/avatar-max.jpg`,
-          isSuper: Boolean(Math.round(Math.random())),
+          isSuper: false,
         },
         rentalTitle: `Wood and stone place`,
         rentalImages: [
@@ -55,8 +55,8 @@ export default [
         rentalPrice: 80,
         rentalRating: 4.1,
         rentalType: RentalType.HOTEL,
-        isPremium: Boolean(Math.round(Math.random())),
-        isBookmark: Boolean(Math.round(Math.random())),
+        isPremium: false,
+        isBookmark: true,
         rentalDescription: [
           `This package is special opportunity to connect accommodation in a traditional Dutch cottage located in a birch forest, taste the local food, and snowshoeing/hiking experience.`,
         ],
@@ -76,7 +76,7 @@ export default [
         rentalHost: {
           hostName: `Angelina`,
           hostAvatar: `img/avatar-angelina.jpg`,
-          isSuper: Boolean(Math.round(Math.random())),
+          isSuper: true,
         },
         rentalTitle: `Stylish and cozy place`,
         rentalImages: [
@@ -89,8 +89,8 @@ export default [
         rentalPrice: 132,
         rentalRating: 4.75,
         rentalType: RentalType.HOUSE,
-        isPremium: Boolean(Math.round(Math.random())),
-        isBookmark: Boolean(Math.round(Math.random())),
+        isPremium: true,
+        isBookmark: false,
         rentalDescription: [
           `Spacious apartment situated in the city centre (oud-West) of Amsterdam.`,
           `Walking distance to the Jordaan, Museum Quarter, Anne Frank house and Leidseplein.`,
@@ -106,7 +106,7 @@ export default [
         rentalHost: {
           hostName: `Max`,
           hostAvatar: `img/avatar-max.jpg`,
-          isSuper: Boolean(Math.round(Math.random())),
+          isSuper: false,
         },
         rentalTitle: `Excellent location and free parking`,
         rentalImages: [
@@ -121,8 +121,8 @@ export default [
         rentalPrice: 180,
         rentalRating: 4.5,
         rentalType: RentalType.APARTMENT,
-        isPremium: Boolean(Math.round(Math.random())),
-        isBookmark: Boolean(Math.round(Math.random())),
+        isPremium: false,
+        isBookmark: false,
         rentalDescription: [
           `The studio apartments at Wittenberg have been carefully-designed to embrace and enhance the building’s timeless authentic features, whilst incorporating striking yet traditional Dutch interiors.`,
         ],

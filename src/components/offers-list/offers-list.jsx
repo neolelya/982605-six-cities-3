@@ -61,18 +61,7 @@ class OffersList extends PureComponent {
 }
 
 OffersList.propTypes = {
-  rentalCardsList: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        rentalTitle: PropTypes.string.isRequired,
-        rentalImages: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-        rentalPrice: PropTypes.number.isRequired,
-        rentalRating: PropTypes.number,
-        rentalType: PropTypes.string.isRequired,
-        isPremium: PropTypes.bool.isRequired,
-        isBookmark: PropTypes.bool,
-      })
-  ).isRequired,
+  rentalCardsList: PropTypes.array.isRequired,
   onHeaderClick: PropTypes.func.isRequired,
 };
 

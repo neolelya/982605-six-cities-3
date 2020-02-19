@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom';
 import Main from '../main/main.jsx';
 import Property from '../property/property.jsx';
-import {OFFER_TYPES} from '../../consts';
 
 class App extends PureComponent {
   constructor(props) {
@@ -25,7 +24,6 @@ class App extends PureComponent {
   _renderMainScreen() {
     return (
       <Main
-        rentalOfferCount={this.props.rentalOfferCount}
         rentalOffers={this.props.rentalOffers}
         onHeaderClick={this._handleHeaderClick}
       />
@@ -33,7 +31,7 @@ class App extends PureComponent {
   }
 
   _renderPropertyScreen(id) {
-    const offer = this.props.rentalOffers.find(
+    const offer = this.props.rentalOffers[0].offers.find(
         (property) => property.id === +id
     );
     return offer ? <Property offer={offer} /> : <Redirect to="/" />;
@@ -60,28 +58,7 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
-  rentalOfferCount: PropTypes.number.isRequired,
-  rentalOffers: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        rentalHost: PropTypes.shape({
-          hostAvatar: PropTypes.string.isRequired,
-          hostName: PropTypes.string.isRequired,
-          isSuper: PropTypes.bool.isRequired,
-        }).isRequired,
-        rentalTitle: PropTypes.string.isRequired,
-        rentalImages: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-        rentalPrice: PropTypes.number.isRequired,
-        rentalRating: PropTypes.number.isRequired,
-        rentalType: PropTypes.oneOf(OFFER_TYPES).isRequired,
-        isPremium: PropTypes.bool.isRequired,
-        isBookmark: PropTypes.bool.isRequired,
-        rentalDescription: PropTypes.string.isRequired,
-        rentalRoomsQuantity: PropTypes.number.isRequired,
-        rentalMaxGuestsQuantity: PropTypes.number.isRequired,
-        rentalFeatures: PropTypes.array.isRequired,
-      })
-  ).isRequired,
+  rentalOffers: PropTypes.array.isRequired,
 };
 
 export default App;
