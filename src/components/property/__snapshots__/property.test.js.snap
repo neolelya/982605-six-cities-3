@@ -277,12 +277,12 @@ exports[`Should render Property correctly 1`] = `
               <p
                 className="property__text"
               >
-                A bright and charming apartment with 1 bedroom, located close to Museum Square in one of the most cosmopolitan and vibrant districts of Amsterdam "de PIJP". Perfect for short holidays, business trips.
+                A bright and charming apartment with 1 bedroom, located close to Museum Square in one of the most cosmopolitan and vibrant districts of Amsterdam "de PIJP".
               </p>
               <p
                 className="property__text"
               >
-                A bright and charming apartment with 1 bedroom, located close to Museum Square in one of the most cosmopolitan and vibrant districts of Amsterdam "de PIJP". Perfect for short holidays, business trips.
+                Perfect for short holidays, business trips.
               </p>
             </div>
           </div>

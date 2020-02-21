@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import OffersList from '../offers-list/offers-list.jsx';
-import {OFFER_TYPES} from '../../consts';
+import Map from '../map/map.jsx';
 
 const Main = (props) => {
-  const {rentalOfferCount, rentalOffers, onHeaderClick} = props;
+  const {rentalOffers, onHeaderClick} = props;
+  const {location, offers} = rentalOffers[0];
 
   return (
     <div className="page page--gray page--main">
@@ -84,7 +85,7 @@ const Main = (props) => {
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
               <b className="places__found">
-                {rentalOfferCount} places to stay in Amsterdam
+                {offers.length} places to stay in Amsterdam
               </b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
@@ -113,12 +114,12 @@ const Main = (props) => {
                 </ul>
               </form>
               <OffersList
-                rentalCardsList={rentalOffers}
+                rentalCardsList={offers}
                 onHeaderClick={onHeaderClick}
               />
             </section>
             <div className="cities__right-section">
-              <section className="cities__map map"></section>
+              <Map location={location} offers={offers} />
             </div>
           </div>
         </div>
@@ -128,28 +129,7 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  rentalOfferCount: PropTypes.number.isRequired,
-  rentalOffers: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        rentalHost: PropTypes.shape({
-          hostAvatar: PropTypes.string.isRequired,
-          hostName: PropTypes.string.isRequired,
-          isSuper: PropTypes.bool.isRequired,
-        }).isRequired,
-        rentalTitle: PropTypes.string.isRequired,
-        rentalImages: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-        rentalPrice: PropTypes.number.isRequired,
-        rentalRating: PropTypes.number.isRequired,
-        rentalType: PropTypes.oneOf(OFFER_TYPES).isRequired,
-        isPremium: PropTypes.bool.isRequired,
-        isBookmark: PropTypes.bool.isRequired,
-        rentalDescription: PropTypes.string.isRequired,
-        rentalRoomsQuantity: PropTypes.number.isRequired,
-        rentalMaxGuestsQuantity: PropTypes.number.isRequired,
-        rentalFeatures: PropTypes.array.isRequired,
-      })
-  ).isRequired,
+  rentalOffers: PropTypes.array.isRequired,
   onHeaderClick: PropTypes.func.isRequired,
 };
 

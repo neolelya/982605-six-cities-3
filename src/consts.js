@@ -1,6 +1,24 @@
 export const MAX_RATING = 5;
 export const MAX_IMAGES_QUANTITY = 6;
 
+export const City = {
+  PARIS: `Paris`,
+  COLOGNE: `Cologne`,
+  BRUSSELS: `Brussels`,
+  AMSTERDAM: `Amsterdam`,
+  HAMBURG: `Hamburg`,
+  DUSSELDORF: `Dusseldorf`,
+};
+
+export const CITIES = [
+  City.PARIS,
+  City.COLOGNE,
+  City.BRUSSELS,
+  City.AMSTERDAM,
+  City.HAMBURG,
+  City.DUSSELDORF,
+];
+
 export const RentalType = {
   APARTMENT: `Apartment`,
   ROOM: `room`,

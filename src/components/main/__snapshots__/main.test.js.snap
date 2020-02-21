@@ -164,7 +164,7 @@ exports[`Should render Main correctly 1`] = `
           <b
             className="places__found"
           >
-            3
+            4
              places to stay in Amsterdam
           </b>
           <form
@@ -301,7 +301,7 @@ exports[`Should render Main correctly 1`] = `
                     <span
                       style={
                         Object {
-                          "width": "100%",
+                          "width": "60%",
                         }
                       }
                     />
@@ -317,7 +317,7 @@ exports[`Should render Main correctly 1`] = `
                   onClick={[Function]}
                 >
                   <a
-                    href="/property/1"
+                    href="/property/0"
                     onClick={[Function]}
                   >
                     Beautiful & luxurious apartment at great location
@@ -345,7 +345,7 @@ exports[`Should render Main correctly 1`] = `
                     alt="Place image"
                     className="place-card__image"
                     height="200"
-                    src="img/apartment-01.jpg"
+                    src="img/apartment-02.jpg"
                     width="260"
                   />
                 </a>
@@ -363,7 +363,7 @@ exports[`Should render Main correctly 1`] = `
                       className="place-card__price-value"
                     >
                       €
-                      15
+                      80
                     </b>
                     <span
                       className="place-card__price-text"
@@ -373,6 +373,112 @@ exports[`Should render Main correctly 1`] = `
                   </div>
                   <button
                     className="place-card__bookmark-button button place-card__bookmark-button--active"
+                    type="button"
+                  >
+                    <svg
+                      className="place-card__bookmark-icon"
+                      height="19"
+                      width="18"
+                    >
+                      <use
+                        xlinkHref="#icon-bookmark"
+                      />
+                    </svg>
+                    <span
+                      className="visually-hidden"
+                    >
+                      To bookmarks
+                    </span>
+                  </button>
+                </div>
+                <div
+                  className="place-card__rating rating"
+                >
+                  <div
+                    className="place-card__stars rating__stars"
+                  >
+                    <span
+                      style={
+                        Object {
+                          "width": "80%",
+                        }
+                      }
+                    />
+                    <span
+                      className="visually-hidden"
+                    >
+                      Rating
+                    </span>
+                  </div>
+                </div>
+                <h2
+                  className="place-card__name"
+                  onClick={[Function]}
+                >
+                  <a
+                    href="/property/1"
+                    onClick={[Function]}
+                  >
+                    Wood and stone place
+                  </a>
+                </h2>
+                <p
+                  className="place-card__type"
+                >
+                  Hotel
+                </p>
+              </div>
+            </article>
+            <article
+              className="cities__place-card place-card"
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+            >
+              <div
+                className="place-card__mark"
+              >
+                <span>
+                  Premium
+                </span>
+              </div>
+              <div
+                className="cities__image-wrapper place-card__image-wrapper"
+              >
+                <a
+                  href="#"
+                >
+                  <img
+                    alt="Place image"
+                    className="place-card__image"
+                    height="200"
+                    src="img/apartment-03.jpg"
+                    width="260"
+                  />
+                </a>
+              </div>
+              <div
+                className="place-card__info"
+              >
+                <div
+                  className="place-card__price-wrapper"
+                >
+                  <div
+                    className="place-card__price"
+                  >
+                    <b
+                      className="place-card__price-value"
+                    >
+                      €
+                      132
+                    </b>
+                    <span
+                      className="place-card__price-text"
+                    >
+                      / night
+                    </span>
+                  </div>
+                  <button
+                    className="place-card__bookmark-button button "
                     type="button"
                   >
                     <svg
@@ -419,13 +525,13 @@ exports[`Should render Main correctly 1`] = `
                     href="/property/2"
                     onClick={[Function]}
                   >
-                    Beautiful & luxurious apartment at great location
+                    Stylish and cozy place
                   </a>
                 </h2>
                 <p
                   className="place-card__type"
                 >
-                  Hotel
+                  House
                 </p>
               </div>
             </article>
@@ -444,6 +550,7 @@ exports[`Should render Main correctly 1`] = `
                     alt="Place image"
                     className="place-card__image"
                     height="200"
+                    src="img/room.jpg"
                     width="260"
                   />
                 </a>
@@ -461,7 +568,7 @@ exports[`Should render Main correctly 1`] = `
                       className="place-card__price-value"
                     >
                       €
-                      0
+                      180
                     </b>
                     <span
                       className="place-card__price-text"
@@ -498,7 +605,7 @@ exports[`Should render Main correctly 1`] = `
                     <span
                       style={
                         Object {
-                          "width": "0%",
+                          "width": "100%",
                         }
                       }
                     />
@@ -517,13 +624,13 @@ exports[`Should render Main correctly 1`] = `
                     href="/property/3"
                     onClick={[Function]}
                   >
-                    Beautiful & luxurious apartment at great location
+                    Excellent location and free parking
                   </a>
                 </h2>
                 <p
                   className="place-card__type"
                 >
-                  room
+                  Apartment
                 </p>
               </div>
             </article>
