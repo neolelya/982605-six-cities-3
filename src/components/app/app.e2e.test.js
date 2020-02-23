@@ -4,7 +4,7 @@ import Adapter from 'enzyme-adapter-react-16';
 import {MemoryRouter} from 'react-router-dom';
 import App from './app.jsx';
 import Property from '../property/property.jsx';
-import {TEST_OFFERS} from '../../mocks/tests-mocks';
+import {TEST_OFFERS} from '../../tests-mocks';
 
 const OFFERS_DATA = TEST_OFFERS;
 

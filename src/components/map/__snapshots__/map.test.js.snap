@@ -1,7 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Should render Map correctly 1`] = `
-<section
-  className="cities__map map"
+<div
+  style={
+    Object {
+      "height": "100%",
+    }
+  }
 />
 `;

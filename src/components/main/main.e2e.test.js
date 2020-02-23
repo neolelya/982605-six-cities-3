@@ -3,7 +3,7 @@ import Enzyme, {mount} from 'enzyme';
 import {MemoryRouter} from 'react-router-dom';
 import Adapter from 'enzyme-adapter-react-16';
 import Main from './main.jsx';
-import {TEST_OFFERS} from '../../mocks/tests-mocks';
+import {TEST_OFFERS} from '../../tests-mocks';
 
 const OFFERS_DATA = TEST_OFFERS;
 

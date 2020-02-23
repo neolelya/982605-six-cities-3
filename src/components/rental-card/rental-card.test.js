@@ -2,7 +2,7 @@ import React from 'react';
 import {MemoryRouter} from 'react-router-dom';
 import renderer from 'react-test-renderer';
 import RentalCard from './rental-card.jsx';
-import {TEST_OFFERS} from '../../mocks/tests-mocks';
+import {TEST_OFFERS} from '../../tests-mocks';
 
 const RENTAL_OFFER = TEST_OFFERS[0].offers[0];
 

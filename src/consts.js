@@ -1,5 +1,8 @@
 export const MAX_RATING = 5;
 export const MAX_IMAGES_QUANTITY = 6;
+export const MAX_REVIEWS_QUANTITY = 10;
+export const MAX_SIMILAR_OFFERS_QUANTITY = 3;
+export const MAX_MAP_OFFERS_QUANTITY = 4;
 
 export const City = {
   PARIS: `Paris`,
