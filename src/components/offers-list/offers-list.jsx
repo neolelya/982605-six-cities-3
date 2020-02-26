@@ -24,7 +24,7 @@ class OffersList extends PureComponent {
 
   render() {
     return (
-      <div className="cities__places-list places__list tabs__content">
+      <React.Fragment>
         {this.props.rentalCardsList.map(
             ({
               id,
@@ -55,7 +55,7 @@ class OffersList extends PureComponent {
               );
             }
         )}
-      </div>
+      </React.Fragment>
     );
   }
 }

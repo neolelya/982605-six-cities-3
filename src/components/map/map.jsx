@@ -12,15 +12,9 @@ class Map extends PureComponent {
   componentDidMount() {
     const {
       location: {cityCoordinates},
-      offers,
     } = this.props;
 
     if (this._mapRef.current) {
-      const icon = leaflet.icon({
-        iconUrl: `img/pin.svg`,
-        iconSize: [30, 30],
-      });
-
       const zoom = 12;
 
       this.map = leaflet.map(this._mapRef.current, {
@@ -40,9 +34,13 @@ class Map extends PureComponent {
         )
         .addTo(this.map);
 
-      offers.forEach((offer) => {
-        leaflet.marker(offer.coordinates, {icon}).addTo(this.map);
-      });
+      this._getMap();
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.offersCoordinates !== prevProps.offersCoordinates) {
+      this._getMap();
     }
   }
 
@@ -51,19 +49,48 @@ class Map extends PureComponent {
   }
 
   render() {
-    return <section className="cities__map map" ref={this._mapRef} />;
+    return <div style={{height: `100%`}} ref={this._mapRef} />;
+  }
+
+  _getIcon(isActive) {
+    return leaflet.icon({
+      iconUrl: isActive ? `img/pin-active.svg` : `img/pin.svg`,
+      iconSize: [30, 30],
+    });
+  }
+
+  _getMap() {
+    if (this.markersGroup) {
+      this.markersGroup.removeLayer(this._mapRef.current);
+    }
+
+    this.markersGroup = leaflet.layerGroup().addTo(this.map);
+
+    this.props.offersCoordinates.forEach((coordinates) => {
+      leaflet
+        .marker(coordinates, {
+          icon: this._getIcon(
+              coordinates[0] === this.props.activeCoordinates[0] &&
+              coordinates[1] === this.props.activeCoordinates[1]
+          ),
+        })
+        .addTo(this.markersGroup);
+    });
   }
 }
+
+Map.defaultProps = {
+  activeCoordinates: [],
+};
 
 Map.propTypes = {
   location: PropTypes.shape({
     cityCoordinates: PropTypes.arrayOf(PropTypes.number.isRequired).isRequired,
   }).isRequired,
-  offers: PropTypes.arrayOf(
-      PropTypes.shape({
-        coordinates: PropTypes.arrayOf(PropTypes.number.isRequired).isRequired,
-      }).isRequired
+  offersCoordinates: PropTypes.arrayOf(
+      PropTypes.arrayOf(PropTypes.number.isRequired).isRequired
   ).isRequired,
+  activeCoordinates: PropTypes.arrayOf(PropTypes.number.isRequired),
 };
 
 export default Map;

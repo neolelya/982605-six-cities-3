@@ -1,9 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Should render OffersList correctly 1`] = `
-<div
-  className="cities__places-list places__list tabs__content"
->
+Array [
   <article
     className="cities__place-card place-card"
     onMouseEnter={[Function]}
@@ -109,7 +107,7 @@ exports[`Should render OffersList correctly 1`] = `
         Apartment
       </p>
     </div>
-  </article>
+  </article>,
   <article
     className="cities__place-card place-card"
     onMouseEnter={[Function]}
@@ -208,7 +206,7 @@ exports[`Should render OffersList correctly 1`] = `
         Hotel
       </p>
     </div>
-  </article>
+  </article>,
   <article
     className="cities__place-card place-card"
     onMouseEnter={[Function]}
@@ -314,7 +312,7 @@ exports[`Should render OffersList correctly 1`] = `
         House
       </p>
     </div>
-  </article>
+  </article>,
   <article
     className="cities__place-card place-card"
     onMouseEnter={[Function]}
@@ -413,6 +411,6 @@ exports[`Should render OffersList correctly 1`] = `
         Apartment
       </p>
     </div>
-  </article>
-</div>
+  </article>,
+]
 `;

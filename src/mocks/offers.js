@@ -1,4 +1,5 @@
 import {OFFER_FEATURES, RentalFeature, RentalType, City} from '../consts';
+import reviews from './reviews';
 
 export default [
   {
@@ -35,6 +36,7 @@ export default [
         rentalRoomsQuantity: 3,
         rentalMaxGuestsQuantity: 3,
         rentalFeatures: [RentalFeature.DRYER, RentalFeature.WASHINGMACHINE],
+        reviews: [reviews[0], reviews[2]],
       },
       {
         id: 1,
@@ -69,6 +71,7 @@ export default [
           RentalFeature.KITCHEN,
           RentalFeature.KITCHEN,
         ],
+        reviews: [reviews[0], reviews[1], reviews[2]],
       },
       {
         id: 2,
@@ -99,6 +102,7 @@ export default [
         rentalRoomsQuantity: 4,
         rentalMaxGuestsQuantity: 7,
         rentalFeatures: OFFER_FEATURES,
+        reviews: [reviews[2]],
       },
       {
         id: 3,
@@ -133,6 +137,7 @@ export default [
           RentalFeature.WASHINGMACHINE,
           RentalFeature.PARKING,
         ],
+        reviews: [],
       },
     ],
   },
