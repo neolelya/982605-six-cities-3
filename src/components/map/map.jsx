@@ -15,15 +15,15 @@ class Map extends PureComponent {
     } = this.props;
 
     if (this._mapRef.current) {
-      const zoom = 12;
+      this.zoom = 12;
 
       this.map = leaflet.map(this._mapRef.current, {
         center: cityCoordinates,
-        zoom,
+        zoom: this.zoom,
         zoomControl: false,
         marker: true,
       });
-      this.map.setView(cityCoordinates, zoom);
+      this.map.setView(cityCoordinates, this.zoom);
 
       leaflet
         .tileLayer(
@@ -39,7 +39,11 @@ class Map extends PureComponent {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.offersCoordinates !== prevProps.offersCoordinates) {
+    if (
+      this.props.offersCoordinates !== prevProps.offersCoordinates ||
+      this.props.location.cityCoordinates !== prevProps.location.cityCoordinates
+    ) {
+      this.map.setView(this.props.location.cityCoordinates, this.zoom);
       this._getMap();
     }
   }

@@ -1,6 +1,6 @@
 import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
-import {MAX_RATING, MAX_REVIEWS_QUANTITY} from '../../consts';
+import {OffersRestriction} from '../../consts';
 import ReviewsItem from '../reviews-item/reviews-item.jsx';
 
 const ReviewsList = (props) => {
@@ -17,14 +17,14 @@ const ReviewsList = (props) => {
           .slice()
           .sort((a, b) => b.date - a.date)
           .map((review, i) => <ReviewsItem key={i + review} review={review} />)
-          .slice(0, MAX_REVIEWS_QUANTITY)}
+          .slice(0, OffersRestriction.MAX_REVIEWS_QUANTITY)}
       </ul>
       <form className="reviews__form form" action="#" method="post">
         <label className="reviews__label form__label" htmlFor="review">
           Your review
         </label>
         <div className="reviews__rating-form form__rating">
-          {Array(MAX_RATING)
+          {Array(OffersRestriction.MAX_RATING)
             .fill(``)
             .map((_, i) => (
               <Fragment key={i + `star`}>

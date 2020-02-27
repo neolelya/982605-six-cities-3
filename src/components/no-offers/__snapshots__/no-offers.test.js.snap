@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should NoOffers render correctly 1`] = `
+<div
+  className="cities__places-container cities__places-container--empty container"
+>
+  <section
+    className="cities__no-places"
+  >
+    <div
+      className="cities__status-wrapper tabs__content"
+    >
+      <b
+        className="cities__status"
+      >
+        No places to stay available
+      </b>
+      <p
+        className="cities__status-description"
+      >
+        We could not find any property available at the moment in Dusseldorf
+      </p>
+    </div>
+  </section>
+  <div
+    className="cities__right-section"
+    style={
+      Object {
+        "backgroundImage": "url(../img/no-places@2x.png)",
+        "backgroundPosition": "right center",
+        "backgroundSize": "100% auto",
+      }
+    }
+  />
+</div>
+`;
