@@ -1,3 +1,5 @@
+import {OffersRestriction} from './consts';
+
 export const formatDate = (date) => {
   const options = {
     day: `numeric`,
@@ -25,3 +27,13 @@ export const formatDateTime = (date) => {
 
 export const getDistance = ([x1, y1], [x2, y2]) =>
   Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
+
+export const getOffersByCity = (city, offers) => {
+  return offers.filter((offer) => offer.location.city === city);
+};
+
+export const getUniqueCities = (offers) => {
+  const cities = new Set();
+  offers.forEach((offer) => cities.add(offer.location.city));
+  return [...cities].slice(0, OffersRestriction.MAX_CITIES_COUNT);
+};

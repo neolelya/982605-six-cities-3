@@ -1,6 +1,8 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom';
+import {connect} from 'react-redux';
+import {ActionCreator} from '../../reducer';
 import Main from '../main/main.jsx';
 import Property from '../property/property.jsx';
 
@@ -24,21 +26,24 @@ class App extends PureComponent {
   _renderMainScreen() {
     return (
       <Main
-        rentalOffers={this.props.rentalOffers}
+        cities={this.props.cities}
+        currentCity={this.props.currentCity}
+        currentOffers={this.props.currentOffers}
         onHeaderClick={this._handleHeaderClick}
+        onCityClick={this.props.onCityClick}
       />
     );
   }
 
   _renderPropertyScreen(id) {
-    const offer = this.props.rentalOffers[0].offers.find(
+    const offer = this.props.currentOffers[0].offers.find(
         (property) => property.id === +id
     );
     return offer ? (
       <Property
         offer={offer}
-        location={this.props.rentalOffers[0].location}
-        offers={this.props.rentalOffers[0].offers}
+        location={this.props.currentOffers[0].location}
+        offers={this.props.currentOffers[0].offers}
         onHeaderClick={this._handleHeaderClick}
       />
     ) : (
@@ -67,7 +72,27 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
-  rentalOffers: PropTypes.array.isRequired,
+  allOffers: PropTypes.array.isRequired,
+  cities: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  currentOffers: PropTypes.array.isRequired,
+  currentCity: PropTypes.string.isRequired,
+  onCityClick: PropTypes.func.isRequired,
 };
 
-export default App;
+const mapStateToProps = (state) => ({
+  allOffers: state.allOffers,
+  cities: state.cities,
+  currentCity: state.currentCity,
+  currentOffers: state.currentOffers,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onCityClick(evt, city) {
+    evt.preventDefault();
+    dispatch(ActionCreator.changeCity(city));
+    dispatch(ActionCreator.getOffers(city));
+  },
+});
+
+export {App};
+export default connect(mapStateToProps, mapDispatchToProps)(App);

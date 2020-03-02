@@ -1,19 +1,17 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
+import OffersContainer from './offers-container.jsx';
+import {TEST_OFFERS} from '../../tests-mocks';
 import {MemoryRouter} from 'react-router-dom';
-import Main from './main.jsx';
-import {TEST_CITIES, TEST_OFFERS} from '../../tests-mocks';
 
-it(`Should render Main correctly`, () => {
+it(`Should OffersContainer render correctly`, () => {
   const tree = renderer
     .create(
         <MemoryRouter>
-          <Main
+          <OffersContainer
+            placesCount={TEST_OFFERS[0].offers.length}
             onHeaderClick={() => {}}
-            cities={TEST_CITIES}
-            currentCity={TEST_CITIES[3]}
             currentOffers={TEST_OFFERS}
-            onCityClick={() => {}}
           />
         </MemoryRouter>
     )

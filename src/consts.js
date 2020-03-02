@@ -1,8 +1,11 @@
-export const MAX_RATING = 5;
-export const MAX_IMAGES_QUANTITY = 6;
-export const MAX_REVIEWS_QUANTITY = 10;
-export const MAX_SIMILAR_OFFERS_QUANTITY = 3;
-export const MAX_MAP_OFFERS_QUANTITY = 4;
+export const OffersRestriction = {
+  MAX_RATING: 5,
+  MAX_CITIES_COUNT: 6,
+  MAX_IMAGES_QUANTITY: 6,
+  MAX_REVIEWS_QUANTITY: 10,
+  MAX_SIMILAR_OFFERS_QUANTITY: 3,
+  MAX_MAP_OFFERS_QUANTITY: 4,
+};
 
 export const City = {
   PARIS: `Paris`,
@@ -21,6 +24,15 @@ export const CITIES = [
   City.HAMBURG,
   City.DUSSELDORF,
 ];
+
+export const CityCoordinates = {
+  Paris: [48.85341, 2.3488],
+  Cologne: [50.93333, 6.95],
+  Brussels: [50.85045, 4.34878],
+  Amsterdam: [52.38333, 4.9],
+  Hamburg: [53.57532, 10.01534],
+  Dusseldorf: [51.22172, 6.77616],
+};
 
 export const RentalType = {
   APARTMENT: `Apartment`,

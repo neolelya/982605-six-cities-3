@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {MAX_RATING} from '../../consts';
+import {OffersRestriction} from '../../consts';
 import {formatDate, formatDateTime} from '../../utils';
 
 const ReviewsItem = (props) => {
   const {review} = props;
   const {name, avatar, rating, date, text} = review;
-  const ratingPercent = (Math.round(rating) * 100) / MAX_RATING;
+  const ratingPercent =
+    (Math.round(rating) * 100) / OffersRestriction.MAX_RATING;
 
   return (
     <li className="reviews__item">

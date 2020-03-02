@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
-import {MAX_RATING, OFFER_TYPES} from '../../consts';
+import {OffersRestriction, OFFER_TYPES} from '../../consts';
 
 const RentalCard = (props) => {
   const {
@@ -18,7 +18,8 @@ const RentalCard = (props) => {
     onMouseLeave,
   } = props;
 
-  const ratingPercent = (Math.round(rentalRating) * 100) / MAX_RATING;
+  const ratingPercent =
+    (Math.round(rentalRating) * 100) / OffersRestriction.MAX_RATING;
 
   return (
     <article
