@@ -31,6 +31,10 @@ class App extends PureComponent {
         currentOffers={this.props.currentOffers}
         onHeaderClick={this._handleHeaderClick}
         onCityClick={this.props.onCityClick}
+        currentSortType={this.props.currentSortType}
+        onSortTypeClick={this.props.onSortTypeClick}
+        onRentalCardHover={this.props.onRentalCardHover}
+        activeCardCoordinates={this.props.activeCardCoordinates}
       />
     );
   }
@@ -45,6 +49,8 @@ class App extends PureComponent {
         location={this.props.currentOffers[0].location}
         offers={this.props.currentOffers[0].offers}
         onHeaderClick={this._handleHeaderClick}
+        onRentalCardHover={this.props.onRentalCardHover}
+        activeCardCoordinates={this.props.activeCardCoordinates}
       />
     ) : (
       <Redirect to="/" />
@@ -77,6 +83,11 @@ App.propTypes = {
   currentOffers: PropTypes.array.isRequired,
   currentCity: PropTypes.string.isRequired,
   onCityClick: PropTypes.func.isRequired,
+  currentSortType: PropTypes.string.isRequired,
+  onSortTypeClick: PropTypes.func.isRequired,
+  onRentalCardHover: PropTypes.func.isRequired,
+  activeCardCoordinates: PropTypes.arrayOf(PropTypes.number.isRequired)
+    .isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -84,6 +95,8 @@ const mapStateToProps = (state) => ({
   cities: state.cities,
   currentCity: state.currentCity,
   currentOffers: state.currentOffers,
+  currentSortType: state.currentSortType,
+  activeCardCoordinates: state.activeCardCoordinates,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -91,6 +104,12 @@ const mapDispatchToProps = (dispatch) => ({
     evt.preventDefault();
     dispatch(ActionCreator.changeCity(city));
     dispatch(ActionCreator.getOffers(city));
+  },
+  onSortTypeClick(sortType) {
+    dispatch(ActionCreator.changeSortType(sortType));
+  },
+  onRentalCardHover(coordinates) {
+    dispatch(ActionCreator.setActiveCard(coordinates));
   },
 });
 

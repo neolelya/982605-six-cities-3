@@ -6,8 +6,8 @@ function CitiesList(props) {
 
   return (
     <ul className="locations__list tabs__list">
-      {cities.map((city, i) => (
-        <li key={i + city} className="locations__item">
+      {cities.map((city) => (
+        <li key={city} className="locations__item">
           <a
             className={`locations__item-link tabs__item ${
               city === currentCity ? `tabs__item--active` : ``

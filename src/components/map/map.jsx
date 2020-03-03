@@ -74,8 +74,10 @@ class Map extends PureComponent {
       leaflet
         .marker(coordinates, {
           icon: this._getIcon(
-              coordinates[0] === this.props.activeCoordinates[0] &&
-              coordinates[1] === this.props.activeCoordinates[1]
+              (coordinates[0] === this.props.activeCoordinates[0] &&
+              coordinates[1] === this.props.activeCoordinates[1]) ||
+              (coordinates[0] === this.props.activeCardCoordinates[0] &&
+                coordinates[1] === this.props.activeCardCoordinates[1])
           ),
         })
         .addTo(this.markersGroup);
@@ -95,6 +97,8 @@ Map.propTypes = {
       PropTypes.arrayOf(PropTypes.number.isRequired).isRequired
   ).isRequired,
   activeCoordinates: PropTypes.arrayOf(PropTypes.number.isRequired),
+  activeCardCoordinates: PropTypes.arrayOf(PropTypes.number.isRequired)
+    .isRequired,
 };
 
 export default Map;

@@ -2,33 +2,77 @@ import React from 'react';
 import Enzyme, {shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import RentalCard from './rental-card';
-import {TEST_OFFERS} from '../../tests-mocks';
+import {OFFERS} from '../../tests-mocks';
 
-const RENTAL_OFFER = TEST_OFFERS[0].offers[0];
+const RENTAL_OFFER = OFFERS[0].offers[0];
 
 Enzyme.configure({
   adapter: new Adapter(),
 });
 
-it(`Should RentalCard handle onMouseEnter and click events`, () => {
-  const onMouseEnter = jest.fn();
-  const onHeaderClick = jest.fn();
+describe(`RentalCard handlers work correctly`, () => {
+  it(`with click events`, () => {
+    const onHeaderClick = jest.fn();
 
-  const rentalCard = shallow(
-      <RentalCard
-        {...RENTAL_OFFER}
-        onMouseLeave={() => {}}
-        onMouseEnter={onMouseEnter}
-        onHeaderClick={onHeaderClick}
-      />
-  );
+    const rentalCard = shallow(
+        <RentalCard
+          {...RENTAL_OFFER}
+          onMouseLeave={() => {}}
+          onMouseEnter={() => {}}
+          onHeaderClick={onHeaderClick}
+          onRentalCardHover={() => {}}
+        />
+    );
 
-  const card = rentalCard.find(`.place-card`);
-  const header = rentalCard.find(`.place-card__name`);
+    const header = rentalCard.find(`.place-card__name`);
 
-  card.simulate(`mouseenter`);
-  header.simulate(`click`);
+    header.simulate(`click`);
 
-  expect(onMouseEnter).toHaveBeenCalledTimes(1);
-  expect(onHeaderClick).toHaveBeenCalledTimes(1);
+    expect(onHeaderClick).toHaveBeenCalledTimes(1);
+  });
+
+  it(`with onMouseEnter events`, () => {
+    const onMouseEnter = jest.fn();
+
+    const rentalCard = shallow(
+        <RentalCard
+          {...RENTAL_OFFER}
+          onMouseLeave={() => {}}
+          onMouseEnter={onMouseEnter}
+          onHeaderClick={() => {}}
+          onRentalCardHover={() => {}}
+        />
+    );
+
+    const card = rentalCard.find(`.place-card`);
+
+    card.simulate(`mouseenter`);
+
+    expect(onMouseEnter).toHaveBeenCalledTimes(1);
+  });
+
+  it(`with onRentalCardHover events`, () => {
+    const onRentalCardHover = jest.fn();
+
+    const rentalCard = shallow(
+        <RentalCard
+          {...RENTAL_OFFER}
+          onMouseLeave={() => {}}
+          onMouseEnter={() => {}}
+          onHeaderClick={() => {}}
+          onRentalCardHover={onRentalCardHover}
+        />
+    );
+
+    const card = rentalCard.find(`.place-card`);
+
+    card.simulate(`mouseenter`);
+
+    expect(onRentalCardHover).toHaveBeenCalledTimes(1);
+    expect(Array.isArray(onRentalCardHover.mock.calls)).toBe(true);
+    expect(onRentalCardHover.mock.calls.length).toBe(1);
+    expect(onRentalCardHover.mock.calls[0][0].length).toEqual(
+        RENTAL_OFFER.coordinates.length
+    );
+  });
 });
