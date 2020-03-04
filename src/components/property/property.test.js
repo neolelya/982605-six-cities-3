@@ -3,17 +3,19 @@ import {MemoryRouter} from 'react-router-dom';
 
 import renderer from 'react-test-renderer';
 import Property from './property.jsx';
-import {TEST_OFFERS} from '../../tests-mocks';
+import {OFFERS} from '../../tests-mocks';
 
 it(`Should render Property correctly`, () => {
   const tree = renderer
     .create(
         <MemoryRouter>
           <Property
-            offer={TEST_OFFERS[0].offers[0]}
-            location={TEST_OFFERS[0].location}
-            offers={TEST_OFFERS[0].offers}
+            offer={OFFERS[0].offers[0]}
+            location={OFFERS[0].location}
+            offers={OFFERS[0].offers}
             onHeaderClick={() => {}}
+            activeCardCoordinates={[]}
+            onRentalCardHover={() => {}}
           />
         </MemoryRouter>
     )

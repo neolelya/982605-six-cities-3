@@ -1,6 +1,6 @@
 import {City, OFFER_FEATURES, RentalFeature, RentalType} from './consts';
 
-export const TEST_OFFERS = [
+export const OFFERS = [
   {
     location: {
       city: City.AMSTERDAM,
@@ -193,7 +193,7 @@ export const TEST_OFFERS = [
   },
 ];
 
-export const TEST_REVIEWS = [
+export const REVIEWS = [
   {
     id: 0,
     name: `Adam`,
@@ -220,14 +220,14 @@ export const TEST_REVIEWS = [
   },
 ];
 
-export const TEST_OFFERS_COORDINATES = [
+export const OFFERS_COORDINATES = [
   [52.3809553943508, 4.939309666406198],
   [52.3909553943508, 4.929309666406198],
   [52.3909553943508, 4.85309666406198],
   [52.369553943508, 4.85309666406198],
 ];
 
-export const TEST_CITIES = [
+export const CITIES = [
   `Paris`,
   `Cologne`,
   `Brussels`,
@@ -236,7 +236,7 @@ export const TEST_CITIES = [
   `Dusseldorf`,
 ];
 
-export const TEST_ALL_OFFERS = [
+export const ALL_OFFERS = [
   {
     location: {
       city: City.PARIS,

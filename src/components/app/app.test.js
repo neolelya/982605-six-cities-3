@@ -3,14 +3,16 @@ import renderer from 'react-test-renderer';
 import {MemoryRouter} from 'react-router-dom';
 import {Provider} from 'react-redux';
 import App from './app.jsx';
-import {TEST_ALL_OFFERS, TEST_CITIES, TEST_OFFERS} from '../../tests-mocks';
+import {ALL_OFFERS, CITIES, OFFERS} from '../../tests-mocks';
 import {createStore} from 'redux';
 
 const initialState = {
-  currentCity: TEST_CITIES[3],
-  allOffers: TEST_ALL_OFFERS,
-  currentOffers: TEST_OFFERS,
-  cities: TEST_CITIES,
+  currentCity: CITIES[3],
+  allOffers: ALL_OFFERS,
+  currentOffers: OFFERS,
+  cities: CITIES,
+  currentSortType: `Popular`,
+  activeCardCoordinates: [],
 };
 
 const reducer = (state = initialState) => {
@@ -24,11 +26,15 @@ it(`Render App`, () => {
         <MemoryRouter>
           <Provider store={store}>
             <App
-              allOffers={TEST_ALL_OFFERS}
-              cities={TEST_CITIES}
-              currentOffers={TEST_OFFERS}
-              currentCity={TEST_CITIES[3]}
+              allOffers={ALL_OFFERS}
+              cities={CITIES}
+              currentOffers={OFFERS}
+              currentCity={CITIES[3]}
               onCityClick={() => {}}
+              currentSortType={`Popular`}
+              onSortTypeClick={() => {}}
+              onRentalCardHover={() => {}}
+              activeCardCoordinates={[]}
             />
           </Provider>
         </MemoryRouter>

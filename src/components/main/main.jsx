@@ -12,6 +12,10 @@ const Main = (props) => {
     currentOffers,
     onHeaderClick,
     onCityClick,
+    currentSortType,
+    onSortTypeClick,
+    activeCardCoordinates,
+    onRentalCardHover,
   } = props;
 
   return (
@@ -35,6 +39,10 @@ const Main = (props) => {
               currentOffers={currentOffers}
               onHeaderClick={onHeaderClick}
               placesCount={currentOffers[0].offers.length}
+              currentSortType={currentSortType}
+              onSortTypeClick={onSortTypeClick}
+              activeCardCoordinates={activeCardCoordinates}
+              onRentalCardHover={onRentalCardHover}
             />
           ) : (
             <NoOffers />
@@ -51,6 +59,11 @@ Main.propTypes = {
   currentCity: PropTypes.string.isRequired,
   currentOffers: PropTypes.array.isRequired,
   onCityClick: PropTypes.func.isRequired,
+  currentSortType: PropTypes.string.isRequired,
+  onSortTypeClick: PropTypes.func.isRequired,
+  onRentalCardHover: PropTypes.func.isRequired,
+  activeCardCoordinates: PropTypes.arrayOf(PropTypes.number.isRequired)
+    .isRequired,
 };
 
 export default Main;

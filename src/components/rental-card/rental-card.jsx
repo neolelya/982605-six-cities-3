@@ -13,9 +13,11 @@ const RentalCard = (props) => {
     rentalType,
     isPremium,
     isBookmark,
+    coordinates,
     onHeaderClick,
     onMouseEnter,
     onMouseLeave,
+    onRentalCardHover,
   } = props;
 
   const ratingPercent =
@@ -26,8 +28,12 @@ const RentalCard = (props) => {
       className="cities__place-card place-card"
       onMouseEnter={() => {
         onMouseEnter(id);
+        onRentalCardHover(coordinates);
       }}
-      onMouseLeave={onMouseLeave}
+      onMouseLeave={() => {
+        onMouseLeave();
+        onRentalCardHover([]);
+      }}
     >
       {isPremium && (
         <div className="place-card__mark">
@@ -92,9 +98,11 @@ RentalCard.propTypes = {
   rentalType: PropTypes.oneOf(OFFER_TYPES).isRequired,
   isPremium: PropTypes.bool.isRequired,
   isBookmark: PropTypes.bool.isRequired,
+  coordinates: PropTypes.arrayOf(PropTypes.number.isRequired).isRequired,
   onHeaderClick: PropTypes.func.isRequired,
   onMouseEnter: PropTypes.func.isRequired,
   onMouseLeave: PropTypes.func.isRequired,
+  onRentalCardHover: PropTypes.func.isRequired,
 };
 
 export default RentalCard;

@@ -35,6 +35,7 @@ class OffersList extends PureComponent {
               rentalType,
               isPremium,
               isBookmark,
+              coordinates,
             }) => {
               return (
                 <React.Fragment key={id}>
@@ -47,9 +48,11 @@ class OffersList extends PureComponent {
                     rentalType={rentalType}
                     isPremium={isPremium}
                     isBookmark={isBookmark}
+                    coordinates={coordinates}
                     onHeaderClick={this.props.onHeaderClick}
                     onMouseEnter={this._setActiveRentalCard}
                     onMouseLeave={this._removeActiveRentalCard}
+                    onRentalCardHover={this.props.onRentalCardHover}
                   />
                 </React.Fragment>
               );
@@ -63,6 +66,7 @@ class OffersList extends PureComponent {
 OffersList.propTypes = {
   rentalCardsList: PropTypes.array.isRequired,
   onHeaderClick: PropTypes.func.isRequired,
+  onRentalCardHover: PropTypes.func.isRequired,
 };
 
 export default OffersList;

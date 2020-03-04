@@ -1,4 +1,4 @@
-import {OffersRestriction} from './consts';
+import {OffersRestriction, SortType} from './consts';
 
 export const formatDate = (date) => {
   const options = {
@@ -36,4 +36,18 @@ export const getUniqueCities = (offers) => {
   const cities = new Set();
   offers.forEach((offer) => cities.add(offer.location.city));
   return [...cities].slice(0, OffersRestriction.MAX_CITIES_COUNT);
+};
+
+export const getSortedOffers = (offers, sortType) => {
+  switch (sortType) {
+    case SortType.PRICE_LOW_TO_HIGH:
+      return offers.slice().sort((a, b) => a.rentalPrice - b.rentalPrice);
+    case SortType.PRICE_HIGH_TO_LOW:
+      return offers.slice().sort((a, b) => b.rentalPrice - a.rentalPrice);
+    case SortType.TOP_RATED:
+      return offers.slice().sort((a, b) => b.rentalRating - a.rentalRating);
+    default:
+    case SortType.POPULAR:
+      return offers;
+  }
 };

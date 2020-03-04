@@ -29,6 +29,8 @@ const Property = (props) => {
       reviews,
     },
     onHeaderClick,
+    onRentalCardHover,
+    activeCardCoordinates,
   } = props;
 
   const ratingPercent =
@@ -164,6 +166,7 @@ const Property = (props) => {
               location={location}
               offersCoordinates={nearestOffersCoordinates}
               activeCoordinates={coordinates}
+              activeCardCoordinates={activeCardCoordinates}
             />
           </section>
         </section>
@@ -176,6 +179,7 @@ const Property = (props) => {
               <OffersList
                 rentalCardsList={nearestOffers}
                 onHeaderClick={onHeaderClick}
+                onRentalCardHover={onRentalCardHover}
               />
             </div>
           </section>
@@ -225,6 +229,9 @@ Property.propTypes = {
       }).isRequired
   ).isRequired,
   onHeaderClick: PropTypes.func.isRequired,
+  onRentalCardHover: PropTypes.func.isRequired,
+  activeCardCoordinates: PropTypes.arrayOf(PropTypes.number.isRequired)
+    .isRequired,
 };
 
 export default Property;
