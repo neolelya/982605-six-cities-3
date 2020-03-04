@@ -700,7 +700,6 @@ exports[`Should render Property correctly 1`] = `
               </div>
               <h2
                 className="place-card__name"
-                onClick={[Function]}
               >
                 <a
                   href="/property/1"
@@ -806,7 +805,6 @@ exports[`Should render Property correctly 1`] = `
               </div>
               <h2
                 className="place-card__name"
-                onClick={[Function]}
               >
                 <a
                   href="/property/2"
@@ -905,7 +903,6 @@ exports[`Should render Property correctly 1`] = `
               </div>
               <h2
                 className="place-card__name"
-                onClick={[Function]}
               >
                 <a
                   href="/property/3"

@@ -10,7 +10,6 @@ const Main = (props) => {
     cities,
     currentCity,
     currentOffers,
-    onHeaderClick,
     onCityClick,
     currentSortType,
     onSortTypeClick,
@@ -37,7 +36,6 @@ const Main = (props) => {
           {currentOffers[0].offers.length > 0 ? (
             <OffersContainer
               currentOffers={currentOffers}
-              onHeaderClick={onHeaderClick}
               placesCount={currentOffers[0].offers.length}
               currentSortType={currentSortType}
               onSortTypeClick={onSortTypeClick}
@@ -54,7 +52,6 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  onHeaderClick: PropTypes.func.isRequired,
   cities: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   currentCity: PropTypes.string.isRequired,
   currentOffers: PropTypes.array.isRequired,

@@ -28,7 +28,6 @@ const Property = (props) => {
       rentalFeatures,
       reviews,
     },
-    onHeaderClick,
     onRentalCardHover,
     activeCardCoordinates,
   } = props;
@@ -178,7 +177,6 @@ const Property = (props) => {
             <div className="near-places__list places__list">
               <OffersList
                 rentalCardsList={nearestOffers}
-                onHeaderClick={onHeaderClick}
                 onRentalCardHover={onRentalCardHover}
               />
             </div>
@@ -228,7 +226,6 @@ Property.propTypes = {
         coordinates: PropTypes.arrayOf(PropTypes.number.isRequired).isRequired,
       }).isRequired
   ).isRequired,
-  onHeaderClick: PropTypes.func.isRequired,
   onRentalCardHover: PropTypes.func.isRequired,
   activeCardCoordinates: PropTypes.arrayOf(PropTypes.number.isRequired)
     .isRequired,

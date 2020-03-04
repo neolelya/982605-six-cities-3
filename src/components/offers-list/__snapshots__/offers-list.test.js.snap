@@ -92,7 +92,6 @@ Array [
       </div>
       <h2
         className="place-card__name"
-        onClick={[Function]}
       >
         <a
           href="/property/0"
@@ -191,7 +190,6 @@ Array [
       </div>
       <h2
         className="place-card__name"
-        onClick={[Function]}
       >
         <a
           href="/property/1"
@@ -297,7 +295,6 @@ Array [
       </div>
       <h2
         className="place-card__name"
-        onClick={[Function]}
       >
         <a
           href="/property/2"
@@ -396,7 +393,6 @@ Array [
       </div>
       <h2
         className="place-card__name"
-        onClick={[Function]}
       >
         <a
           href="/property/3"

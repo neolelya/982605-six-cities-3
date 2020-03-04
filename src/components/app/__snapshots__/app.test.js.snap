@@ -327,7 +327,6 @@ exports[`Render App 1`] = `
                 </div>
                 <h2
                   className="place-card__name"
-                  onClick={[Function]}
                 >
                   <a
                     href="/property/0"
@@ -426,7 +425,6 @@ exports[`Render App 1`] = `
                 </div>
                 <h2
                   className="place-card__name"
-                  onClick={[Function]}
                 >
                   <a
                     href="/property/1"
@@ -532,7 +530,6 @@ exports[`Render App 1`] = `
                 </div>
                 <h2
                   className="place-card__name"
-                  onClick={[Function]}
                 >
                   <a
                     href="/property/2"
@@ -631,7 +628,6 @@ exports[`Render App 1`] = `
                 </div>
                 <h2
                   className="place-card__name"
-                  onClick={[Function]}
                 >
                   <a
                     href="/property/3"

@@ -12,7 +12,6 @@ it(`Should render OffersList correctly`, () => {
         <MemoryRouter>
           <OffersList
             rentalCardsList={RENTAL_OFFER}
-            onHeaderClick={() => {}}
             onRentalCardHover={() => {}}
           />
         </MemoryRouter>
