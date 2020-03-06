@@ -4,12 +4,14 @@ import OffersList from '../offers-list/offers-list.jsx';
 import Map from '../map/map.jsx';
 import Sorting from '../sorting/sorting.jsx';
 import {getSortedOffers} from '../../utils';
+import withToggle from '../../hocs/with-toggle/with-toggle.jsx';
+
+const SortingWrapped = withToggle(Sorting);
 
 const OffersContainer = (props) => {
   const {
     placesCount,
     currentOffers,
-    onHeaderClick,
     currentSortType,
     onSortTypeClick,
     activeCardCoordinates,
@@ -29,14 +31,13 @@ const OffersContainer = (props) => {
         <b className="places__found">
           {placesCount} places to stay in Amsterdam
         </b>
-        <Sorting
+        <SortingWrapped
           currentSortType={currentSortType}
           onSortTypeClick={onSortTypeClick}
         />
         <div className="cities__places-list places__list tabs__content">
           <OffersList
             rentalCardsList={sortedOffers}
-            onHeaderClick={onHeaderClick}
             onRentalCardHover={onRentalCardHover}
           />
         </div>
@@ -56,7 +57,6 @@ const OffersContainer = (props) => {
 
 OffersContainer.propTypes = {
   placesCount: PropTypes.number.isRequired,
-  onHeaderClick: PropTypes.func.isRequired,
   currentOffers: PropTypes.array.isRequired,
   currentSortType: PropTypes.string.isRequired,
   onSortTypeClick: PropTypes.func.isRequired,

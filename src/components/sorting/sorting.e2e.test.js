@@ -15,6 +15,8 @@ it(`Should change active sorting item`, () => {
       <Sorting
         currentSortType={currentSortType}
         onSortTypeClick={onSortTypeClick}
+        isActive={false}
+        onToggleClick={() => {}}
       />
   );
 

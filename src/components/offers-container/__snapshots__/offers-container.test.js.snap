@@ -171,7 +171,6 @@ exports[`Should OffersContainer render correctly 1`] = `
           </div>
           <h2
             className="place-card__name"
-            onClick={[Function]}
           >
             <a
               href="/property/0"
@@ -270,7 +269,6 @@ exports[`Should OffersContainer render correctly 1`] = `
           </div>
           <h2
             className="place-card__name"
-            onClick={[Function]}
           >
             <a
               href="/property/1"
@@ -376,7 +374,6 @@ exports[`Should OffersContainer render correctly 1`] = `
           </div>
           <h2
             className="place-card__name"
-            onClick={[Function]}
           >
             <a
               href="/property/2"
@@ -475,7 +472,6 @@ exports[`Should OffersContainer render correctly 1`] = `
           </div>
           <h2
             className="place-card__name"
-            onClick={[Function]}
           >
             <a
               href="/property/3"

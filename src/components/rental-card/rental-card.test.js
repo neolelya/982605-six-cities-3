@@ -13,7 +13,6 @@ it(`Should render RentalCard correctly`, () => {
           <RentalCard
             {...RENTAL_OFFER}
             onMouseLeave={() => {}}
-            onHeaderClick={() => {}}
             onMouseEnter={() => {}}
             onRentalCardHover={() => {}}
           />

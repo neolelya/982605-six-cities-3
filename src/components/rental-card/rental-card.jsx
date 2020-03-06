@@ -14,9 +14,6 @@ const RentalCard = (props) => {
     isPremium,
     isBookmark,
     coordinates,
-    onHeaderClick,
-    onMouseEnter,
-    onMouseLeave,
     onRentalCardHover,
   } = props;
 
@@ -27,11 +24,9 @@ const RentalCard = (props) => {
     <article
       className="cities__place-card place-card"
       onMouseEnter={() => {
-        onMouseEnter(id);
         onRentalCardHover(coordinates);
       }}
       onMouseLeave={() => {
-        onMouseLeave();
         onRentalCardHover([]);
       }}
     >
@@ -75,12 +70,7 @@ const RentalCard = (props) => {
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
-        <h2
-          className="place-card__name"
-          onClick={() => {
-            onHeaderClick(id);
-          }}
-        >
+        <h2 className="place-card__name">
           <Link to={{pathname: `/property/${id}`}}>{rentalTitle}</Link>
         </h2>
         <p className="place-card__type">{rentalType}</p>
@@ -99,9 +89,6 @@ RentalCard.propTypes = {
   isPremium: PropTypes.bool.isRequired,
   isBookmark: PropTypes.bool.isRequired,
   coordinates: PropTypes.arrayOf(PropTypes.number.isRequired).isRequired,
-  onHeaderClick: PropTypes.func.isRequired,
-  onMouseEnter: PropTypes.func.isRequired,
-  onMouseLeave: PropTypes.func.isRequired,
   onRentalCardHover: PropTypes.func.isRequired,
 };
 

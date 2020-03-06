@@ -9,34 +9,6 @@ Enzyme.configure({
   adapter: new Adapter(),
 });
 
-it(`Should all the headers be clicked`, () => {
-  const handleHeaderClick = jest.fn();
-
-  const mainScreen = mount(
-      <MemoryRouter>
-        <Main
-          onHeaderClick={handleHeaderClick}
-          cities={CITIES}
-          currentCity={CITIES[3]}
-          currentOffers={OFFERS}
-          onCityClick={() => {}}
-          activeCardCoordinates={[]}
-          currentSortType={`Popular`}
-          onRentalCardHover={() => {}}
-          onSortTypeClick={() => {}}
-        />
-      </MemoryRouter>
-  );
-
-  const rentalHeaders = mainScreen.find(`.place-card__name`);
-
-  rentalHeaders.forEach((header) => {
-    return header.simulate(`click`);
-  });
-
-  expect(handleHeaderClick.mock.calls.length).toBe(OFFERS[0].offers.length);
-});
-
 it(`Should change active city by click`, () => {
   const handleCityClick = jest.fn();
   const activeCity = `Amsterdam`;
@@ -44,7 +16,6 @@ it(`Should change active city by click`, () => {
   const mainScreen = mount(
       <MemoryRouter>
         <Main
-          onHeaderClick={() => {}}
           cities={CITIES}
           currentCity={activeCity}
           currentOffers={OFFERS}

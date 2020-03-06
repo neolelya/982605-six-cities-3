@@ -9,18 +9,6 @@ import Property from '../property/property.jsx';
 class App extends PureComponent {
   constructor(props) {
     super(props);
-
-    this.state = {
-      value: -1,
-    };
-
-    this._handleHeaderClick = this._handleHeaderClick.bind(this);
-  }
-
-  _handleHeaderClick(id) {
-    this.setState({
-      value: id,
-    });
   }
 
   _renderMainScreen() {
@@ -29,7 +17,6 @@ class App extends PureComponent {
         cities={this.props.cities}
         currentCity={this.props.currentCity}
         currentOffers={this.props.currentOffers}
-        onHeaderClick={this._handleHeaderClick}
         onCityClick={this.props.onCityClick}
         currentSortType={this.props.currentSortType}
         onSortTypeClick={this.props.onSortTypeClick}
@@ -48,7 +35,6 @@ class App extends PureComponent {
         offer={offer}
         location={this.props.currentOffers[0].location}
         offers={this.props.currentOffers[0].offers}
-        onHeaderClick={this._handleHeaderClick}
         onRentalCardHover={this.props.onRentalCardHover}
         activeCardCoordinates={this.props.activeCardCoordinates}
       />
