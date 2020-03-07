@@ -13,7 +13,10 @@ function CitiesList(props) {
               city === currentCity ? `tabs__item--active` : ``
             }`}
             href="#"
-            onClick={(evt) => onCityClick(evt, city)}
+            onClick={(evt) => {
+              evt.preventDefault();
+              onCityClick(city);
+            }}
           >
             <span>{city}</span>
           </a>
