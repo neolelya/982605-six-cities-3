@@ -32,6 +32,6 @@ it(`Should change active city by click`, () => {
 
   cities.at(0).simulate(`click`);
 
-  expect(handleCityClick.mock.calls[0][1]).toBe(`Paris`);
-  expect(handleCityClick.mock.calls[0][1]).not.toMatch(activeCity);
+  expect(handleCityClick.mock.calls[0][0]).toBe(`Paris`);
+  expect(handleCityClick.mock.calls[0][0]).not.toMatch(activeCity);
 });

@@ -3,14 +3,11 @@ import PropTypes from 'prop-types';
 import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {ActionCreator} from '../../reducer';
+import {SortType} from '../../consts';
 import Main from '../main/main.jsx';
 import Property from '../property/property.jsx';
 
 class App extends PureComponent {
-  constructor(props) {
-    super(props);
-  }
-
   _renderMainScreen() {
     return (
       <Main
@@ -86,10 +83,10 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onCityClick(evt, city) {
-    evt.preventDefault();
+  onCityClick(city) {
     dispatch(ActionCreator.changeCity(city));
     dispatch(ActionCreator.getOffers(city));
+    dispatch(ActionCreator.changeSortType(SortType.POPULAR));
   },
   onSortTypeClick(sortType) {
     dispatch(ActionCreator.changeSortType(sortType));
