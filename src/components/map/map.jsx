@@ -15,15 +15,18 @@ class Map extends PureComponent {
     } = this.props;
 
     if (this._mapRef.current) {
-      this.zoom = 12;
+      this.zoom = cityCoordinates.zoom;
 
       this.map = leaflet.map(this._mapRef.current, {
-        center: cityCoordinates,
+        center: [cityCoordinates.latitude, cityCoordinates.longitude],
         zoom: this.zoom,
         zoomControl: false,
         marker: true,
       });
-      this.map.setView(cityCoordinates, this.zoom);
+      this.map.setView(
+          [cityCoordinates.latitude, cityCoordinates.longitude],
+          this.zoom
+      );
 
       leaflet
         .tileLayer(
@@ -43,7 +46,13 @@ class Map extends PureComponent {
       this.props.offersCoordinates !== prevProps.offersCoordinates ||
       this.props.location.cityCoordinates !== prevProps.location.cityCoordinates
     ) {
-      this.map.setView(this.props.location.cityCoordinates, this.zoom);
+      this.map.setView(
+          [
+            this.props.location.cityCoordinates.latitude,
+            this.props.location.cityCoordinates.longitude,
+          ],
+          this.zoom
+      );
       this._getMap();
     }
   }
@@ -91,7 +100,11 @@ Map.defaultProps = {
 
 Map.propTypes = {
   location: PropTypes.shape({
-    cityCoordinates: PropTypes.arrayOf(PropTypes.number.isRequired).isRequired,
+    cityCoordinates: PropTypes.shape({
+      latitude: PropTypes.number.isRequired,
+      longitude: PropTypes.number.isRequired,
+      zoom: PropTypes.number.isRequired,
+    }).isRequired,
   }).isRequired,
   offersCoordinates: PropTypes.arrayOf(
       PropTypes.arrayOf(PropTypes.number.isRequired).isRequired

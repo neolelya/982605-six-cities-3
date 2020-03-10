@@ -172,7 +172,8 @@ exports[`Render App 1`] = `
             className="places__found"
           >
             4
-             places to stay in Amsterdam
+             places to stay in 
+            Amsterdam
           </b>
           <form
             action="#"

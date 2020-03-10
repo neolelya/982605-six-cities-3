@@ -18,7 +18,9 @@ exports[`Should NoOffers render correctly 1`] = `
       <p
         className="cities__status-description"
       >
-        We could not find any property available at the moment in Dusseldorf
+        We could not find any property available at the moment in
+         
+        Amsterdam
       </p>
     </div>
   </section>
