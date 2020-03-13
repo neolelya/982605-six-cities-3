@@ -15,7 +15,11 @@ const Main = (props) => {
     onSortTypeClick,
     activeCardCoordinates,
     onRentalCardHover,
+    isError,
   } = props;
+
+  const placesCount =
+    currentOffers.length > 0 ? currentOffers[0].offers.length : 0;
 
   return (
     <div className="page page--gray page--main">
@@ -33,17 +37,17 @@ const Main = (props) => {
           </section>
         </div>
         <div className="cities">
-          {currentOffers[0].offers.length > 0 ? (
+          {placesCount > 0 ? (
             <OffersContainer
               currentOffers={currentOffers}
-              placesCount={currentOffers[0].offers.length}
+              placesCount={placesCount}
               currentSortType={currentSortType}
               onSortTypeClick={onSortTypeClick}
               activeCardCoordinates={activeCardCoordinates}
               onRentalCardHover={onRentalCardHover}
             />
           ) : (
-            <NoOffers />
+            <NoOffers currentCity={currentCity} isError={isError} />
           )}
         </div>
       </main>
@@ -61,6 +65,7 @@ Main.propTypes = {
   onRentalCardHover: PropTypes.func.isRequired,
   activeCardCoordinates: PropTypes.arrayOf(PropTypes.number.isRequired)
     .isRequired,
+  isError: PropTypes.bool.isRequired,
 };
 
 export default Main;

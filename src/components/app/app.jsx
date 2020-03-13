@@ -2,10 +2,22 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {ActionCreator} from '../../reducer';
+import {ActionCreator} from '../../reducer/app/app';
+import {ActionCreator as DataActionCreator} from '../../reducer/data/data';
 import {SortType} from '../../consts';
 import Main from '../main/main.jsx';
 import Property from '../property/property.jsx';
+import {
+  getAllOffers,
+  getCities,
+  getCurrentOffers,
+  getIsError,
+} from '../../reducer/data/selectors';
+import {
+  getActiveCardCoordinates,
+  getCurrentCity,
+  getCurrentSortType,
+} from '../../reducer/app/selectors';
 
 class App extends PureComponent {
   _renderMainScreen() {
@@ -19,6 +31,7 @@ class App extends PureComponent {
         onSortTypeClick={this.props.onSortTypeClick}
         onRentalCardHover={this.props.onRentalCardHover}
         activeCardCoordinates={this.props.activeCardCoordinates}
+        isError={this.props.isError}
       />
     );
   }
@@ -71,21 +84,23 @@ App.propTypes = {
   onRentalCardHover: PropTypes.func.isRequired,
   activeCardCoordinates: PropTypes.arrayOf(PropTypes.number.isRequired)
     .isRequired,
+  isError: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  allOffers: state.allOffers,
-  cities: state.cities,
-  currentCity: state.currentCity,
-  currentOffers: state.currentOffers,
-  currentSortType: state.currentSortType,
-  activeCardCoordinates: state.activeCardCoordinates,
+  allOffers: getAllOffers(state),
+  cities: getCities(state),
+  currentCity: getCurrentCity(state),
+  currentOffers: getCurrentOffers(state),
+  currentSortType: getCurrentSortType(state),
+  activeCardCoordinates: getActiveCardCoordinates(state),
+  isError: getIsError(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onCityClick(city) {
     dispatch(ActionCreator.changeCity(city));
-    dispatch(ActionCreator.getOffers(city));
+    dispatch(DataActionCreator.getOffers(city));
     dispatch(ActionCreator.changeSortType(SortType.POPULAR));
   },
   onSortTypeClick(sortType) {

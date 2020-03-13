@@ -25,8 +25,11 @@ describe(`RentalCard handlers work correctly`, () => {
     expect(onRentalCardHover).toHaveBeenCalledTimes(1);
     expect(Array.isArray(onRentalCardHover.mock.calls)).toBe(true);
     expect(onRentalCardHover.mock.calls.length).toBe(1);
-    expect(onRentalCardHover.mock.calls[0][0].length).toEqual(
-        RENTAL_OFFER.coordinates.length
+    expect(onRentalCardHover.mock.calls[0][0][0]).toEqual(
+        RENTAL_OFFER.coordinates.latitude
+    );
+    expect(onRentalCardHover.mock.calls[0][0][1]).toEqual(
+        RENTAL_OFFER.coordinates.longitude
     );
   });
 });

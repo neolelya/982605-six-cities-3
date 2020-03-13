@@ -36,7 +36,12 @@ const Property = (props) => {
     (Math.round(rentalRating) * 100) / OffersRestriction.MAX_RATING;
   const nearestOffersCoordinates = offers
     .map((offer) => offer.coordinates)
-    .sort((a, b) => getDistance(a, coordinates) - getDistance(b, coordinates))
+    .map((coordinate) => [coordinate.latitude, coordinate.longitude])
+    .sort(
+        (a, b) =>
+          getDistance(a, [coordinates.latitude, coordinates.longitude]) -
+        getDistance(b, [coordinates.latitude, coordinates.longitude])
+    )
     .slice(0, OffersRestriction.MAX_MAP_OFFERS_QUANTITY);
 
   const nearestOffers = offers
@@ -164,7 +169,7 @@ const Property = (props) => {
             <Map
               location={location}
               offersCoordinates={nearestOffersCoordinates}
-              activeCoordinates={coordinates}
+              activeCoordinates={[coordinates.latitude, coordinates.longitude]}
               activeCardCoordinates={activeCardCoordinates}
             />
           </section>
@@ -195,7 +200,11 @@ Property.propTypes = {
       hostName: PropTypes.string.isRequired,
       isSuper: PropTypes.bool.isRequired,
     }).isRequired,
-    coordinates: PropTypes.arrayOf(PropTypes.number.isRequired).isRequired,
+    coordinates: PropTypes.shape({
+      latitude: PropTypes.number.isRequired,
+      longitude: PropTypes.number.isRequired,
+      zoom: PropTypes.number.isRequired,
+    }).isRequired,
     rentalTitle: PropTypes.string.isRequired,
     rentalImages: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
     rentalPrice: PropTypes.number.isRequired,
@@ -219,11 +228,19 @@ Property.propTypes = {
     ).isRequired,
   }).isRequired,
   location: PropTypes.shape({
-    cityCoordinates: PropTypes.arrayOf(PropTypes.number.isRequired).isRequired,
+    cityCoordinates: PropTypes.shape({
+      latitude: PropTypes.number.isRequired,
+      longitude: PropTypes.number.isRequired,
+      zoom: PropTypes.number.isRequired,
+    }).isRequired,
   }).isRequired,
   offers: PropTypes.arrayOf(
       PropTypes.shape({
-        coordinates: PropTypes.arrayOf(PropTypes.number.isRequired).isRequired,
+        coordinates: PropTypes.shape({
+          latitude: PropTypes.number.isRequired,
+          longitude: PropTypes.number.isRequired,
+          zoom: PropTypes.number.isRequired,
+        }).isRequired,
       }).isRequired
   ).isRequired,
   onRentalCardHover: PropTypes.func.isRequired,

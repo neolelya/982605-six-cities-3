@@ -7,20 +7,26 @@ import {ALL_OFFERS, CITIES, OFFERS} from '../../tests-mocks';
 import {createStore} from 'redux';
 
 const initialState = {
-  currentCity: CITIES[3],
-  allOffers: ALL_OFFERS,
-  currentOffers: OFFERS,
-  cities: CITIES,
-  currentSortType: `Popular`,
-  activeCardCoordinates: [],
+  DATA: {
+    allOffers: ALL_OFFERS,
+    currentOffers: OFFERS,
+    cities: CITIES,
+    isError: false,
+  },
+  APP: {
+    currentCity: CITIES[3],
+    currentSortType: `Popular`,
+    activeCardCoordinates: [],
+  },
 };
 
 const reducer = (state = initialState) => {
   return state;
 };
 
+const store = createStore(reducer);
+
 it(`Render App`, () => {
-  const store = createStore(reducer);
   const tree = renderer
     .create(
         <MemoryRouter>

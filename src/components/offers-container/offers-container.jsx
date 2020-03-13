@@ -22,14 +22,17 @@ const OffersContainer = (props) => {
 
   const sortedOffers = getSortedOffers(offers, currentSortType);
 
-  const offersCoordinates = offers.map((offer) => offer.coordinates);
+  const offersCoordinates = offers.map((offer) => [
+    offer.coordinates.latitude,
+    offer.coordinates.longitude,
+  ]);
 
   return (
     <div className="cities__places-container container">
       <section className="cities__places places">
         <h2 className="visually-hidden">Places</h2>
         <b className="places__found">
-          {placesCount} places to stay in Amsterdam
+          {placesCount} places to stay in {location.city}
         </b>
         <SortingWrapped
           currentSortType={currentSortType}

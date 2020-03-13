@@ -24,7 +24,7 @@ const RentalCard = (props) => {
     <article
       className="cities__place-card place-card"
       onMouseEnter={() => {
-        onRentalCardHover(coordinates);
+        onRentalCardHover([coordinates.latitude, coordinates.longitude]);
       }}
       onMouseLeave={() => {
         onRentalCardHover([]);
@@ -88,7 +88,11 @@ RentalCard.propTypes = {
   rentalType: PropTypes.oneOf(OFFER_TYPES).isRequired,
   isPremium: PropTypes.bool.isRequired,
   isBookmark: PropTypes.bool.isRequired,
-  coordinates: PropTypes.arrayOf(PropTypes.number.isRequired).isRequired,
+  coordinates: PropTypes.shape({
+    latitude: PropTypes.number.isRequired,
+    longitude: PropTypes.number.isRequired,
+    zoom: PropTypes.number.isRequired,
+  }).isRequired,
   onRentalCardHover: PropTypes.func.isRequired,
 };
 

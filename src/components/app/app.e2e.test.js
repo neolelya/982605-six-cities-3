@@ -9,12 +9,17 @@ import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 
 const initialState = {
-  currentCity: OFFERS[0].location.city,
-  allOffers: ALL_OFFERS,
-  currentOffers: OFFERS,
-  cities: CITIES,
-  currentSortType: `Popular`,
-  activeCardCoordinates: [],
+  DATA: {
+    allOffers: ALL_OFFERS,
+    currentOffers: OFFERS,
+    cities: CITIES,
+    isError: false,
+  },
+  APP: {
+    currentCity: CITIES[3],
+    currentSortType: `Popular`,
+    activeCardCoordinates: [],
+  },
 };
 
 const reducer = (state = initialState) => {
