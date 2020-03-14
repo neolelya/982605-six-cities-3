@@ -25,7 +25,7 @@ export const formatDateTime = (date) => {
   return [year, month, day].join(`-`);
 };
 
-const capitalize = (string) => {
+const capitalizeFirstLetter = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1);
 };
 
@@ -36,7 +36,13 @@ export const getOffersByCity = (city, offers) => {
   const citiesOffers = offers.filter((offer) => offer.location.city === city);
   let groupedOffers = [];
   citiesOffers.forEach((offer) => groupedOffers.push(offer.offers[0]));
-  return [Object.assign({}, {location: citiesOffers[0].location}, {offers: groupedOffers})];
+  return [
+    Object.assign(
+        {},
+        {location: citiesOffers[0].location},
+        {offers: groupedOffers}
+    ),
+  ];
 };
 
 export const getUniqueCities = (offers) => {
@@ -87,7 +93,7 @@ export const offersAdapter = (data) => {
         rentalImages: [data.preview_image, ...data.images],
         rentalPrice: data.price,
         rentalRating: data.rating,
-        rentalType: capitalize(data.type),
+        rentalType: capitalizeFirstLetter(data.type),
         isPremium: data.is_premium,
         isBookmark: data.is_favorite,
         rentalDescription: [data.description],
@@ -121,6 +127,21 @@ export const offersAdapter = (data) => {
           },
         ],
       },
-    ]
+    ],
+  };
+};
+
+export const reviewsAdapter = (data) => {
+  return {
+    id: data.id,
+    user: {
+      id: data.user.id,
+      name: data.user.name,
+      avatar: data.user.avatar_url,
+      isPro: data.user.is_pro,
+    },
+    rating: data.rating,
+    date: new Date(data.date),
+    comment: data.comment,
   };
 };

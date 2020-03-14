@@ -16,6 +16,7 @@ const Main = (props) => {
     activeCardCoordinates,
     onRentalCardHover,
     isError,
+    userEmail,
   } = props;
 
   const placesCount =
@@ -23,7 +24,7 @@ const Main = (props) => {
 
   return (
     <div className="page page--gray page--main">
-      <Header />
+      <Header userEmail={userEmail} />
 
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
@@ -66,6 +67,7 @@ Main.propTypes = {
   activeCardCoordinates: PropTypes.arrayOf(PropTypes.number.isRequired)
     .isRequired,
   isError: PropTypes.bool.isRequired,
+  userEmail: PropTypes.string,
 };
 
 export default Main;

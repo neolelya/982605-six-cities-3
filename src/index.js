@@ -7,12 +7,14 @@ import thunk from 'redux-thunk';
 import App from './components/app/app.jsx';
 import {createAPI} from './api';
 import {Operation as DataOperation} from './reducer/data/data';
+import {Operation as UserOperation} from './reducer/user/user';
 
 const api = createAPI();
 
 const store = createStore(
     reducer,
-    compose(applyMiddleware(thunk.withExtraArgument(api)),
+    compose(
+        applyMiddleware(thunk.withExtraArgument(api)),
         window.__REDUX_DEVTOOLS_EXTENSION__
           ? window.__REDUX_DEVTOOLS_EXTENSION__()
           : (f) => f
@@ -20,6 +22,7 @@ const store = createStore(
 );
 
 store.dispatch(DataOperation.loadOffers());
+store.dispatch(UserOperation.checkAuthorization());
 
 ReactDOM.render(
     <Provider store={store}>

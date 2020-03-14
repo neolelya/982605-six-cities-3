@@ -16,7 +16,9 @@ const ReviewsList = (props) => {
         {reviews
           .slice()
           .sort((a, b) => b.date - a.date)
-          .map((review, i) => <ReviewsItem key={i + review} review={review} />)
+          .map((review) => {
+            return <ReviewsItem key={review.id} review={review} />;
+          })
           .slice(0, OffersRestriction.MAX_REVIEWS_QUANTITY)}
       </ul>
       <form className="reviews__form form" action="#" method="post">
@@ -75,11 +77,16 @@ const ReviewsList = (props) => {
 ReviewsList.propTypes = {
   reviews: PropTypes.arrayOf(
       PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        avatar: PropTypes.string.isRequired,
+        id: PropTypes.number.isRequired,
+        user: PropTypes.shape({
+          id: PropTypes.number.isRequired,
+          name: PropTypes.string.isRequired,
+          isPro: PropTypes.bool.isRequired,
+          avatar: PropTypes.string.isRequired,
+        }).isRequired,
         rating: PropTypes.number.isRequired,
         date: PropTypes.object.isRequired,
-        text: PropTypes.string.isRequired,
+        comment: PropTypes.string.isRequired,
       }).isRequired
   ).isRequired,
 };

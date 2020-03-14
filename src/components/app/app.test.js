@@ -18,6 +18,11 @@ const initialState = {
     currentSortType: `Popular`,
     activeCardCoordinates: [],
   },
+  USER: {
+    authorizationStatus: `UNAUTHORIZED`,
+    isLoginError: false,
+    userEmail: ``,
+  },
 };
 
 const reducer = (state = initialState) => {
