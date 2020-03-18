@@ -15,3 +15,11 @@ export const getCities = (state) => {
 export const getIsError = (state) => {
   return state[NameSpace.DATA].isError;
 };
+
+export const getReviews = (state) => {
+  return state[NameSpace.DATA].reviews;
+};
+
+export const getNearbyOffers = (state) => {
+  return state[NameSpace.DATA].nearbyOffers;
+};

@@ -5,7 +5,13 @@ import {formatDate, formatDateTime} from '../../utils';
 
 const ReviewsItem = (props) => {
   const {review} = props;
-  const {name, avatar, rating, date, text} = review;
+  const {
+    user: {name, avatar},
+    rating,
+    comment,
+    date,
+  } = review;
+
   const ratingPercent =
     (Math.round(rating) * 100) / OffersRestriction.MAX_RATING;
 
@@ -30,7 +36,7 @@ const ReviewsItem = (props) => {
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
-        <p className="reviews__text">{text}</p>
+        <p className="reviews__text">{comment}</p>
         <time className="reviews__time" dateTime={formatDateTime(date)}>
           {formatDate(date)}
         </time>
@@ -41,11 +47,16 @@ const ReviewsItem = (props) => {
 
 ReviewsItem.propTypes = {
   review: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    avatar: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+    user: PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      isPro: PropTypes.bool.isRequired,
+      avatar: PropTypes.string.isRequired,
+    }).isRequired,
     rating: PropTypes.number.isRequired,
     date: PropTypes.object.isRequired,
-    text: PropTypes.string.isRequired,
+    comment: PropTypes.string.isRequired,
   }).isRequired,
 };
 

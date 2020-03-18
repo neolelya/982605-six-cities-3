@@ -7,6 +7,7 @@ import {ActionCreator as DataActionCreator} from '../../reducer/data/data';
 import {SortType} from '../../consts';
 import Main from '../main/main.jsx';
 import Property from '../property/property.jsx';
+import SignIn from '../sign-in/sign-in.jsx';
 import {
   getAllOffers,
   getCities,
@@ -18,6 +19,8 @@ import {
   getCurrentCity,
   getCurrentSortType,
 } from '../../reducer/app/selectors';
+import {Operation as UserOperation} from '../../reducer/user/user';
+import {getLoginStatus, getUserEmail} from '../../reducer/user/selectors';
 
 class App extends PureComponent {
   _renderMainScreen() {
@@ -32,11 +35,16 @@ class App extends PureComponent {
         onRentalCardHover={this.props.onRentalCardHover}
         activeCardCoordinates={this.props.activeCardCoordinates}
         isError={this.props.isError}
+        userEmail={this.props.userEmail}
       />
     );
   }
 
   _renderPropertyScreen(id) {
+    if (this.props.currentOffers.length === 0) {
+      return null;
+    }
+
     const offer = this.props.currentOffers[0].offers.find(
         (property) => property.id === +id
     );
@@ -47,6 +55,7 @@ class App extends PureComponent {
         offers={this.props.currentOffers[0].offers}
         onRentalCardHover={this.props.onRentalCardHover}
         activeCardCoordinates={this.props.activeCardCoordinates}
+        userEmail={this.props.userEmail}
       />
     ) : (
       <Redirect to="/" />
@@ -67,6 +76,17 @@ class App extends PureComponent {
               this._renderPropertyScreen(routeProps.match.params.id)
             }
           />
+          <Route
+            exact
+            path="/login"
+            render={() => (
+              <SignIn
+                onSubmit={this.props.login}
+                isLoginError={this.props.isLoginError}
+                userEmail={this.props.userEmail}
+              />
+            )}
+          />
         </Switch>
       </BrowserRouter>
     );
@@ -85,6 +105,9 @@ App.propTypes = {
   activeCardCoordinates: PropTypes.arrayOf(PropTypes.number.isRequired)
     .isRequired,
   isError: PropTypes.bool.isRequired,
+  login: PropTypes.func.isRequired,
+  userEmail: PropTypes.string,
+  isLoginError: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -95,6 +118,8 @@ const mapStateToProps = (state) => ({
   currentSortType: getCurrentSortType(state),
   activeCardCoordinates: getActiveCardCoordinates(state),
   isError: getIsError(state),
+  userEmail: getUserEmail(state),
+  isLoginError: getLoginStatus(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -108,6 +133,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   onRentalCardHover(coordinates) {
     dispatch(ActionCreator.setActiveCard(coordinates));
+  },
+  login(userData) {
+    dispatch(UserOperation.login(userData));
   },
 });
 

@@ -10,6 +10,8 @@ it(`Reducer without additional parameters should return initial state`, () => {
     allOffers: [],
     currentOffers: [],
     cities: [],
+    reviews: [],
+    nearbyOffers: [],
     isError: false,
   });
 });
@@ -73,7 +75,7 @@ describe(`Operation should work correctly`, () => {
     const dispatch = jest.fn();
     const loadOffers = Operation.loadOffers();
 
-    apiMock.onGet(`/hotels`).reply(404, [{fake: true}]);
+    apiMock.onGet(`/hotels`).reply(404, []);
 
     return loadOffers(dispatch, () => {}, api).then(() => {
       expect(dispatch).toHaveBeenCalledTimes(1);
@@ -81,6 +83,40 @@ describe(`Operation should work correctly`, () => {
       expect(dispatch).toHaveBeenNthCalledWith(1, {
         type: ActionType.SET_ERROR,
         payload: true,
+      });
+    });
+  });
+
+  it(`Should make a correct API call to /comments/:id`, () => {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const getReviews = Operation.getReviews(1);
+
+    apiMock.onGet(`/comments/1`).reply(200, []);
+
+    return getReviews(dispatch, () => {}, api).then(() => {
+      expect(dispatch).toHaveBeenCalledTimes(1);
+
+      expect(dispatch).toHaveBeenNthCalledWith(1, {
+        type: ActionType.GET_REVIEWS,
+        payload: [],
+      });
+    });
+  });
+
+  it(`Should make a correct API call to /hotels/:id/nearby`, () => {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const getNearbyOffers = Operation.getNearbyOffers(1);
+
+    apiMock.onGet(`/hotels/1/nearby`).reply(200, []);
+
+    return getNearbyOffers(dispatch, () => {}, api).then(() => {
+      expect(dispatch).toHaveBeenCalledTimes(1);
+
+      expect(dispatch).toHaveBeenNthCalledWith(1, {
+        type: ActionType.GET_NEARBY_OFFERS,
+        payload: [],
       });
     });
   });

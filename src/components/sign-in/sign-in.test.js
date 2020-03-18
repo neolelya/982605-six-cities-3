@@ -1,13 +1,13 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import {MemoryRouter} from 'react-router-dom';
-import Header from './header.jsx';
+import SignIn from './sign-in.jsx';
 
-it(`Should Header render correctly`, () => {
+it(`SignIn should render correctly`, () => {
   const tree = renderer
     .create(
         <MemoryRouter>
-          <Header userEmail={`SomeEmail`} />
+          <SignIn onSubmit={() => {}} isLoginError={false} />
         </MemoryRouter>
     )
     .toJSON();
