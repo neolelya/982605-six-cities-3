@@ -16,12 +16,15 @@ const initialState = {
   DATA: {
     reviews: [],
     nearbyOffers: [],
+    isError: false,
+    isSending: false,
   },
 };
 
 const expectedActions = [
   {type: ActionType.GET_REVIEWS},
   {type: ActionType.GET_NEARBY_OFFERS},
+  {type: ActionType.POST_REVIEW},
 ];
 
 const store = mockStore(initialState, expectedActions);
@@ -32,6 +35,7 @@ it(`Should render Property correctly`, () => {
         <MemoryRouter>
           <Provider store={store}>
             <Property
+              userEmail={`someEmail@mail.su`}
               offer={OFFERS[0].offers[0]}
               location={OFFERS[0].location}
               offers={OFFERS[0].offers}

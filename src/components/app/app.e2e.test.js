@@ -22,6 +22,7 @@ const initialState = {
     isError: false,
     nearbyOffers: [],
     reviews: [],
+    isSending: false,
   },
   APP: {
     currentCity: CITIES[3],

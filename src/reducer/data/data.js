@@ -1,10 +1,6 @@
-import {
-  getOffersByCity,
-  getUniqueCities,
-  offersAdapter,
-  reviewsAdapter,
-} from '../../utils';
+import {getOffersByCity, getUniqueCities} from '../../utils';
 import {City, OffersRestriction} from '../../consts';
+import {offersAdapter, reviewsAdapter} from '../../adapter';
 
 const initialState = {
   allOffers: [],
@@ -13,6 +9,7 @@ const initialState = {
   reviews: [],
   nearbyOffers: [],
   isError: false,
+  isSending: false,
 };
 
 const ActionType = {
@@ -21,6 +18,8 @@ const ActionType = {
   SET_ERROR: `SET_ERROR`,
   GET_REVIEWS: `GET_REVIEWS`,
   GET_NEARBY_OFFERS: `GET_NEARBY_OFFERS`,
+  POST_REVIEW: `POST_REVIEW`,
+  SET_SENDING: `SET_SENDING`,
 };
 
 const ActionCreator = {
@@ -43,6 +42,14 @@ const ActionCreator = {
   getNearbyOffers: (nearbyOffers) => ({
     type: ActionType.GET_NEARBY_OFFERS,
     payload: nearbyOffers,
+  }),
+  postReview: (newReview) => ({
+    type: ActionType.POST_REVIEW,
+    payload: newReview,
+  }),
+  setSending: (isSending) => ({
+    type: ActionType.SET_SENDING,
+    payload: isSending,
   }),
 };
 
@@ -74,6 +81,16 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         nearbyOffers: action.payload,
       });
+
+    case ActionType.POST_REVIEW:
+      return Object.assign({}, state, {
+        reviews: action.payload,
+      });
+
+    case ActionType.SET_SENDING:
+      return Object.assign({}, state, {
+        isSending: action.payload,
+      });
   }
 
   return state;
@@ -96,13 +113,18 @@ const Operation = {
   },
 
   getReviews: (id) => (dispatch, getState, api) => {
-    return api.get(`/comments/${id}`).then((response) => {
-      dispatch(
-          ActionCreator.getReviews(
-              response.data.map((review) => reviewsAdapter(review))
-          )
-      );
-    });
+    return api
+      .get(`/comments/${id}`)
+      .then((response) => {
+        dispatch(
+            ActionCreator.getReviews(
+                response.data.map((review) => reviewsAdapter(review))
+            )
+        );
+      })
+      .catch(() => {
+        dispatch(ActionCreator.setError(true));
+      });
   },
 
   getNearbyOffers: (id) => (dispatch, getState, api) => {
@@ -115,6 +137,26 @@ const Operation = {
           )
       );
     });
+  },
+
+  postReview: (id, newReview) => (dispatch, getState, api) => {
+    return api
+      .post(`/comments/${id}`, newReview)
+      .then((response) => {
+        dispatch(ActionCreator.setSending(true));
+        return response;
+      })
+      .then((response) => {
+        dispatch(
+            ActionCreator.getReviews(
+                response.data.map((review) => reviewsAdapter(review))
+            )
+        );
+      })
+      .then(() => dispatch(ActionCreator.setSending(false)))
+      .catch(() => {
+        dispatch(ActionCreator.setError(true));
+      });
   },
 };
 

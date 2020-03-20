@@ -13,13 +13,20 @@ it(`Reducer without additional parameters should return initial state`, () => {
     reviews: [],
     nearbyOffers: [],
     isError: false,
+    isSending: false,
   });
 });
 
 it(`Reducer should update initial state by loaded data`, () => {
   expect(
       reducer(
-          {allOffers: [], currentOffers: [], cities: [], isError: false},
+          {
+            allOffers: [],
+            currentOffers: [],
+            cities: [],
+            isError: false,
+            isSending: false,
+          },
           {type: ActionType.LOAD_OFFERS, payload: ALL_OFFERS}
       )
   ).toEqual({
@@ -27,6 +34,7 @@ it(`Reducer should update initial state by loaded data`, () => {
     currentOffers: OFFERS,
     cities: CITIES,
     isError: false,
+    isSending: false,
   });
 });
 
@@ -38,6 +46,7 @@ it(`Reducer should get offers by a given city`, () => {
             currentOffers: OFFERS,
             cities: CITIES,
             isError: false,
+            isSending: false,
           },
           {
             type: ActionType.GET_OFFERS,
@@ -49,6 +58,57 @@ it(`Reducer should get offers by a given city`, () => {
     currentOffers: COLOGNE_OFFERS,
     cities: CITIES,
     isError: false,
+    isSending: false,
+  });
+});
+
+it(`Reducer should set isSending true due to post process`, () => {
+  expect(
+      reducer(
+          {
+            allOffers: ALL_OFFERS,
+            currentOffers: OFFERS,
+            cities: CITIES,
+            isError: false,
+            isSending: false,
+          },
+          {
+            type: ActionType.SET_SENDING,
+            payload: true,
+          }
+      )
+  ).toEqual({
+    allOffers: ALL_OFFERS,
+    currentOffers: OFFERS,
+    cities: CITIES,
+    isError: false,
+    isSending: true,
+  });
+});
+
+it(`Reducer should add comment to reviewsList by posting new comment`, () => {
+  expect(
+      reducer(
+          {
+            allOffers: ALL_OFFERS,
+            currentOffers: OFFERS,
+            cities: CITIES,
+            reviews: [],
+            isError: false,
+            isSending: false,
+          },
+          {
+            type: ActionType.POST_REVIEW,
+            payload: [`Breathtaking review`],
+          }
+      )
+  ).toEqual({
+    allOffers: ALL_OFFERS,
+    currentOffers: OFFERS,
+    cities: CITIES,
+    reviews: [`Breathtaking review`],
+    isError: false,
+    isSending: false,
   });
 });
 
@@ -117,6 +177,47 @@ describe(`Operation should work correctly`, () => {
       expect(dispatch).toHaveBeenNthCalledWith(1, {
         type: ActionType.GET_NEARBY_OFFERS,
         payload: [],
+      });
+    });
+  });
+
+  it(`Should make a correct API call for post review to /comments/:id`, () => {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+
+    const review = {
+      id: 1,
+      user: {
+        id: 1,
+        name: `The most beautiful name of the world`,
+        avatar: undefined,
+        isPro: undefined,
+      },
+      rating: 5,
+      comment: `The building is in between the beach and metro station, 5 mins walking distance to both`,
+      date: new Date(`Mar 19 2020`),
+    };
+
+    const postReview = Operation.postReview(1, review);
+
+    apiMock.onPost(`/comments/1`).reply(200, [review]);
+
+    return postReview(dispatch, () => {}, api).then(() => {
+      expect(dispatch).toHaveBeenCalledTimes(3);
+
+      expect(dispatch).toHaveBeenNthCalledWith(1, {
+        type: ActionType.SET_SENDING,
+        payload: true,
+      });
+
+      expect(dispatch).toHaveBeenNthCalledWith(2, {
+        type: ActionType.GET_REVIEWS,
+        payload: [review],
+      });
+
+      expect(dispatch).toHaveBeenNthCalledWith(3, {
+        type: ActionType.SET_SENDING,
+        payload: false,
       });
     });
   });
