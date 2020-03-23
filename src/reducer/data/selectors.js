@@ -23,3 +23,7 @@ export const getReviews = (state) => {
 export const getNearbyOffers = (state) => {
   return state[NameSpace.DATA].nearbyOffers;
 };
+
+export const getIsSending = (state) => {
+  return state[NameSpace.DATA].isSending;
+};

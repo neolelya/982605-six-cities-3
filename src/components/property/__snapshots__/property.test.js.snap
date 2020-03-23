@@ -46,9 +46,9 @@ exports[`Should render Property correctly 1`] = `
                   className="header__avatar-wrapper user__avatar-wrapper"
                 />
                 <span
-                  className="header__login"
+                  className="header__user-name user__name"
                 >
-                  Sign in
+                  someEmail@mail.su
                 </span>
               </a>
             </li>
@@ -307,6 +307,7 @@ exports[`Should render Property correctly 1`] = `
               action="#"
               className="reviews__form form"
               method="post"
+              onSubmit={[Function]}
             >
               <label
                 className="reviews__label form__label"
@@ -318,15 +319,18 @@ exports[`Should render Property correctly 1`] = `
                 className="reviews__rating-form form__rating"
               >
                 <input
+                  checked={false}
                   className="form__rating-input visually-hidden"
-                  id="1-stars"
+                  disabled={false}
+                  id="5-stars"
                   name="rating"
+                  onChange={[Function]}
                   type="radio"
-                  value={1}
+                  value={5}
                 />
                 <label
                   className="reviews__rating-label form__rating-label"
-                  htmlFor="1-stars"
+                  htmlFor="5-stars"
                   title="perfect"
                 >
                   <svg
@@ -340,53 +344,12 @@ exports[`Should render Property correctly 1`] = `
                   </svg>
                 </label>
                 <input
+                  checked={false}
                   className="form__rating-input visually-hidden"
-                  id="2-stars"
-                  name="rating"
-                  type="radio"
-                  value={2}
-                />
-                <label
-                  className="reviews__rating-label form__rating-label"
-                  htmlFor="2-stars"
-                  title="perfect"
-                >
-                  <svg
-                    className="form__star-image"
-                    height="33"
-                    width="37"
-                  >
-                    <use
-                      xlinkHref="#icon-star"
-                    />
-                  </svg>
-                </label>
-                <input
-                  className="form__rating-input visually-hidden"
-                  id="3-stars"
-                  name="rating"
-                  type="radio"
-                  value={3}
-                />
-                <label
-                  className="reviews__rating-label form__rating-label"
-                  htmlFor="3-stars"
-                  title="perfect"
-                >
-                  <svg
-                    className="form__star-image"
-                    height="33"
-                    width="37"
-                  >
-                    <use
-                      xlinkHref="#icon-star"
-                    />
-                  </svg>
-                </label>
-                <input
-                  className="form__rating-input visually-hidden"
+                  disabled={false}
                   id="4-stars"
                   name="rating"
+                  onChange={[Function]}
                   type="radio"
                   value={4}
                 />
@@ -406,15 +369,68 @@ exports[`Should render Property correctly 1`] = `
                   </svg>
                 </label>
                 <input
+                  checked={false}
                   className="form__rating-input visually-hidden"
-                  id="5-stars"
+                  disabled={false}
+                  id="3-stars"
                   name="rating"
+                  onChange={[Function]}
                   type="radio"
-                  value={5}
+                  value={3}
                 />
                 <label
                   className="reviews__rating-label form__rating-label"
-                  htmlFor="5-stars"
+                  htmlFor="3-stars"
+                  title="perfect"
+                >
+                  <svg
+                    className="form__star-image"
+                    height="33"
+                    width="37"
+                  >
+                    <use
+                      xlinkHref="#icon-star"
+                    />
+                  </svg>
+                </label>
+                <input
+                  checked={false}
+                  className="form__rating-input visually-hidden"
+                  disabled={false}
+                  id="2-stars"
+                  name="rating"
+                  onChange={[Function]}
+                  type="radio"
+                  value={2}
+                />
+                <label
+                  className="reviews__rating-label form__rating-label"
+                  htmlFor="2-stars"
+                  title="perfect"
+                >
+                  <svg
+                    className="form__star-image"
+                    height="33"
+                    width="37"
+                  >
+                    <use
+                      xlinkHref="#icon-star"
+                    />
+                  </svg>
+                </label>
+                <input
+                  checked={false}
+                  className="form__rating-input visually-hidden"
+                  disabled={false}
+                  id="1-stars"
+                  name="rating"
+                  onChange={[Function]}
+                  type="radio"
+                  value={1}
+                />
+                <label
+                  className="reviews__rating-label form__rating-label"
+                  htmlFor="1-stars"
                   title="perfect"
                 >
                   <svg
@@ -430,9 +446,12 @@ exports[`Should render Property correctly 1`] = `
               </div>
               <textarea
                 className="reviews__textarea form__textarea"
+                disabled={false}
                 id="review"
                 name="review"
+                onChange={[Function]}
                 placeholder="Tell how was your stay, what you like and what can be improved"
+                value=""
               />
               <div
                 className="reviews__button-wrapper"
@@ -457,7 +476,7 @@ exports[`Should render Property correctly 1`] = `
                 </p>
                 <button
                   className="reviews__submit form__submit button"
-                  disabled=""
+                  disabled={true}
                   type="submit"
                 >
                   Submit

@@ -3,11 +3,20 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {OffersRestriction, OFFER_TYPES} from '../../consts';
 import ReviewsList from '../reviews-list/reviews-list.jsx';
+import ReviewForm from '../review-form/review-form.jsx';
 import Map from '../map/map.jsx';
 import Header from '../header/header.jsx';
 import OffersList from '../offers-list/offers-list.jsx';
-import {getNearbyOffers, getReviews} from '../../reducer/data/selectors';
+import withReview from '../../hocs/with-review/with-review.jsx';
+import {
+  getIsError,
+  getIsSending,
+  getNearbyOffers,
+  getReviews,
+} from '../../reducer/data/selectors';
 import {Operation as DataOperation} from '../../reducer/data/data';
+
+const ReviewFormWrapped = withReview(ReviewForm);
 
 class Property extends PureComponent {
   componentDidMount() {
@@ -18,6 +27,7 @@ class Property extends PureComponent {
     const {
       location,
       offer: {
+        id,
         rentalHost: {hostName, hostAvatar, isSuper},
         coordinates,
         rentalTitle,
@@ -37,6 +47,9 @@ class Property extends PureComponent {
       nearbyOffers,
       reviews,
       userEmail,
+      isSending,
+      isError,
+      postReview,
     } = this.props;
 
     const ratingPercent =
@@ -162,7 +175,18 @@ class Property extends PureComponent {
                     })}
                   </div>
                 </div>
-                {<ReviewsList reviews={reviews} />}
+                {
+                  <ReviewsList reviews={reviews}>
+                    {userEmail && (
+                      <ReviewFormWrapped
+                        onReviewSubmit={postReview}
+                        id={id}
+                        isSending={isSending}
+                        isError={isError}
+                      />
+                    )}
+                  </ReviewsList>
+                }
               </div>
             </div>
             <section
@@ -261,17 +285,26 @@ Property.propTypes = {
   ).isRequired,
   userEmail: PropTypes.string,
   loadOfferData: PropTypes.func.isRequired,
+  postReview: PropTypes.func.isRequired,
+  isSending: PropTypes.bool.isRequired,
+  isError: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   reviews: getReviews(state),
   nearbyOffers: getNearbyOffers(state),
+  isSending: getIsSending(state),
+  isError: getIsError(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   loadOfferData(id) {
     dispatch(DataOperation.getReviews(id));
     dispatch(DataOperation.getNearbyOffers(id));
+  },
+  postReview(id, review) {
+    dispatch(DataOperation.postReview(id, review));
+    dispatch(DataOperation.getReviews(id));
   },
 });
 

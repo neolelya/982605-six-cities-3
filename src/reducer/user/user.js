@@ -51,8 +51,9 @@ const Operation = {
   checkAuthorization: () => (dispatch, getState, api) => {
     return api
       .get(`/login`)
-      .then(() => {
+      .then((response) => {
         dispatch(ActionCreator.authorizeUser(AuthorizationStatus.AUTHORIZED));
+        dispatch(ActionCreator.fillInUserEmail(response.data.email));
       })
       .catch((error) => {
         if (error.response.status === ServerResponseStatusCode.UNAUTHORIZED) {

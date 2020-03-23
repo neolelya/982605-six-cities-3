@@ -5,6 +5,8 @@ export const OffersRestriction = {
   MAX_REVIEWS_QUANTITY: 10,
   MAX_NEARBY_OFFERS_QUANTITY: 3,
   MAX_MAP_OFFERS_QUANTITY: 4,
+  MIN_REVIEW_LENGTH: 50,
+  MAX_REVIEW_LENGTH: 300,
 };
 
 export const City = {

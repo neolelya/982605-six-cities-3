@@ -81,11 +81,16 @@ describe(`Operation should work correctly`, () => {
     apiMock.onGet(`/login`).reply(200, []);
 
     return checkAuthorization(dispatch, () => {}, api).then(() => {
-      expect(dispatch).toHaveBeenCalledTimes(1);
+      expect(dispatch).toHaveBeenCalledTimes(2);
 
       expect(dispatch).toHaveBeenNthCalledWith(1, {
         type: ActionType.AUTHORIZE_USER,
         payload: `AUTHORIZED`,
+      });
+
+      expect(dispatch).toHaveBeenNthCalledWith(2, {
+        type: ActionType.FILL_IN_USER_EMAIL,
+        payload: undefined,
       });
     });
   });
