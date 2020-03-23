@@ -7,3 +7,7 @@ export const getUserEmail = (state) => {
 export const getLoginStatus = (state) => {
   return state[NameSpace.USER].isLoginError;
 };
+
+export const getAuthorizationStatus = (state) => {
+  return state[NameSpace.USER].authorizationStatus;
+};

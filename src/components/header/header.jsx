@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
+import {AppRoute} from '../../consts';
 
 const Header = (props) => {
   const {userEmail} = props;
@@ -24,7 +25,7 @@ const Header = (props) => {
             <ul className="header__nav-list">
               <li className="header__nav-item user">
                 <Link
-                  to={{pathname: `/login`}}
+                  to={userEmail ? AppRoute.FAVORITES : AppRoute.LOGIN}
                   className="header__nav-link header__nav-link--profile"
                   href="#"
                 >

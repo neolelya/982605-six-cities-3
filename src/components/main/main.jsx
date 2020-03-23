@@ -17,6 +17,7 @@ const Main = (props) => {
     onRentalCardHover,
     isError,
     userEmail,
+    onBookmarkClick,
   } = props;
 
   const placesCount =
@@ -46,6 +47,7 @@ const Main = (props) => {
               onSortTypeClick={onSortTypeClick}
               activeCardCoordinates={activeCardCoordinates}
               onRentalCardHover={onRentalCardHover}
+              onBookmarkClick={onBookmarkClick}
             />
           ) : (
             <NoOffers currentCity={currentCity} isError={isError} />
@@ -68,6 +70,7 @@ Main.propTypes = {
     .isRequired,
   isError: PropTypes.bool.isRequired,
   userEmail: PropTypes.string,
+  onBookmarkClick: PropTypes.func.isRequired,
 };
 
 export default Main;

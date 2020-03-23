@@ -1,6 +1,12 @@
-import {getOffersByCity, getUniqueCities} from '../../utils';
+import {
+  getOffersByCity,
+  getUniqueCities,
+  getUpdatedCurrentOffers,
+  getUpdatedFavorites,
+  getUpdatedOffers,
+} from '../../utils';
 import {City, OffersRestriction} from '../../consts';
-import {offersAdapter, reviewsAdapter} from '../../adapter';
+import {offerAdapter, offersAdapter, reviewsAdapter} from '../../adapter';
 
 const initialState = {
   allOffers: [],
@@ -10,6 +16,7 @@ const initialState = {
   nearbyOffers: [],
   isError: false,
   isSending: false,
+  favorites: [],
 };
 
 const ActionType = {
@@ -20,6 +27,8 @@ const ActionType = {
   GET_NEARBY_OFFERS: `GET_NEARBY_OFFERS`,
   POST_REVIEW: `POST_REVIEW`,
   SET_SENDING: `SET_SENDING`,
+  LOAD_FAVORITES: `LOAD_FAVORITES`,
+  UPDATE_OFFER: `UPDATE_OFFER`,
 };
 
 const ActionCreator = {
@@ -50,6 +59,14 @@ const ActionCreator = {
   setSending: (isSending) => ({
     type: ActionType.SET_SENDING,
     payload: isSending,
+  }),
+  loadFavorites: (favorites) => ({
+    type: ActionType.LOAD_FAVORITES,
+    payload: favorites,
+  }),
+  updateOffer: (offer) => ({
+    type: ActionType.UPDATE_OFFER,
+    payload: offer,
   }),
 };
 
@@ -90,6 +107,19 @@ const reducer = (state = initialState, action) => {
     case ActionType.SET_SENDING:
       return Object.assign({}, state, {
         isSending: action.payload,
+      });
+
+    case ActionType.LOAD_FAVORITES:
+      return Object.assign({}, state, {favorites: action.payload});
+
+    case ActionType.UPDATE_OFFER:
+      return Object.assign({}, state, {
+        allOffers: getUpdatedOffers(action.payload, state.allOffers),
+        currentOffers: getUpdatedCurrentOffers(
+            action.payload,
+            state.currentOffers
+        ),
+        favorites: getUpdatedFavorites(action.payload, state.favorites),
       });
   }
 
@@ -154,6 +184,27 @@ const Operation = {
         );
       })
       .then(() => dispatch(ActionCreator.setSending(false)))
+      .catch(() => {
+        dispatch(ActionCreator.setError(true));
+      });
+  },
+
+  loadFavorites: () => (dispatch, getState, api) => {
+    return api.get(`/favorite`).then((response) => {
+      dispatch(
+          ActionCreator.loadFavorites(
+              response.data.map((favorite) => offersAdapter(favorite))
+          )
+      );
+    });
+  },
+
+  changeFavoriteStatus: (id, status) => (dispatch, getState, api) => {
+    return api
+      .post(`/favorite/${id}/${status}`)
+      .then((response) => {
+        dispatch(ActionCreator.updateOffer(offerAdapter(response.data)));
+      })
       .catch(() => {
         dispatch(ActionCreator.setError(true));
       });

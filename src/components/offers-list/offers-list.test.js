@@ -13,6 +13,7 @@ it(`Should render OffersList correctly`, () => {
           <OffersList
             rentalCardsList={RENTAL_OFFER}
             onRentalCardHover={() => {}}
+            onBookmarkClick={() => {}}
           />
         </MemoryRouter>
     )

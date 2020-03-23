@@ -41,6 +41,7 @@ it(`Should render Property correctly`, () => {
               offers={OFFERS[0].offers}
               activeCardCoordinates={[]}
               onRentalCardHover={() => {}}
+              onBookmarkClick={() => {}}
             />
           </Provider>
         </MemoryRouter>

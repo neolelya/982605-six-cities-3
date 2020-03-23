@@ -3,11 +3,16 @@ import PropTypes from 'prop-types';
 import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {ActionCreator} from '../../reducer/app/app';
-import {ActionCreator as DataActionCreator} from '../../reducer/data/data';
-import {SortType} from '../../consts';
+import {
+  ActionCreator as DataActionCreator,
+  Operation as DataOperation,
+} from '../../reducer/data/data';
+import {AppRoute, SortType} from '../../consts';
 import Main from '../main/main.jsx';
 import Property from '../property/property.jsx';
 import SignIn from '../sign-in/sign-in.jsx';
+import PrivateRoute from '../private-route/private-route.jsx';
+import Favorites from '../favorites/favorites.jsx';
 import {
   getAllOffers,
   getCities,
@@ -20,7 +25,11 @@ import {
   getCurrentSortType,
 } from '../../reducer/app/selectors';
 import {Operation as UserOperation} from '../../reducer/user/user';
-import {getLoginStatus, getUserEmail} from '../../reducer/user/selectors';
+import {
+  getAuthorizationStatus,
+  getLoginStatus,
+  getUserEmail,
+} from '../../reducer/user/selectors';
 
 class App extends PureComponent {
   _renderMainScreen() {
@@ -36,6 +45,7 @@ class App extends PureComponent {
         activeCardCoordinates={this.props.activeCardCoordinates}
         isError={this.props.isError}
         userEmail={this.props.userEmail}
+        onBookmarkClick={this.props.onBookmarkClick}
       />
     );
   }
@@ -58,7 +68,7 @@ class App extends PureComponent {
         userEmail={this.props.userEmail}
       />
     ) : (
-      <Redirect to="/" />
+      <Redirect to={AppRoute.ROOT} />
     );
   }
 
@@ -66,19 +76,19 @@ class App extends PureComponent {
     return (
       <BrowserRouter>
         <Switch>
-          <Route exact path="/">
+          <Route exact path={AppRoute.ROOT}>
             {this._renderMainScreen()}
           </Route>
           <Route
             exact
-            path="/property/:id"
+            path={`${AppRoute.PROPERTY}/:id`}
             render={(routeProps) =>
               this._renderPropertyScreen(routeProps.match.params.id)
             }
           />
           <Route
             exact
-            path="/login"
+            path={AppRoute.LOGIN}
             render={() => (
               <SignIn
                 onSubmit={this.props.login}
@@ -86,6 +96,11 @@ class App extends PureComponent {
                 userEmail={this.props.userEmail}
               />
             )}
+          />
+          <PrivateRoute
+            authorizationStatus={this.props.authorizationStatus}
+            render={() => <Favorites userEmail={this.props.userEmail} />}
+            path={AppRoute.FAVORITES}
           />
         </Switch>
       </BrowserRouter>
@@ -108,6 +123,8 @@ App.propTypes = {
   login: PropTypes.func.isRequired,
   userEmail: PropTypes.string,
   isLoginError: PropTypes.bool.isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
+  onBookmarkClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -120,6 +137,7 @@ const mapStateToProps = (state) => ({
   isError: getIsError(state),
   userEmail: getUserEmail(state),
   isLoginError: getLoginStatus(state),
+  authorizationStatus: getAuthorizationStatus(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -136,6 +154,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   login(userData) {
     dispatch(UserOperation.login(userData));
+  },
+  onBookmarkClick(id, status) {
+    dispatch(DataOperation.changeFavoriteStatus(id, status));
   },
 });
 

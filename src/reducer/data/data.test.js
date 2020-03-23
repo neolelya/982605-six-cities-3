@@ -14,6 +14,7 @@ it(`Reducer without additional parameters should return initial state`, () => {
     nearbyOffers: [],
     isError: false,
     isSending: false,
+    favorites: [],
   });
 });
 
@@ -109,6 +110,26 @@ it(`Reducer should add comment to reviewsList by posting new comment`, () => {
     reviews: [`Breathtaking review`],
     isError: false,
     isSending: false,
+  });
+});
+
+it(`Reducer should add offer to favorites by loading data`, () => {
+  expect(
+      reducer(
+          {
+            allOffers: ALL_OFFERS,
+            currentOffers: OFFERS,
+            favorites: [],
+          },
+          {
+            type: ActionType.LOAD_FAVORITES,
+            payload: [`The best one`],
+          }
+      )
+  ).toEqual({
+    allOffers: ALL_OFFERS,
+    currentOffers: OFFERS,
+    favorites: [`The best one`],
   });
 });
 
