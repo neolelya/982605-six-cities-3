@@ -1,5 +1,11 @@
 import {reducer, ActionType, Operation} from '../data/data';
-import {ALL_OFFERS, CITIES, COLOGNE_OFFERS, OFFERS} from '../../tests-mocks';
+import {
+  ALL_OFFERS,
+  CITIES,
+  COLOGNE_OFFERS,
+  FAVORITE_OFFER,
+  OFFERS,
+} from '../../tests-mocks';
 import MockAdapter from 'axios-mock-adapter';
 import {createAPI} from '../../api';
 
@@ -123,13 +129,13 @@ it(`Reducer should add offer to favorites by loading data`, () => {
           },
           {
             type: ActionType.LOAD_FAVORITES,
-            payload: [`The best one`],
+            payload: [FAVORITE_OFFER],
           }
       )
   ).toEqual({
     allOffers: ALL_OFFERS,
     currentOffers: OFFERS,
-    favorites: [`The best one`],
+    favorites: [FAVORITE_OFFER],
   });
 });
 

@@ -119,7 +119,7 @@ const reducer = (state = initialState, action) => {
 
     case ActionType.UPDATE_OFFER:
       return Object.assign({}, state, {
-        allOffers: getUpdatedOffers(action.payload, state.allOffers) || [],
+        allOffers: getUpdatedOffers(action.payload, state.allOffers),
         currentOffers: getUpdatedCurrentOffers(
             action.payload,
             state.currentOffers

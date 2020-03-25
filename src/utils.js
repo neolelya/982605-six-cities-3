@@ -73,9 +73,17 @@ export const getUpdatedOffers = (updatedOffer, offers) => {
 };
 
 export const getUpdatedCurrentOffers = (updatedOffer, offers) => {
-  return offers[0].offers.map((offer) =>
-    offer.id === updatedOffer.id ? updatedOffer : offer
-  );
+  return [
+    Object.assign(
+        {},
+        {
+          location: offers[0].location,
+          offers: offers[0].offers.map((offer) =>
+            offer.id === updatedOffer.id ? updatedOffer : offer
+          ),
+        }
+    ),
+  ];
 };
 
 export const getUpdatedFavorites = (updatedOffer, offers) =>
