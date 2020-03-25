@@ -1,6 +1,6 @@
-import React, {PureComponent} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom';
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {ActionCreator} from '../../reducer/app/app';
 import {
@@ -31,82 +31,86 @@ import {
   getUserEmail,
 } from '../../reducer/user/selectors';
 
-class App extends PureComponent {
-  _renderMainScreen() {
-    return (
-      <Main
-        cities={this.props.cities}
-        currentCity={this.props.currentCity}
-        currentOffers={this.props.currentOffers}
-        onCityClick={this.props.onCityClick}
-        currentSortType={this.props.currentSortType}
-        onSortTypeClick={this.props.onSortTypeClick}
-        onRentalCardHover={this.props.onRentalCardHover}
-        activeCardCoordinates={this.props.activeCardCoordinates}
-        isError={this.props.isError}
-        userEmail={this.props.userEmail}
-        onBookmarkClick={this.props.onBookmarkClick}
-      />
-    );
-  }
+const App = (props) => {
+  const {
+    cities,
+    currentOffers,
+    currentCity,
+    onCityClick,
+    currentSortType,
+    onSortTypeClick,
+    onRentalCardHover,
+    activeCardCoordinates,
+    isError,
+    login,
+    userEmail,
+    isLoginError,
+    authorizationStatus,
+    onBookmarkClick,
+  } = props;
 
-  _renderPropertyScreen(id) {
-    if (this.props.currentOffers.length === 0) {
-      return null;
-    }
-
-    const offer = this.props.currentOffers[0].offers.find(
-        (property) => property.id === +id
-    );
-    return offer ? (
-      <Property
-        offer={offer}
-        location={this.props.currentOffers[0].location}
-        offers={this.props.currentOffers[0].offers}
-        onRentalCardHover={this.props.onRentalCardHover}
-        activeCardCoordinates={this.props.activeCardCoordinates}
-        userEmail={this.props.userEmail}
-      />
-    ) : (
-      <Redirect to={AppRoute.ROOT} />
-    );
-  }
-
-  render() {
-    return (
-      <BrowserRouter>
-        <Switch>
-          <Route exact path={AppRoute.ROOT}>
-            {this._renderMainScreen()}
-          </Route>
-          <Route
-            exact
-            path={`${AppRoute.PROPERTY}/:id`}
-            render={(routeProps) =>
-              this._renderPropertyScreen(routeProps.match.params.id)
+  return (
+    <BrowserRouter>
+      <Switch>
+        <Route exact path={AppRoute.ROOT}>
+          <Main
+            cities={cities}
+            currentCity={currentCity}
+            currentOffers={currentOffers}
+            onCityClick={onCityClick}
+            currentSortType={currentSortType}
+            onSortTypeClick={onSortTypeClick}
+            onRentalCardHover={onRentalCardHover}
+            activeCardCoordinates={activeCardCoordinates}
+            isError={isError}
+            userEmail={userEmail}
+            onBookmarkClick={onBookmarkClick}
+          />
+        </Route>
+        <Route
+          exact
+          path={`${AppRoute.PROPERTY}/:id`}
+          render={({match}) => {
+            if (currentOffers.length === 0) {
+              return null;
             }
-          />
-          <Route
-            exact
-            path={AppRoute.LOGIN}
-            render={() => (
-              <SignIn
-                onSubmit={this.props.login}
-                isLoginError={this.props.isLoginError}
-                userEmail={this.props.userEmail}
+
+            const offer = currentOffers[0].offers.find(
+                (property) => property.id === +match.params.id
+            );
+
+            return (
+              <Property
+                offer={offer}
+                location={currentOffers[0].location}
+                offers={currentOffers[0].offers}
+                onRentalCardHover={onRentalCardHover}
+                activeCardCoordinates={activeCardCoordinates}
+                userEmail={userEmail}
               />
-            )}
-          />
-          <PrivateRoute
-            authorizationStatus={this.props.authorizationStatus}
-            render={() => <Favorites userEmail={this.props.userEmail} />}
-            path={AppRoute.FAVORITES}
-          />
-        </Switch>
-      </BrowserRouter>
-    );
-  }
-}
+            );
+          }}
+        />
+        <Route
+          exact
+          path={AppRoute.LOGIN}
+          render={() => (
+            <SignIn
+              onSubmit={login}
+              isLoginError={isLoginError}
+              userEmail={userEmail}
+            />
+          )}
+        />
+        <PrivateRoute
+          authorizationStatus={authorizationStatus}
+          render={() => <Favorites userEmail={userEmail} />}
+          path={AppRoute.FAVORITES}
+        />
+      </Switch>
+    </BrowserRouter>
+  );
+};
 
 App.propTypes = {
   allOffers: PropTypes.array.isRequired,

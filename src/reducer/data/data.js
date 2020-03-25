@@ -5,7 +5,12 @@ import {
   getUpdatedFavorites,
   getUpdatedOffers,
 } from '../../utils';
-import {City, OffersRestriction} from '../../consts';
+import {
+  AppRoute,
+  City,
+  OffersRestriction,
+  ServerResponseStatusCode,
+} from '../../consts';
 import {offerAdapter, offersAdapter, reviewsAdapter} from '../../adapter';
 
 const initialState = {
@@ -114,7 +119,7 @@ const reducer = (state = initialState, action) => {
 
     case ActionType.UPDATE_OFFER:
       return Object.assign({}, state, {
-        allOffers: getUpdatedOffers(action.payload, state.allOffers),
+        allOffers: getUpdatedOffers(action.payload, state.allOffers) || [],
         currentOffers: getUpdatedCurrentOffers(
             action.payload,
             state.currentOffers
@@ -205,8 +210,14 @@ const Operation = {
       .then((response) => {
         dispatch(ActionCreator.updateOffer(offerAdapter(response.data)));
       })
-      .catch(() => {
-        dispatch(ActionCreator.setError(true));
+      .catch((error) => {
+        if (
+          error.response &&
+          error.response.status === ServerResponseStatusCode.UNAUTHORIZED
+        ) {
+          dispatch(ActionCreator.setError(true));
+          window.location.pathname = AppRoute.LOGIN;
+        }
       });
   },
 };

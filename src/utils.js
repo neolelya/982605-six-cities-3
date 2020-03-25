@@ -63,7 +63,7 @@ export const getSortedOffers = (offers, sortType) => {
 };
 
 export const getUpdatedOffers = (updatedOffer, offers) => {
-  offers.map((offer) =>
+  return offers.map((offer) =>
     offer.offers[0].id === updatedOffer.id
       ? Object.assign({}, offer, {
         offers: [updatedOffer],
@@ -73,7 +73,7 @@ export const getUpdatedOffers = (updatedOffer, offers) => {
 };
 
 export const getUpdatedCurrentOffers = (updatedOffer, offers) => {
-  offers[0].offers.map((offer) =>
+  return offers[0].offers.map((offer) =>
     offer.id === updatedOffer.id ? updatedOffer : offer
   );
 };
