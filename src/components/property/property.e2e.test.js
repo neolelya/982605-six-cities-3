@@ -49,6 +49,7 @@ it(`Should not Property component show ReviewsForm to unauthorized user`, () => 
             offers={OFFERS[0].offers}
             activeCardCoordinates={[]}
             onRentalCardHover={() => {}}
+            onBookmarkClick={() => {}}
           />
         </Provider>
       </MemoryRouter>
@@ -68,6 +69,7 @@ it(`Should Property component show ReviewsForm to authorized user`, () => {
             offers={OFFERS[0].offers}
             activeCardCoordinates={[]}
             onRentalCardHover={() => {}}
+            onBookmarkClick={() => {}}
           />
         </Provider>
       </MemoryRouter>

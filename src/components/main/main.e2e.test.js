@@ -25,6 +25,7 @@ it(`Should change active city by click`, () => {
           onRentalCardHover={() => {}}
           onSortTypeClick={() => {}}
           isError={false}
+          onBookmarkClick={() => {}}
         />
       </MemoryRouter>
   );

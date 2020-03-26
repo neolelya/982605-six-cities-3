@@ -6,7 +6,7 @@ const api = createAPI();
 
 it(`UserReduces without additional information should return initialState`, () => {
   expect(reducer(void 0, {})).toEqual({
-    authorizationStatus: `UNAUTHORIZED`,
+    authorizationStatus: `UNKNOWN`,
     isLoginError: false,
     userEmail: ``,
   });

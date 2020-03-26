@@ -39,7 +39,7 @@ exports[`Should render Property correctly 1`] = `
             >
               <a
                 className="header__nav-link header__nav-link--profile"
-                href="/login"
+                href="/favorites"
                 onClick={[Function]}
               >
                 <div
@@ -139,6 +139,7 @@ exports[`Should render Property correctly 1`] = `
             </h1>
             <button
               className="property__bookmark-button button property__bookmark-button--active"
+              onClick={[Function]}
               type="button"
             >
               <svg

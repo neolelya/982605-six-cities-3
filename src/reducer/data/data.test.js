@@ -1,5 +1,11 @@
 import {reducer, ActionType, Operation} from '../data/data';
-import {ALL_OFFERS, CITIES, COLOGNE_OFFERS, OFFERS} from '../../tests-mocks';
+import {
+  ALL_OFFERS,
+  CITIES,
+  COLOGNE_OFFERS,
+  FAVORITE_OFFER,
+  OFFERS,
+} from '../../tests-mocks';
 import MockAdapter from 'axios-mock-adapter';
 import {createAPI} from '../../api';
 
@@ -14,6 +20,7 @@ it(`Reducer without additional parameters should return initial state`, () => {
     nearbyOffers: [],
     isError: false,
     isSending: false,
+    favorites: [],
   });
 });
 
@@ -109,6 +116,26 @@ it(`Reducer should add comment to reviewsList by posting new comment`, () => {
     reviews: [`Breathtaking review`],
     isError: false,
     isSending: false,
+  });
+});
+
+it(`Reducer should add offer to favorites by loading data`, () => {
+  expect(
+      reducer(
+          {
+            allOffers: ALL_OFFERS,
+            currentOffers: OFFERS,
+            favorites: [],
+          },
+          {
+            type: ActionType.LOAD_FAVORITES,
+            payload: [FAVORITE_OFFER],
+          }
+      )
+  ).toEqual({
+    allOffers: ALL_OFFERS,
+    currentOffers: OFFERS,
+    favorites: [FAVORITE_OFFER],
   });
 });
 

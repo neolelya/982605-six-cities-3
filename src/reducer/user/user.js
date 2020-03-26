@@ -1,7 +1,7 @@
 import {AuthorizationStatus, ServerResponseStatusCode} from '../../consts';
 
 const initialState = {
-  authorizationStatus: AuthorizationStatus.UNAUTHORIZED,
+  authorizationStatus: AuthorizationStatus.UNKNOWN,
   isLoginError: false,
   userEmail: ``,
 };

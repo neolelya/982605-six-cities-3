@@ -15,6 +15,7 @@ const RentalCard = (props) => {
     isBookmark,
     coordinates,
     onRentalCardHover,
+    onBookmarkClick,
   } = props;
 
   const ratingPercent =
@@ -57,6 +58,9 @@ const RentalCard = (props) => {
               isBookmark ? `place-card__bookmark-button--active` : ``
             }`}
             type="button"
+            onClick={() => {
+              onBookmarkClick(id, isBookmark ? 0 : 1);
+            }}
           >
             <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark"></use>
@@ -94,6 +98,7 @@ RentalCard.propTypes = {
     zoom: PropTypes.number.isRequired,
   }).isRequired,
   onRentalCardHover: PropTypes.func.isRequired,
+  onBookmarkClick: PropTypes.func.isRequired,
 };
 
 export default RentalCard;

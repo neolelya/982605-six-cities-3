@@ -42,6 +42,7 @@ export const SortType = {
 export const AuthorizationStatus = {
   AUTHORIZED: `AUTHORIZED`,
   UNAUTHORIZED: `UNAUTHORIZED`,
+  UNKNOWN: `UNKNOWN`,
 };
 
 export const ServerResponseStatusCode = {
@@ -53,4 +54,11 @@ export const ErrorStyle = {
   borderWidth: `2px`,
   borderRadius: `2px`,
   borderColor: `red`,
+};
+
+export const AppRoute = {
+  ROOT: `/`,
+  LOGIN: `/login`,
+  PROPERTY: `/property`,
+  FAVORITES: `/favorites`,
 };

@@ -2,7 +2,7 @@ import React, {PureComponent, createRef} from 'react';
 import {Redirect} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Header from '../header/header.jsx';
-import {ErrorStyle} from '../../consts';
+import {AppRoute, ErrorStyle} from '../../consts';
 
 class SignIn extends PureComponent {
   constructor(props) {
@@ -26,7 +26,7 @@ class SignIn extends PureComponent {
 
   render() {
     if (this.props.userEmail) {
-      return <Redirect to="/" />;
+      return <Redirect to={AppRoute.ROOT} />;
     }
 
     return (

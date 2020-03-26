@@ -29,9 +29,6 @@ export const capitalizeFirstLetter = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1);
 };
 
-export const getDistance = ([x1, y1], [x2, y2]) =>
-  Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
-
 export const getOffersByCity = (city, offers) => {
   const citiesOffers = offers.filter((offer) => offer.location.city === city);
   let groupedOffers = [];
@@ -64,3 +61,32 @@ export const getSortedOffers = (offers, sortType) => {
       return offers;
   }
 };
+
+export const getUpdatedOffers = (updatedOffer, offers) => {
+  return offers.map((offer) =>
+    offer.offers[0].id === updatedOffer.id
+      ? Object.assign({}, offer, {
+        offers: [updatedOffer],
+      })
+      : offer
+  );
+};
+
+export const getUpdatedCurrentOffers = (updatedOffer, offers) => {
+  return [
+    Object.assign(
+        {},
+        {
+          location: offers[0].location,
+          offers: offers[0].offers.map((offer) =>
+            offer.id === updatedOffer.id ? updatedOffer : offer
+          ),
+        }
+    ),
+  ];
+};
+
+export const getUpdatedFavorites = (updatedOffer, offers) =>
+  updatedOffer.isBookmark
+    ? [...offers, updatedOffer]
+    : offers.filter((offer) => offer.id !== updatedOffer.id);

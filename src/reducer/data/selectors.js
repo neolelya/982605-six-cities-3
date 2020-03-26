@@ -27,3 +27,7 @@ export const getNearbyOffers = (state) => {
 export const getIsSending = (state) => {
   return state[NameSpace.DATA].isSending;
 };
+
+export const getFavorites = (state) => {
+  return state[NameSpace.DATA].favorites;
+};

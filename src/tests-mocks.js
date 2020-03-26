@@ -1981,3 +1981,48 @@ export const COLOGNE_OFFERS = [
     ],
   },
 ];
+
+export const FAVORITE_OFFER = {
+  id: 2,
+  coordinates: {
+    latitude: 52.3909553943508,
+    longitude: 4.929309666406198,
+    zoom: 10,
+  },
+  rentalHost: {
+    hostName: `Angelina`,
+    hostAvatar: `img/avatar-angelina.jpg`,
+    isSuper: true,
+  },
+  rentalTitle: `Stylish and cozy place`,
+  rentalImages: [
+    `img/apartment-03.jpg`,
+    `img/apartment-01.jpg`,
+    `img/apartment-02.jpg`,
+    `img/apartment-small-03.jpg`,
+    `img/apartment-small-04.jpg`,
+  ],
+  rentalPrice: 132,
+  rentalRating: 4.75,
+  rentalType: RentalType.HOUSE,
+  isPremium: true,
+  isBookmark: true,
+  rentalDescription: [
+    `Spacious apartment situated in the city centre (oud-West) of Amsterdam.`,
+    `Walking distance to the Jordaan, Museum Quarter, Anne Frank house and Leidseplein.`,
+    `Supermarket right on the corner.`,
+  ],
+  rentalRoomsQuantity: 4,
+  rentalMaxGuestsQuantity: 7,
+  rentalFeatures: OFFER_FEATURES,
+  reviews: [
+    {
+      id: 2,
+      name: `Alex`,
+      avatar: `img/avatar.svg`,
+      rating: 5,
+      date: new Date(2020, 1, 28),
+      text: `We need a quick place to stay for the night and rented the same day. Was nice and clean. Had parking available for 15€ for the night. Was a little noisy but it ended by 11pm and we were able to get a decent night sleep. Had everything we needed.`,
+    },
+  ],
+};
