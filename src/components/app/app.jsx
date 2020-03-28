@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import {BrowserRouter, Redirect, Route, Switch} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {ActionCreator} from '../../reducer/app/app';
 import {
@@ -17,6 +17,7 @@ import {
   getAllOffers,
   getCities,
   getCurrentOffers,
+  getFavorites,
   getIsError,
 } from '../../reducer/data/selectors';
 import {
@@ -47,6 +48,7 @@ const App = (props) => {
     isLoginError,
     authorizationStatus,
     onBookmarkClick,
+    onUserEmailClick,
   } = props;
 
   return (
@@ -65,6 +67,7 @@ const App = (props) => {
             isError={isError}
             userEmail={userEmail}
             onBookmarkClick={onBookmarkClick}
+            onUserEmailClick={onUserEmailClick}
           />
         </Route>
         <Route
@@ -78,6 +81,10 @@ const App = (props) => {
             const offer = currentOffers[0].offers.find(
                 (property) => property.id === +match.params.id
             );
+
+            if (!offer) {
+              return <Redirect to={AppRoute.ROOT} />;
+            }
 
             return (
               <Property
@@ -99,12 +106,18 @@ const App = (props) => {
               onSubmit={login}
               isLoginError={isLoginError}
               userEmail={userEmail}
+              onUserEmailClick={onUserEmailClick}
             />
           )}
         />
         <PrivateRoute
           authorizationStatus={authorizationStatus}
-          render={() => <Favorites userEmail={userEmail} />}
+          render={() => (
+            <Favorites
+              onRentalCardHover={onRentalCardHover}
+              userEmail={userEmail}
+            />
+          )}
           path={AppRoute.FAVORITES}
         />
       </Switch>
@@ -129,6 +142,7 @@ App.propTypes = {
   isLoginError: PropTypes.bool.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
   onBookmarkClick: PropTypes.func.isRequired,
+  onUserEmailClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -142,6 +156,7 @@ const mapStateToProps = (state) => ({
   userEmail: getUserEmail(state),
   isLoginError: getLoginStatus(state),
   authorizationStatus: getAuthorizationStatus(state),
+  favorites: getFavorites(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -161,6 +176,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   onBookmarkClick(id, status) {
     dispatch(DataOperation.changeFavoriteStatus(id, status));
+  },
+  onUserEmailClick() {
+    dispatch(DataOperation.loadFavorites());
   },
 });
 

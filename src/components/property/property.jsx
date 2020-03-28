@@ -1,7 +1,7 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {OffersRestriction, OFFER_TYPES} from '../../consts';
+import {OffersRestriction, OFFER_TYPES, ClassName} from '../../consts';
 import ReviewsList from '../reviews-list/reviews-list.jsx';
 import ReviewForm from '../review-form/review-form.jsx';
 import Map from '../map/map.jsx';
@@ -51,6 +51,7 @@ class Property extends PureComponent {
       isError,
       postReview,
       onBookmarkClick,
+      onUserEmailClick,
     } = this.props;
 
     const ratingPercent =
@@ -67,7 +68,7 @@ class Property extends PureComponent {
 
     return (
       <div className="page">
-        <Header userEmail={userEmail} />
+        <Header userEmail={userEmail} onUserEmailClick={onUserEmailClick} />
 
         <main className="page__main page__main--property">
           <section className="property">
@@ -218,6 +219,7 @@ class Property extends PureComponent {
                   rentalCardsList={nearestOffers}
                   onRentalCardHover={onRentalCardHover}
                   onBookmarkClick={onBookmarkClick}
+                  pageClass={ClassName.NEAR_PLACES}
                 />
               </div>
             </section>
@@ -294,6 +296,7 @@ Property.propTypes = {
   isSending: PropTypes.bool.isRequired,
   isError: PropTypes.bool.isRequired,
   onBookmarkClick: PropTypes.func.isRequired,
+  onUserEmailClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -314,6 +317,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   onBookmarkClick(id, status) {
     dispatch(DataOperation.changeFavoriteStatus(id, status));
+  },
+  onUserEmailClick() {
+    dispatch(DataOperation.loadFavorites());
   },
 });
 

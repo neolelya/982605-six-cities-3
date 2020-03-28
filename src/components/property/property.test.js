@@ -18,6 +18,7 @@ const initialState = {
     nearbyOffers: [],
     isError: false,
     isSending: false,
+    favorites: [],
   },
 };
 
@@ -25,6 +26,7 @@ const expectedActions = [
   {type: ActionType.GET_REVIEWS},
   {type: ActionType.GET_NEARBY_OFFERS},
   {type: ActionType.POST_REVIEW},
+  {type: ActionType.LOAD_FAVORITES},
 ];
 
 const store = mockStore(initialState, expectedActions);
@@ -42,6 +44,7 @@ it(`Should render Property correctly`, () => {
               activeCardCoordinates={[]}
               onRentalCardHover={() => {}}
               onBookmarkClick={() => {}}
+              onUserEmailClick={() => {}}
             />
           </Provider>
         </MemoryRouter>

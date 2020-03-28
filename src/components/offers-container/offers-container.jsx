@@ -17,6 +17,7 @@ const OffersContainer = (props) => {
     activeCardCoordinates,
     onRentalCardHover,
     onBookmarkClick,
+    pageClass,
   } = props;
 
   const {location, offers} = currentOffers[0];
@@ -44,6 +45,7 @@ const OffersContainer = (props) => {
             rentalCardsList={sortedOffers}
             onRentalCardHover={onRentalCardHover}
             onBookmarkClick={onBookmarkClick}
+            pageClass={pageClass}
           />
         </div>
       </section>
@@ -69,6 +71,7 @@ OffersContainer.propTypes = {
   activeCardCoordinates: PropTypes.arrayOf(PropTypes.number.isRequired)
     .isRequired,
   onBookmarkClick: PropTypes.func.isRequired,
+  pageClass: PropTypes.string.isRequired,
 };
 
 export default OffersContainer;

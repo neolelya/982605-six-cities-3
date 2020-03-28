@@ -2,7 +2,7 @@
 
 exports[`Should render RentalCard correctly 1`] = `
 <article
-  className="cities__place-card place-card"
+  className="favorites__card place-card"
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
 >
@@ -14,7 +14,7 @@ exports[`Should render RentalCard correctly 1`] = `
     </span>
   </div>
   <div
-    className="cities__image-wrapper place-card__image-wrapper"
+    className="favorites__image-wrapper place-card__image-wrapper"
   >
     <a
       href="#"
@@ -22,14 +22,14 @@ exports[`Should render RentalCard correctly 1`] = `
       <img
         alt="Place image"
         className="place-card__image"
-        height="200"
+        height="110"
         src="img/apartment-01.jpg"
-        width="260"
+        width="150"
       />
     </a>
   </div>
   <div
-    className="place-card__info"
+    className="favorites__card-info place-card__info"
   >
     <div
       className="place-card__price-wrapper"

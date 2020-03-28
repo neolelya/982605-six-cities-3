@@ -3,8 +3,11 @@ import {
   ALL_OFFERS,
   CITIES,
   COLOGNE_OFFERS,
-  FAVORITE_OFFER,
+  FAVORITE_OFFER, FAVORITE_PAYLOAD,
+  FAVORITE_RESPONSE,
   OFFERS,
+  OFFERS_WITH_BOOKMARK,
+  OFFERS_WITHOUT_BOOKMARK,
 } from '../../tests-mocks';
 import MockAdapter from 'axios-mock-adapter';
 import {createAPI} from '../../api';
@@ -139,6 +142,28 @@ it(`Reducer should add offer to favorites by loading data`, () => {
   });
 });
 
+it(`Reducer should update offer by changing isBookmark state`, () => {
+  expect(
+      reducer(
+          {
+            allOffers: OFFERS_WITHOUT_BOOKMARK,
+            currentOffers: OFFERS_WITHOUT_BOOKMARK,
+            favorites: [],
+            nearbyOffers: [],
+          },
+          {
+            type: ActionType.UPDATE_OFFER,
+            payload: FAVORITE_OFFER,
+          }
+      )
+  ).toEqual({
+    allOffers: OFFERS_WITH_BOOKMARK,
+    currentOffers: OFFERS_WITH_BOOKMARK,
+    favorites: [FAVORITE_OFFER],
+    nearbyOffers: [],
+  });
+});
+
 describe(`Operation should work correctly`, () => {
   it(`Should make a correct API call to /hotels`, () => {
     const apiMock = new MockAdapter(api);
@@ -245,6 +270,49 @@ describe(`Operation should work correctly`, () => {
       expect(dispatch).toHaveBeenNthCalledWith(3, {
         type: ActionType.SET_SENDING,
         payload: false,
+      });
+    });
+  });
+
+  it(`Should make a correct API call to /favorite`, () => {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const loadFavorites = Operation.loadFavorites();
+
+    apiMock.onGet(`/favorite`).reply(200, FAVORITE_RESPONSE);
+
+    return loadFavorites(dispatch, () => {}, api).then(() => {
+      expect(dispatch).toHaveBeenCalledTimes(1);
+
+      expect(dispatch).toHaveBeenNthCalledWith(1, {
+        type: ActionType.LOAD_FAVORITES,
+        payload: FAVORITE_PAYLOAD,
+      });
+    });
+  });
+
+  it(`Should make a correct API call with updating offer's isBookmark state`, () => {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+
+    const postData = {
+      id: 1,
+      status: 1,
+    };
+
+    const changeFavoriteStatus = Operation.changeFavoriteStatus(postData.id, postData.status);
+
+    apiMock
+      .onPost(`/favorite/${postData.id}/${postData.status}`)
+      .reply(200, FAVORITE_RESPONSE[0]);
+
+    return changeFavoriteStatus(dispatch, () => {}, api).then(() => {
+
+      expect(dispatch).toHaveBeenCalledTimes(1);
+
+      expect(dispatch).toHaveBeenNthCalledWith(1, {
+        type: ActionType.UPDATE_OFFER,
+        payload: FAVORITE_PAYLOAD[0],
       });
     });
   });

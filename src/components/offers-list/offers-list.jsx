@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import RentalCard from '../rental-card/rental-card.jsx';
 
 const OffersList = (props) => {
-  const {rentalCardsList, onRentalCardHover, onBookmarkClick} = props;
+  const {rentalCardsList, onRentalCardHover, onBookmarkClick, pageClass} = props;
 
   return (
     <React.Fragment>
@@ -33,6 +33,7 @@ const OffersList = (props) => {
                   coordinates={coordinates}
                   onRentalCardHover={onRentalCardHover}
                   onBookmarkClick={onBookmarkClick}
+                  pageClass={pageClass}
                 />
               </React.Fragment>
             );
@@ -46,6 +47,7 @@ OffersList.propTypes = {
   rentalCardsList: PropTypes.array.isRequired,
   onRentalCardHover: PropTypes.func.isRequired,
   onBookmarkClick: PropTypes.func.isRequired,
+  pageClass: PropTypes.string.isRequired,
 };
 
 export default OffersList;

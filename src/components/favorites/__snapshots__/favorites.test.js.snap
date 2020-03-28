@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Should Favorites render correctly 1`] = `
+exports[`Should Favorites render correctly with favoritesList data 1`] = `
 <div
-  className="page page--favorites-empty"
+  className="page"
 >
   <header
     className="header"
@@ -18,6 +18,8 @@ exports[`Should Favorites render correctly 1`] = `
         >
           <a
             className="header__logo-link header__logo-link--active"
+            href="/"
+            onClick={[Function]}
           >
             <img
               alt="6 cities logo"
@@ -47,8 +49,9 @@ exports[`Should Favorites render correctly 1`] = `
                 />
                 <span
                   className="header__user-name user__name"
+                  onClick={[Function]}
                 >
-                  SomeEmail
+                  someEmail@mail.su
                 </span>
               </a>
             </li>
@@ -93,7 +96,8 @@ exports[`Should Favorites render correctly 1`] = `
   >
     <a
       className="footer__logo-link"
-      href="main.html"
+      href="/"
+      onClick={[Function]}
     >
       <img
         alt="6 cities logo"

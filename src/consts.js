@@ -62,3 +62,9 @@ export const AppRoute = {
   PROPERTY: `/property`,
   FAVORITES: `/favorites`,
 };
+
+export const ClassName = {
+  CITY: `cities`,
+  NEAR_PLACES: `near-places`,
+  FAVORITES: `favorites`,
+};

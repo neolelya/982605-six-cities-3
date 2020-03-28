@@ -31,7 +31,10 @@ class SignIn extends PureComponent {
 
     return (
       <div className="page page--gray page--login">
-        <Header userEmail={this.props.userEmail} />
+        <Header
+          userEmail={this.props.userEmail}
+          onUserEmailClick={this.props.onUserEmailClick}
+        />
 
         <main className="page__main page__main--login">
           <div className="page__login-container container">
@@ -97,6 +100,7 @@ SignIn.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   userEmail: PropTypes.string,
   isLoginError: PropTypes.bool.isRequired,
+  onUserEmailClick: PropTypes.func.isRequired,
 };
 
 export default SignIn;

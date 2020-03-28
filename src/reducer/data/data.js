@@ -125,6 +125,7 @@ const reducer = (state = initialState, action) => {
             state.currentOffers
         ),
         favorites: getUpdatedFavorites(action.payload, state.favorites),
+        nearbyOffers: getUpdatedOffers(action.payload, state.nearbyOffers),
       });
   }
 
@@ -198,7 +199,7 @@ const Operation = {
     return api.get(`/favorite`).then((response) => {
       dispatch(
           ActionCreator.loadFavorites(
-              response.data.map((favorite) => offersAdapter(favorite))
+              response.data.map((favorite) => offerAdapter(favorite))
           )
       );
     });

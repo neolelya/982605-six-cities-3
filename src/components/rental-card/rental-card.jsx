@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
-import {OffersRestriction, OFFER_TYPES} from '../../consts';
+import {OffersRestriction, OFFER_TYPES, ClassName} from '../../consts';
 
 const RentalCard = (props) => {
   const {
@@ -16,6 +16,7 @@ const RentalCard = (props) => {
     coordinates,
     onRentalCardHover,
     onBookmarkClick,
+    pageClass,
   } = props;
 
   const ratingPercent =
@@ -23,7 +24,7 @@ const RentalCard = (props) => {
 
   return (
     <article
-      className="cities__place-card place-card"
+      className={`${pageClass === ClassName.CITY ? `${pageClass}__place-` : `${pageClass}__`}card place-card`}
       onMouseEnter={() => {
         onRentalCardHover([coordinates.latitude, coordinates.longitude]);
       }}
@@ -36,18 +37,18 @@ const RentalCard = (props) => {
           <span>Premium</span>
         </div>
       )}
-      <div className="cities__image-wrapper place-card__image-wrapper">
+      <div className={`${pageClass}__image-wrapper place-card__image-wrapper`}>
         <a href="#">
           <img
             className="place-card__image"
             src={rentalImages[0]}
-            width="260"
-            height="200"
+            width={pageClass === ClassName.FAVORITES ? `150` : `260`}
+            height={pageClass === ClassName.FAVORITES ? `110` : `200`}
             alt="Place image"
           />
         </a>
       </div>
-      <div className="place-card__info">
+      <div className={`${pageClass === ClassName.FAVORITES ? `${pageClass}__card-info` : ``} place-card__info`}>
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">&euro;{rentalPrice}</b>
@@ -99,6 +100,7 @@ RentalCard.propTypes = {
   }).isRequired,
   onRentalCardHover: PropTypes.func.isRequired,
   onBookmarkClick: PropTypes.func.isRequired,
+  pageClass: PropTypes.string.isRequired,
 };
 
 export default RentalCard;

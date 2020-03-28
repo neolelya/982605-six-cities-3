@@ -29,5 +29,18 @@ export const getIsSending = (state) => {
 };
 
 export const getFavorites = (state) => {
-  return state[NameSpace.DATA].favorites;
+  const offers = state[NameSpace.DATA].favorites;
+
+  const citiesMap = {};
+
+  offers.forEach((offer) => {
+    if (!citiesMap[offer.coordinates.city]) {
+      citiesMap[offer.coordinates.city] = [];
+    }
+    citiesMap[offer.coordinates.city].push(offer);
+    return citiesMap;
+  });
+
+  return Object.keys(citiesMap).map((city) => ({city, offers: citiesMap[city]}));
 };
+
