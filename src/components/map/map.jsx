@@ -61,10 +61,6 @@ class Map extends PureComponent {
     this.map = null;
   }
 
-  render() {
-    return <div style={{height: `100%`}} ref={this._mapRef} />;
-  }
-
   _getIcon(isActive) {
     return leaflet.icon({
       iconUrl: isActive ? `img/pin-active.svg` : `img/pin.svg`,
@@ -92,6 +88,11 @@ class Map extends PureComponent {
         .addTo(this.markersGroup);
     });
   }
+
+  render() {
+    return <div style={{height: `100%`}} ref={this._mapRef} />;
+  }
+
 }
 
 Map.defaultProps = {

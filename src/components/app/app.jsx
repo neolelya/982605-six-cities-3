@@ -44,7 +44,7 @@ const App = (props) => {
     onRentalCardHover,
     activeCardCoordinates,
     isError,
-    login,
+    onLogin,
     userEmail,
     isLoginError,
     authorizationStatus,
@@ -104,7 +104,7 @@ const App = (props) => {
           path={AppRoute.LOGIN}
           render={() => (
             <SignIn
-              onSubmit={login}
+              onSubmit={onLogin}
               isLoginError={isLoginError}
               userEmail={userEmail}
               onUserEmailClick={onUserEmailClick}
@@ -139,7 +139,7 @@ App.propTypes = {
   activeCardCoordinates: PropTypes.arrayOf(PropTypes.number.isRequired)
     .isRequired,
   isError: PropTypes.bool.isRequired,
-  login: PropTypes.func.isRequired,
+  onLogin: PropTypes.func.isRequired,
   userEmail: PropTypes.string,
   isLoginError: PropTypes.bool.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
@@ -173,7 +173,7 @@ const mapDispatchToProps = (dispatch) => ({
   onRentalCardHover(coordinates) {
     dispatch(ActionCreator.setActiveCard(coordinates));
   },
-  login(userData) {
+  onLogin(userData) {
     dispatch(UserOperation.login(userData));
   },
   onBookmarkClick(id, status) {

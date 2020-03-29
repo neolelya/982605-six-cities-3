@@ -32,6 +32,7 @@ const expectedActions = [
 const store = mockStore(initialState, expectedActions);
 
 it(`Should render Property correctly`, () => {
+  window.scrollTo = jest.fn();
   const tree = renderer
     .create(
         <MemoryRouter>

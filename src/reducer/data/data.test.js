@@ -8,7 +8,7 @@ import {
   FAVORITE_RESPONSE,
   OFFERS,
   OFFERS_WITH_BOOKMARK,
-  OFFERS_WITHOUT_BOOKMARK,
+  OFFERS_WITHOUT_BOOKMARK, REVIEWS_RESPONSE,
 } from '../../tests-mocks';
 import MockAdapter from 'axios-mock-adapter';
 import {createAPI} from '../../api';
@@ -73,6 +73,30 @@ it(`Reducer should get offers by a given city`, () => {
   });
 });
 
+it(`Reducer should set error by an network error`, () => {
+  expect(
+      reducer(
+          {
+            allOffers: ALL_OFFERS,
+            currentOffers: OFFERS,
+            cities: CITIES,
+            isError: false,
+            isSending: false,
+          },
+          {
+            type: ActionType.SET_ERROR,
+            payload: true,
+          }
+      )
+  ).toEqual({
+    allOffers: ALL_OFFERS,
+    currentOffers: OFFERS,
+    cities: CITIES,
+    isError: true,
+    isSending: false,
+  });
+});
+
 it(`Reducer should set isSending true due to post process`, () => {
   expect(
       reducer(
@@ -94,6 +118,50 @@ it(`Reducer should set isSending true due to post process`, () => {
     cities: CITIES,
     isError: false,
     isSending: true,
+  });
+});
+
+it(`Reducer should update reviews by loaded reviews`, () => {
+  expect(
+      reducer(
+          {
+            allOffers: ALL_OFFERS,
+            currentOffers: OFFERS,
+            cities: CITIES,
+            reviews: [],
+          },
+          {
+            type: ActionType.GET_REVIEWS,
+            payload: REVIEWS_RESPONSE,
+          }
+      )
+  ).toEqual({
+    allOffers: ALL_OFFERS,
+    currentOffers: OFFERS,
+    cities: CITIES,
+    reviews: REVIEWS_RESPONSE,
+  });
+});
+
+it(`Reducer should update nearbyOffers by loaded data`, () => {
+  expect(
+      reducer(
+          {
+            allOffers: ALL_OFFERS,
+            currentOffers: OFFERS,
+            cities: CITIES,
+            nearbyOffers: [],
+          },
+          {
+            type: ActionType.GET_NEARBY_OFFERS,
+            payload: OFFERS,
+          }
+      )
+  ).toEqual({
+    allOffers: ALL_OFFERS,
+    currentOffers: OFFERS,
+    cities: CITIES,
+    nearbyOffers: OFFERS,
   });
 });
 

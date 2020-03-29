@@ -28,6 +28,18 @@ class Property extends PureComponent {
     );
   }
 
+  componentDidMount() {
+    this.props.onLoadOfferData(this.props.offer.id);
+    window.scrollTo(0, 0);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.offer.id !== prevProps.offer.id) {
+      window.scrollTo(0, 0);
+      this.props.onLoadOfferData(this.props.offer.id);
+    }
+  }
+
   _getNearbyOffersCoordinates() {
     const nearestOffers = this.props.nearbyOffers.map(
         (offer) => offer.offers[0]
@@ -42,18 +54,6 @@ class Property extends PureComponent {
         .map((offer) => offer.coordinates)
         .map((coordinate) => [coordinate.latitude, coordinate.longitude]),
     ];
-  }
-
-  componentDidMount() {
-    this.props.loadOfferData(this.props.offer.id);
-    window.scrollTo(0, 0);
-  }
-
-  componentDidUpdate(prevProps) {
-    if (this.props.offer.id !== prevProps.offer.id) {
-      window.scrollTo(0, 0);
-      this.props.loadOfferData(this.props.offer.id);
-    }
   }
 
   render() {
@@ -82,7 +82,7 @@ class Property extends PureComponent {
       userEmail,
       isSending,
       isError,
-      postReview,
+      onReviewPost,
       onBookmarkClick,
       onUserEmailClick,
     } = this.props;
@@ -215,7 +215,7 @@ class Property extends PureComponent {
                   <ReviewsList reviews={reviews}>
                     {userEmail && (
                       <ReviewFormWrapped
-                        onReviewSubmit={postReview}
+                        onReviewSubmit={onReviewPost}
                         id={id}
                         isSending={isSending}
                         isError={isError}
@@ -322,8 +322,8 @@ Property.propTypes = {
       }).isRequired
   ).isRequired,
   userEmail: PropTypes.string,
-  loadOfferData: PropTypes.func.isRequired,
-  postReview: PropTypes.func.isRequired,
+  onLoadOfferData: PropTypes.func.isRequired,
+  onReviewPost: PropTypes.func.isRequired,
   isSending: PropTypes.bool.isRequired,
   isError: PropTypes.bool.isRequired,
   onBookmarkClick: PropTypes.func.isRequired,
@@ -338,11 +338,11 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  loadOfferData(id) {
+  onLoadOfferData(id) {
     dispatch(DataOperation.getReviews(id));
     dispatch(DataOperation.getNearbyOffers(id));
   },
-  postReview(id, review) {
+  onReviewPost(id, review) {
     dispatch(DataOperation.postReview(id, review));
     dispatch(DataOperation.getReviews(id));
   },

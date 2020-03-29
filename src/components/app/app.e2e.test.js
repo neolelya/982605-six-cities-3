@@ -63,7 +63,7 @@ it(`Should render Property component from App component`, () => {
             onSortTypeClick={() => {}}
             onRentalCardHover={() => {}}
             activeCardCoordinates={[]}
-            login={() => {}}
+            onLogin={() => {}}
           />
         </Provider>
       </MemoryRouter>

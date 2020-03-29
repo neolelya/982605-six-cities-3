@@ -2267,3 +2267,16 @@ export const FAVORITES_PAYLOAD = [
     ],
   },
 ];
+
+export const REVIEWS_RESPONSE = [{
+  "id": 15,
+  "user": {
+    "id": 11,
+    "name": `Inna`,
+    "avatar_url": `img/avatar-inna.jpg`,
+    "is_pro": true,
+  },
+  "rating": 4,
+  "date": new Date(2020, 0, 12),
+  "comment": `Nice, cozy, warm big bed apartment`,
+}];
