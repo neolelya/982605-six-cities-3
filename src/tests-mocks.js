@@ -290,12 +290,12 @@ export const OFFERS_COORDINATES = [
 ];
 
 export const CITIES = [
-  `Paris`,
-  `Cologne`,
-  `Brussels`,
   `Amsterdam`,
-  `Hamburg`,
+  `Brussels`,
+  `Cologne`,
   `Dusseldorf`,
+  `Hamburg`,
+  `Paris`,
 ];
 
 export const ALL_OFFERS = [
@@ -2047,7 +2047,7 @@ export const COLOGNE_OFFERS = [
   },
 ];
 
-export const FAVORITE_OFFER = {
+export const FavoriteOffer = {
   id: 1,
   coordinates: {
     latitude: 53.528341000000005,
@@ -2152,7 +2152,7 @@ export const OFFERS_WITH_BOOKMARK = [
           latitude: 53.528341000000005,
           longitude: 10.018654000000002,
           zoom: 16,
-          city: `Hamburg`
+          city: `Hamburg`,
         },
         rentalHost: {
           id: 25,
@@ -2227,7 +2227,7 @@ export const FAVORITE_RESPONSE = [
   },
 ];
 
-export const FAVORITE_PAYLOAD = [
+export const FAVORITES_PAYLOAD = [
   {
     id: 1,
     coordinates: {
@@ -2254,9 +2254,16 @@ export const FAVORITE_PAYLOAD = [
     rentalType: `Room`,
     isPremium: false,
     isBookmark: true,
-    rentalDescription: [`Relax, rejuvenate and unplug in this ultimate rustic getaway experience in the country. In our beautiful screened Pondhouse, you can gaze at the stars and listen to the sounds of nature from your cozy warm bed.`],
+    rentalDescription: [
+      `Relax, rejuvenate and unplug in this ultimate rustic getaway experience in the country. In our beautiful screened Pondhouse, you can gaze at the stars and listen to the sounds of nature from your cozy warm bed.`,
+    ],
     rentalRoomsQuantity: 1,
     rentalMaxGuestsQuantity: 2,
-    rentalFeatures: [`Breakfast`, `Air conditioning`, `Laptop friendly workspace`, `Washer`],
+    rentalFeatures: [
+      `Breakfast`,
+      `Air conditioning`,
+      `Laptop friendly workspace`,
+      `Washer`,
+    ],
   },
 ];

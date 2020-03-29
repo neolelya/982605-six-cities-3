@@ -3,7 +3,12 @@ import PropTypes from 'prop-types';
 import RentalCard from '../rental-card/rental-card.jsx';
 
 const OffersList = (props) => {
-  const {rentalCardsList, onRentalCardHover, onBookmarkClick, pageClass} = props;
+  const {
+    rentalCardsList,
+    onRentalCardHover,
+    onBookmarkClick,
+    pageClass,
+  } = props;
 
   return (
     <React.Fragment>

@@ -59,7 +59,7 @@ export const ErrorStyle = {
 export const AppRoute = {
   ROOT: `/`,
   LOGIN: `/login`,
-  PROPERTY: `/property`,
+  OFFER: `/offer`,
   FAVORITES: `/favorites`,
 };
 

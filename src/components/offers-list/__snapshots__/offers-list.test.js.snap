@@ -18,7 +18,8 @@ Array [
       className="favorites__image-wrapper place-card__image-wrapper"
     >
       <a
-        href="#"
+        href="/offer/0"
+        onClick={[Function]}
       >
         <img
           alt="Place image"
@@ -95,7 +96,7 @@ Array [
         className="place-card__name"
       >
         <a
-          href="/property/0"
+          href="/offer/0"
           onClick={[Function]}
         >
           Beautiful & luxurious apartment at great location
@@ -117,7 +118,8 @@ Array [
       className="favorites__image-wrapper place-card__image-wrapper"
     >
       <a
-        href="#"
+        href="/offer/1"
+        onClick={[Function]}
       >
         <img
           alt="Place image"
@@ -194,7 +196,7 @@ Array [
         className="place-card__name"
       >
         <a
-          href="/property/1"
+          href="/offer/1"
           onClick={[Function]}
         >
           Wood and stone place
@@ -223,7 +225,8 @@ Array [
       className="favorites__image-wrapper place-card__image-wrapper"
     >
       <a
-        href="#"
+        href="/offer/2"
+        onClick={[Function]}
       >
         <img
           alt="Place image"
@@ -300,7 +303,7 @@ Array [
         className="place-card__name"
       >
         <a
-          href="/property/2"
+          href="/offer/2"
           onClick={[Function]}
         >
           Stylish and cozy place
@@ -322,7 +325,8 @@ Array [
       className="favorites__image-wrapper place-card__image-wrapper"
     >
       <a
-        href="#"
+        href="/offer/3"
+        onClick={[Function]}
       >
         <img
           alt="Place image"
@@ -399,7 +403,7 @@ Array [
         className="place-card__name"
       >
         <a
-          href="/property/3"
+          href="/offer/3"
           onClick={[Function]}
         >
           Excellent location and free parking

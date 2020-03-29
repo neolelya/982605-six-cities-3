@@ -3,7 +3,7 @@ import {CITIES} from '../../tests-mocks';
 
 it(`Reducer without additional parameters should return initial state`, () => {
   expect(reducer(void 0, {})).toEqual({
-    currentCity: CITIES[3],
+    currentCity: CITIES[0],
     currentSortType: `Popular`,
     activeCardCoordinates: [],
   });

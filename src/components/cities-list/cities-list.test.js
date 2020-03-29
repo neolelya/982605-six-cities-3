@@ -8,7 +8,7 @@ it(`Should CitiesList render correctly`, () => {
     .create(
         <CitiesList
           cities={CITIES}
-          currentCity={CITIES[3]}
+          currentCity={CITIES[0]}
           onCityClick={() => {}}
         />
     )

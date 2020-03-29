@@ -3,7 +3,8 @@ import {
   ALL_OFFERS,
   CITIES,
   COLOGNE_OFFERS,
-  FAVORITE_OFFER, FAVORITE_PAYLOAD,
+  FavoriteOffer,
+  FAVORITES_PAYLOAD,
   FAVORITE_RESPONSE,
   OFFERS,
   OFFERS_WITH_BOOKMARK,
@@ -132,13 +133,13 @@ it(`Reducer should add offer to favorites by loading data`, () => {
           },
           {
             type: ActionType.LOAD_FAVORITES,
-            payload: [FAVORITE_OFFER],
+            payload: [FavoriteOffer],
           }
       )
   ).toEqual({
     allOffers: ALL_OFFERS,
     currentOffers: OFFERS,
-    favorites: [FAVORITE_OFFER],
+    favorites: [FavoriteOffer],
   });
 });
 
@@ -153,13 +154,13 @@ it(`Reducer should update offer by changing isBookmark state`, () => {
           },
           {
             type: ActionType.UPDATE_OFFER,
-            payload: FAVORITE_OFFER,
+            payload: FavoriteOffer,
           }
       )
   ).toEqual({
     allOffers: OFFERS_WITH_BOOKMARK,
     currentOffers: OFFERS_WITH_BOOKMARK,
-    favorites: [FAVORITE_OFFER],
+    favorites: [FavoriteOffer],
     nearbyOffers: [],
   });
 });
@@ -286,7 +287,7 @@ describe(`Operation should work correctly`, () => {
 
       expect(dispatch).toHaveBeenNthCalledWith(1, {
         type: ActionType.LOAD_FAVORITES,
-        payload: FAVORITE_PAYLOAD,
+        payload: FAVORITES_PAYLOAD,
       });
     });
   });
@@ -300,19 +301,21 @@ describe(`Operation should work correctly`, () => {
       status: 1,
     };
 
-    const changeFavoriteStatus = Operation.changeFavoriteStatus(postData.id, postData.status);
+    const changeFavoriteStatus = Operation.changeFavoriteStatus(
+        postData.id,
+        postData.status
+    );
 
     apiMock
       .onPost(`/favorite/${postData.id}/${postData.status}`)
       .reply(200, FAVORITE_RESPONSE[0]);
 
     return changeFavoriteStatus(dispatch, () => {}, api).then(() => {
-
       expect(dispatch).toHaveBeenCalledTimes(1);
 
       expect(dispatch).toHaveBeenNthCalledWith(1, {
         type: ActionType.UPDATE_OFFER,
-        payload: FAVORITE_PAYLOAD[0],
+        payload: FAVORITES_PAYLOAD[0],
       });
     });
   });

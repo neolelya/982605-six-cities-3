@@ -34,6 +34,7 @@ import {
 
 const App = (props) => {
   const {
+    allOffers,
     cities,
     currentOffers,
     currentCity,
@@ -72,14 +73,14 @@ const App = (props) => {
         </Route>
         <Route
           exact
-          path={`${AppRoute.PROPERTY}/:id`}
+          path={`${AppRoute.OFFER}/:id`}
           render={({match}) => {
             if (currentOffers.length === 0) {
               return null;
             }
 
-            const offer = currentOffers[0].offers.find(
-                (property) => property.id === +match.params.id
+            const offer = allOffers.find(
+                (property) => property.offers[0].id === +match.params.id
             );
 
             if (!offer) {
@@ -88,8 +89,8 @@ const App = (props) => {
 
             return (
               <Property
-                offer={offer}
-                location={currentOffers[0].location}
+                offer={offer.offers[0]}
+                location={offer.location}
                 offers={currentOffers[0].offers}
                 onRentalCardHover={onRentalCardHover}
                 activeCardCoordinates={activeCardCoordinates}
@@ -120,6 +121,7 @@ const App = (props) => {
           )}
           path={AppRoute.FAVORITES}
         />
+        <Redirect to={AppRoute.ROOT} />
       </Switch>
     </BrowserRouter>
   );

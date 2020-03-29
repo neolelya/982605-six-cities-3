@@ -2,7 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import {MemoryRouter} from 'react-router-dom';
 import FavoritesItem from './favorites-item.jsx';
-import {FAVORITE_OFFER} from '../../tests-mocks';
+import {FavoriteOffer} from '../../tests-mocks';
 
 it(`Should FavoriteItem render correctly`, () => {
   const tree = renderer
@@ -11,7 +11,7 @@ it(`Should FavoriteItem render correctly`, () => {
           <FavoritesItem
             onRentalCardHover={() => {}}
             onBookmarkClick={() => {}}
-            favoriteOffers={[FAVORITE_OFFER]}
+            favoriteOffers={[FavoriteOffer]}
             favoriteCity={`Amsterdam`}
           />
         </MemoryRouter>

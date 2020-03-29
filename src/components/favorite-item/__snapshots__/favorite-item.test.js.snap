@@ -12,7 +12,8 @@ exports[`Should FavoriteItem render correctly 1`] = `
     >
       <a
         className="locations__item-link"
-        href="#"
+        href="/"
+        onClick={[Function]}
       >
         <span>
           Amsterdam
@@ -32,7 +33,8 @@ exports[`Should FavoriteItem render correctly 1`] = `
         className="favorites__image-wrapper place-card__image-wrapper"
       >
         <a
-          href="#"
+          href="/offer/1"
+          onClick={[Function]}
         >
           <img
             alt="Place image"
@@ -109,7 +111,7 @@ exports[`Should FavoriteItem render correctly 1`] = `
           className="place-card__name"
         >
           <a
-            href="/property/1"
+            href="/offer/1"
             onClick={[Function]}
           >
             Nice, cozy, warm big bed apartment

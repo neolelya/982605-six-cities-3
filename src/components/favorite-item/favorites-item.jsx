@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
 import OffersList from '../offers-list/offers-list.jsx';
-import {ClassName} from '../../consts';
+import {AppRoute, ClassName} from '../../consts';
 
 const FavoritesItem = ({
   favoriteCity,
@@ -9,13 +10,14 @@ const FavoritesItem = ({
   onBookmarkClick,
   onRentalCardHover,
 }) => {
+
   return (
     <li className="favorites__locations-items">
       <div className="favorites__locations locations locations--current">
         <div className="locations__item">
-          <a className="locations__item-link" href="#">
+          <Link to={AppRoute.ROOT} className="locations__item-link" >
             <span>{favoriteCity}</span>
-          </a>
+          </Link>
         </div>
       </div>
       <div className="favorites__places">

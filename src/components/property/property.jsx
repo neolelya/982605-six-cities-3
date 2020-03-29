@@ -1,6 +1,7 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
+import pluralize from 'pluralize';
 import {OffersRestriction, OFFER_TYPES, ClassName} from '../../consts';
 import ReviewsList from '../reviews-list/reviews-list.jsx';
 import ReviewForm from '../review-form/review-form.jsx';
@@ -19,8 +20,40 @@ import {Operation as DataOperation} from '../../reducer/data/data';
 const ReviewFormWrapped = withReview(ReviewForm);
 
 class Property extends PureComponent {
+  constructor(props) {
+    super(props);
+
+    this._getNearbyOffersCoordinates = this._getNearbyOffersCoordinates.bind(
+        this
+    );
+  }
+
+  _getNearbyOffersCoordinates() {
+    const nearestOffers = this.props.nearbyOffers.map(
+        (offer) => offer.offers[0]
+    );
+
+    return [
+      [
+        this.props.offer.coordinates.latitude,
+        this.props.offer.coordinates.longitude,
+      ],
+      ...nearestOffers
+        .map((offer) => offer.coordinates)
+        .map((coordinate) => [coordinate.latitude, coordinate.longitude]),
+    ];
+  }
+
   componentDidMount() {
     this.props.loadOfferData(this.props.offer.id);
+    window.scrollTo(0, 0);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.offer.id !== prevProps.offer.id) {
+      window.scrollTo(0, 0);
+      this.props.loadOfferData(this.props.offer.id);
+    }
   }
 
   render() {
@@ -59,12 +92,7 @@ class Property extends PureComponent {
 
     const nearestOffers = nearbyOffers.map((offer) => offer.offers[0]);
 
-    const nearestOffersCoordinates = [
-      [coordinates.latitude, coordinates.longitude],
-      ...nearestOffers
-        .map((offer) => offer.coordinates)
-        .map((coordinate) => [coordinate.latitude, coordinate.longitude]),
-    ];
+    const nearestOffersCoordinates = this._getNearbyOffersCoordinates();
 
     return (
       <div className="page">
@@ -131,10 +159,13 @@ class Property extends PureComponent {
                     {rentalType}
                   </li>
                   <li className="property__feature property__feature--bedrooms">
-                    {rentalRoomsQuantity} Bedrooms
+                    {rentalRoomsQuantity}
+                    {pluralize(` Bedroom`, rentalRoomsQuantity)}
                   </li>
                   <li className="property__feature property__feature--adults">
-                    Max {rentalMaxGuestsQuantity} adults
+                    Max {rentalMaxGuestsQuantity}
+                    {` `}
+                    {pluralize(` adult`, rentalMaxGuestsQuantity)}
                   </li>
                 </ul>
                 <div className="property__price">

@@ -24,7 +24,9 @@ const RentalCard = (props) => {
 
   return (
     <article
-      className={`${pageClass === ClassName.CITY ? `${pageClass}__place-` : `${pageClass}__`}card place-card`}
+      className={`${
+        pageClass === ClassName.CITY ? `${pageClass}__place-` : `${pageClass}__`
+      }card place-card`}
       onMouseEnter={() => {
         onRentalCardHover([coordinates.latitude, coordinates.longitude]);
       }}
@@ -38,7 +40,7 @@ const RentalCard = (props) => {
         </div>
       )}
       <div className={`${pageClass}__image-wrapper place-card__image-wrapper`}>
-        <a href="#">
+        <Link to={{pathname: `/offer/${id}`}}>
           <img
             className="place-card__image"
             src={rentalImages[0]}
@@ -46,9 +48,13 @@ const RentalCard = (props) => {
             height={pageClass === ClassName.FAVORITES ? `110` : `200`}
             alt="Place image"
           />
-        </a>
+        </Link>
       </div>
-      <div className={`${pageClass === ClassName.FAVORITES ? `${pageClass}__card-info` : ``} place-card__info`}>
+      <div
+        className={`${
+          pageClass === ClassName.FAVORITES ? `${pageClass}__card-info` : ``
+        } place-card__info`}
+      >
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">&euro;{rentalPrice}</b>
@@ -76,7 +82,7 @@ const RentalCard = (props) => {
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={{pathname: `/property/${id}`}}>{rentalTitle}</Link>
+          <Link to={{pathname: `/offer/${id}`}}>{rentalTitle}</Link>
         </h2>
         <p className="place-card__type">{rentalType}</p>
       </div>

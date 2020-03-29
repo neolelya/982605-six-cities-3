@@ -37,7 +37,7 @@ class Map extends PureComponent {
         )
         .addTo(this.map);
 
-      this._getMap();
+      this._addMarkers();
     }
   }
 
@@ -53,7 +53,7 @@ class Map extends PureComponent {
           ],
           this.zoom
       );
-      this._getMap();
+      this._addMarkers();
     }
   }
 
@@ -72,9 +72,9 @@ class Map extends PureComponent {
     });
   }
 
-  _getMap() {
+  _addMarkers() {
     if (this.markersGroup) {
-      this.markersGroup.removeLayer(this._mapRef.current);
+      this.map.removeLayer(this.markersGroup);
     }
 
     this.markersGroup = leaflet.layerGroup().addTo(this.map);
