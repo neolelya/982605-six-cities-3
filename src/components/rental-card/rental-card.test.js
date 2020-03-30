@@ -16,6 +16,7 @@ it(`Should render RentalCard correctly`, () => {
             onMouseEnter={() => {}}
             onRentalCardHover={() => {}}
             onBookmarkClick={() => {}}
+            pageClass={`favorites`}
           />
         </MemoryRouter>
     )

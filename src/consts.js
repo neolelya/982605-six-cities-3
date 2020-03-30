@@ -59,6 +59,12 @@ export const ErrorStyle = {
 export const AppRoute = {
   ROOT: `/`,
   LOGIN: `/login`,
-  PROPERTY: `/property`,
+  OFFER: `/offer`,
   FAVORITES: `/favorites`,
+};
+
+export const ClassName = {
+  CITY: `cities`,
+  NEAR_PLACES: `near-places`,
+  FAVORITES: `favorites`,
 };

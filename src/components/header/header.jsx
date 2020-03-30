@@ -4,14 +4,17 @@ import {Link} from 'react-router-dom';
 import {AppRoute} from '../../consts';
 
 const Header = (props) => {
-  const {userEmail} = props;
+  const {userEmail, onUserEmailClick} = props;
 
   return (
     <header className="header">
       <div className="container">
         <div className="header__wrapper">
           <div className="header__left">
-            <a className="header__logo-link header__logo-link--active">
+            <Link
+              to={AppRoute.ROOT}
+              className="header__logo-link header__logo-link--active"
+            >
               <img
                 className="header__logo"
                 src="img/logo.svg"
@@ -19,7 +22,7 @@ const Header = (props) => {
                 width="81"
                 height="41"
               />
-            </a>
+            </Link>
           </div>
           <nav className="header__nav">
             <ul className="header__nav-list">
@@ -31,7 +34,10 @@ const Header = (props) => {
                 >
                   <div className="header__avatar-wrapper user__avatar-wrapper"></div>
                   {userEmail ? (
-                    <span className="header__user-name user__name">
+                    <span
+                      className="header__user-name user__name"
+                      onClick={onUserEmailClick}
+                    >
                       {userEmail}
                     </span>
                   ) : (
@@ -49,6 +55,7 @@ const Header = (props) => {
 
 Header.propTypes = {
   userEmail: PropTypes.string,
+  onUserEmailClick: PropTypes.func.isRequired,
 };
 
 export default Header;

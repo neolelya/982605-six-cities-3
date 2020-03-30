@@ -18,6 +18,8 @@ exports[`Should render Main correctly 1`] = `
         >
           <a
             className="header__logo-link header__logo-link--active"
+            href="/"
+            onClick={[Function]}
           >
             <img
               alt="6 cities logo"
@@ -83,20 +85,7 @@ exports[`Should render Main correctly 1`] = `
               onClick={[Function]}
             >
               <span>
-                Paris
-              </span>
-            </a>
-          </li>
-          <li
-            className="locations__item"
-          >
-            <a
-              className="locations__item-link tabs__item "
-              href="#"
-              onClick={[Function]}
-            >
-              <span>
-                Cologne
+                Amsterdam
               </span>
             </a>
           </li>
@@ -117,12 +106,25 @@ exports[`Should render Main correctly 1`] = `
             className="locations__item"
           >
             <a
+              className="locations__item-link tabs__item "
+              href="#"
+              onClick={[Function]}
+            >
+              <span>
+                Cologne
+              </span>
+            </a>
+          </li>
+          <li
+            className="locations__item"
+          >
+            <a
               className="locations__item-link tabs__item tabs__item--active"
               href="#"
               onClick={[Function]}
             >
               <span>
-                Amsterdam
+                Dusseldorf
               </span>
             </a>
           </li>
@@ -148,7 +150,7 @@ exports[`Should render Main correctly 1`] = `
               onClick={[Function]}
             >
               <span>
-                Dusseldorf
+                Paris
               </span>
             </a>
           </li>
@@ -255,7 +257,8 @@ exports[`Should render Main correctly 1`] = `
                 className="cities__image-wrapper place-card__image-wrapper"
               >
                 <a
-                  href="#"
+                  href="/offer/0"
+                  onClick={[Function]}
                 >
                   <img
                     alt="Place image"
@@ -267,7 +270,7 @@ exports[`Should render Main correctly 1`] = `
                 </a>
               </div>
               <div
-                className="place-card__info"
+                className=" place-card__info"
               >
                 <div
                   className="place-card__price-wrapper"
@@ -332,7 +335,7 @@ exports[`Should render Main correctly 1`] = `
                   className="place-card__name"
                 >
                   <a
-                    href="/property/0"
+                    href="/offer/0"
                     onClick={[Function]}
                   >
                     Beautiful & luxurious apartment at great location
@@ -354,7 +357,8 @@ exports[`Should render Main correctly 1`] = `
                 className="cities__image-wrapper place-card__image-wrapper"
               >
                 <a
-                  href="#"
+                  href="/offer/1"
+                  onClick={[Function]}
                 >
                   <img
                     alt="Place image"
@@ -366,7 +370,7 @@ exports[`Should render Main correctly 1`] = `
                 </a>
               </div>
               <div
-                className="place-card__info"
+                className=" place-card__info"
               >
                 <div
                   className="place-card__price-wrapper"
@@ -431,7 +435,7 @@ exports[`Should render Main correctly 1`] = `
                   className="place-card__name"
                 >
                   <a
-                    href="/property/1"
+                    href="/offer/1"
                     onClick={[Function]}
                   >
                     Wood and stone place
@@ -460,7 +464,8 @@ exports[`Should render Main correctly 1`] = `
                 className="cities__image-wrapper place-card__image-wrapper"
               >
                 <a
-                  href="#"
+                  href="/offer/2"
+                  onClick={[Function]}
                 >
                   <img
                     alt="Place image"
@@ -472,7 +477,7 @@ exports[`Should render Main correctly 1`] = `
                 </a>
               </div>
               <div
-                className="place-card__info"
+                className=" place-card__info"
               >
                 <div
                   className="place-card__price-wrapper"
@@ -537,7 +542,7 @@ exports[`Should render Main correctly 1`] = `
                   className="place-card__name"
                 >
                   <a
-                    href="/property/2"
+                    href="/offer/2"
                     onClick={[Function]}
                   >
                     Stylish and cozy place
@@ -559,7 +564,8 @@ exports[`Should render Main correctly 1`] = `
                 className="cities__image-wrapper place-card__image-wrapper"
               >
                 <a
-                  href="#"
+                  href="/offer/3"
+                  onClick={[Function]}
                 >
                   <img
                     alt="Place image"
@@ -571,7 +577,7 @@ exports[`Should render Main correctly 1`] = `
                 </a>
               </div>
               <div
-                className="place-card__info"
+                className=" place-card__info"
               >
                 <div
                   className="place-card__price-wrapper"
@@ -636,7 +642,7 @@ exports[`Should render Main correctly 1`] = `
                   className="place-card__name"
                 >
                   <a
-                    href="/property/3"
+                    href="/offer/3"
                     onClick={[Function]}
                   >
                     Excellent location and free parking

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import {BrowserRouter, Redirect, Route, Switch} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {ActionCreator} from '../../reducer/app/app';
 import {
@@ -17,6 +17,7 @@ import {
   getAllOffers,
   getCities,
   getCurrentOffers,
+  getFavorites,
   getIsError,
 } from '../../reducer/data/selectors';
 import {
@@ -33,6 +34,7 @@ import {
 
 const App = (props) => {
   const {
+    allOffers,
     cities,
     currentOffers,
     currentCity,
@@ -42,11 +44,12 @@ const App = (props) => {
     onRentalCardHover,
     activeCardCoordinates,
     isError,
-    login,
+    onLogin,
     userEmail,
     isLoginError,
     authorizationStatus,
     onBookmarkClick,
+    onUserEmailClick,
   } = props;
 
   return (
@@ -65,24 +68,29 @@ const App = (props) => {
             isError={isError}
             userEmail={userEmail}
             onBookmarkClick={onBookmarkClick}
+            onUserEmailClick={onUserEmailClick}
           />
         </Route>
         <Route
           exact
-          path={`${AppRoute.PROPERTY}/:id`}
+          path={`${AppRoute.OFFER}/:id`}
           render={({match}) => {
             if (currentOffers.length === 0) {
               return null;
             }
 
-            const offer = currentOffers[0].offers.find(
-                (property) => property.id === +match.params.id
+            const offer = allOffers.find(
+                (property) => property.offers[0].id === +match.params.id
             );
+
+            if (!offer) {
+              return <Redirect to={AppRoute.ROOT} />;
+            }
 
             return (
               <Property
-                offer={offer}
-                location={currentOffers[0].location}
+                offer={offer.offers[0]}
+                location={offer.location}
                 offers={currentOffers[0].offers}
                 onRentalCardHover={onRentalCardHover}
                 activeCardCoordinates={activeCardCoordinates}
@@ -96,17 +104,24 @@ const App = (props) => {
           path={AppRoute.LOGIN}
           render={() => (
             <SignIn
-              onSubmit={login}
+              onSubmit={onLogin}
               isLoginError={isLoginError}
               userEmail={userEmail}
+              onUserEmailClick={onUserEmailClick}
             />
           )}
         />
         <PrivateRoute
           authorizationStatus={authorizationStatus}
-          render={() => <Favorites userEmail={userEmail} />}
+          render={() => (
+            <Favorites
+              onRentalCardHover={onRentalCardHover}
+              userEmail={userEmail}
+            />
+          )}
           path={AppRoute.FAVORITES}
         />
+        <Redirect to={AppRoute.ROOT} />
       </Switch>
     </BrowserRouter>
   );
@@ -124,11 +139,12 @@ App.propTypes = {
   activeCardCoordinates: PropTypes.arrayOf(PropTypes.number.isRequired)
     .isRequired,
   isError: PropTypes.bool.isRequired,
-  login: PropTypes.func.isRequired,
+  onLogin: PropTypes.func.isRequired,
   userEmail: PropTypes.string,
   isLoginError: PropTypes.bool.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
   onBookmarkClick: PropTypes.func.isRequired,
+  onUserEmailClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -142,6 +158,7 @@ const mapStateToProps = (state) => ({
   userEmail: getUserEmail(state),
   isLoginError: getLoginStatus(state),
   authorizationStatus: getAuthorizationStatus(state),
+  favorites: getFavorites(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -156,11 +173,14 @@ const mapDispatchToProps = (dispatch) => ({
   onRentalCardHover(coordinates) {
     dispatch(ActionCreator.setActiveCard(coordinates));
   },
-  login(userData) {
+  onLogin(userData) {
     dispatch(UserOperation.login(userData));
   },
   onBookmarkClick(id, status) {
     dispatch(DataOperation.changeFavoriteStatus(id, status));
+  },
+  onUserEmailClick() {
+    dispatch(DataOperation.loadFavorites());
   },
 });
 

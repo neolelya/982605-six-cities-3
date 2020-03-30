@@ -37,7 +37,7 @@ class Map extends PureComponent {
         )
         .addTo(this.map);
 
-      this._getMap();
+      this._addMarkers();
     }
   }
 
@@ -53,16 +53,12 @@ class Map extends PureComponent {
           ],
           this.zoom
       );
-      this._getMap();
+      this._addMarkers();
     }
   }
 
   componentWillUnmount() {
     this.map = null;
-  }
-
-  render() {
-    return <div style={{height: `100%`}} ref={this._mapRef} />;
   }
 
   _getIcon(isActive) {
@@ -72,9 +68,9 @@ class Map extends PureComponent {
     });
   }
 
-  _getMap() {
+  _addMarkers() {
     if (this.markersGroup) {
-      this.markersGroup.removeLayer(this._mapRef.current);
+      this.map.removeLayer(this.markersGroup);
     }
 
     this.markersGroup = leaflet.layerGroup().addTo(this.map);
@@ -92,6 +88,11 @@ class Map extends PureComponent {
         .addTo(this.markersGroup);
     });
   }
+
+  render() {
+    return <div style={{height: `100%`}} ref={this._mapRef} />;
+  }
+
 }
 
 Map.defaultProps = {

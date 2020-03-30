@@ -4,6 +4,7 @@ import Header from '../header/header.jsx';
 import CitiesList from '../cities-list/cities-list.jsx';
 import OffersContainer from '../offers-container/offers-container.jsx';
 import NoOffers from '../no-offers/no-offers.jsx';
+import {ClassName} from '../../consts';
 
 const Main = (props) => {
   const {
@@ -18,6 +19,7 @@ const Main = (props) => {
     isError,
     userEmail,
     onBookmarkClick,
+    onUserEmailClick,
   } = props;
 
   const placesCount =
@@ -25,7 +27,7 @@ const Main = (props) => {
 
   return (
     <div className="page page--gray page--main">
-      <Header userEmail={userEmail} />
+      <Header userEmail={userEmail} onUserEmailClick={onUserEmailClick} />
 
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
@@ -48,6 +50,7 @@ const Main = (props) => {
               activeCardCoordinates={activeCardCoordinates}
               onRentalCardHover={onRentalCardHover}
               onBookmarkClick={onBookmarkClick}
+              pageClass={ClassName.CITY}
             />
           ) : (
             <NoOffers currentCity={currentCity} isError={isError} />
@@ -71,6 +74,7 @@ Main.propTypes = {
   isError: PropTypes.bool.isRequired,
   userEmail: PropTypes.string,
   onBookmarkClick: PropTypes.func.isRequired,
+  onUserEmailClick: PropTypes.func.isRequired,
 };
 
 export default Main;

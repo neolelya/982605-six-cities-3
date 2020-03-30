@@ -19,6 +19,7 @@ it(`Should render Main correctly`, () => {
             onSortTypeClick={() => {}}
             isError={false}
             onBookmarkClick={() => {}}
+            onUserEmailClick={() => {}}
           />
         </MemoryRouter>
     )

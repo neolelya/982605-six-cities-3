@@ -3,7 +3,7 @@
 exports[`Should render OffersList correctly 1`] = `
 Array [
   <article
-    className="cities__place-card place-card"
+    className="favorites__card place-card"
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
@@ -15,22 +15,23 @@ Array [
       </span>
     </div>
     <div
-      className="cities__image-wrapper place-card__image-wrapper"
+      className="favorites__image-wrapper place-card__image-wrapper"
     >
       <a
-        href="#"
+        href="/offer/0"
+        onClick={[Function]}
       >
         <img
           alt="Place image"
           className="place-card__image"
-          height="200"
+          height="110"
           src="img/apartment-01.jpg"
-          width="260"
+          width="150"
         />
       </a>
     </div>
     <div
-      className="place-card__info"
+      className="favorites__card-info place-card__info"
     >
       <div
         className="place-card__price-wrapper"
@@ -95,7 +96,7 @@ Array [
         className="place-card__name"
       >
         <a
-          href="/property/0"
+          href="/offer/0"
           onClick={[Function]}
         >
           Beautiful & luxurious apartment at great location
@@ -109,27 +110,28 @@ Array [
     </div>
   </article>,
   <article
-    className="cities__place-card place-card"
+    className="favorites__card place-card"
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
     <div
-      className="cities__image-wrapper place-card__image-wrapper"
+      className="favorites__image-wrapper place-card__image-wrapper"
     >
       <a
-        href="#"
+        href="/offer/1"
+        onClick={[Function]}
       >
         <img
           alt="Place image"
           className="place-card__image"
-          height="200"
+          height="110"
           src="img/apartment-02.jpg"
-          width="260"
+          width="150"
         />
       </a>
     </div>
     <div
-      className="place-card__info"
+      className="favorites__card-info place-card__info"
     >
       <div
         className="place-card__price-wrapper"
@@ -194,7 +196,7 @@ Array [
         className="place-card__name"
       >
         <a
-          href="/property/1"
+          href="/offer/1"
           onClick={[Function]}
         >
           Wood and stone place
@@ -208,7 +210,7 @@ Array [
     </div>
   </article>,
   <article
-    className="cities__place-card place-card"
+    className="favorites__card place-card"
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
@@ -220,22 +222,23 @@ Array [
       </span>
     </div>
     <div
-      className="cities__image-wrapper place-card__image-wrapper"
+      className="favorites__image-wrapper place-card__image-wrapper"
     >
       <a
-        href="#"
+        href="/offer/2"
+        onClick={[Function]}
       >
         <img
           alt="Place image"
           className="place-card__image"
-          height="200"
+          height="110"
           src="img/apartment-03.jpg"
-          width="260"
+          width="150"
         />
       </a>
     </div>
     <div
-      className="place-card__info"
+      className="favorites__card-info place-card__info"
     >
       <div
         className="place-card__price-wrapper"
@@ -300,7 +303,7 @@ Array [
         className="place-card__name"
       >
         <a
-          href="/property/2"
+          href="/offer/2"
           onClick={[Function]}
         >
           Stylish and cozy place
@@ -314,27 +317,28 @@ Array [
     </div>
   </article>,
   <article
-    className="cities__place-card place-card"
+    className="favorites__card place-card"
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
     <div
-      className="cities__image-wrapper place-card__image-wrapper"
+      className="favorites__image-wrapper place-card__image-wrapper"
     >
       <a
-        href="#"
+        href="/offer/3"
+        onClick={[Function]}
       >
         <img
           alt="Place image"
           className="place-card__image"
-          height="200"
+          height="110"
           src="img/room.jpg"
-          width="260"
+          width="150"
         />
       </a>
     </div>
     <div
-      className="place-card__info"
+      className="favorites__card-info place-card__info"
     >
       <div
         className="place-card__price-wrapper"
@@ -399,7 +403,7 @@ Array [
         className="place-card__name"
       >
         <a
-          href="/property/3"
+          href="/offer/3"
           onClick={[Function]}
         >
           Excellent location and free parking

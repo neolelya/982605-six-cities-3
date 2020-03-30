@@ -1,13 +1,13 @@
 import {OffersRestriction, SortType} from './consts';
 
 export const formatDate = (date) => {
-  const options = {
+  const Option = {
     day: `numeric`,
     month: `long`,
     year: `numeric`,
   };
 
-  return new Intl.DateTimeFormat(`en`, options).format(date);
+  return new Intl.DateTimeFormat(`en`, Option).format(date);
 };
 
 export const formatDateTime = (date) => {
@@ -45,7 +45,7 @@ export const getOffersByCity = (city, offers) => {
 export const getUniqueCities = (offers) => {
   const cities = new Set();
   offers.forEach((offer) => cities.add(offer.location.city));
-  return [...cities].slice(0, OffersRestriction.MAX_CITIES_COUNT);
+  return [...cities].sort().slice(0, OffersRestriction.MAX_CITIES_COUNT);
 };
 
 export const getSortedOffers = (offers, sortType) => {

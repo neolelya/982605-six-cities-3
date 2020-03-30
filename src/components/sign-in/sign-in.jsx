@@ -11,10 +11,10 @@ class SignIn extends PureComponent {
     this.loginRef = createRef();
     this.passwordRef = createRef();
 
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this._handleSubmit = this._handleSubmit.bind(this);
   }
 
-  handleSubmit(evt) {
+  _handleSubmit(evt) {
     const {onSubmit} = this.props;
     evt.preventDefault();
 
@@ -31,7 +31,10 @@ class SignIn extends PureComponent {
 
     return (
       <div className="page page--gray page--login">
-        <Header userEmail={this.props.userEmail} />
+        <Header
+          userEmail={this.props.userEmail}
+          onUserEmailClick={this.props.onUserEmailClick}
+        />
 
         <main className="page__main page__main--login">
           <div className="page__login-container container">
@@ -44,7 +47,7 @@ class SignIn extends PureComponent {
                 className="login__form form"
                 action="#"
                 method="post"
-                onSubmit={this.handleSubmit}
+                onSubmit={this._handleSubmit}
               >
                 <div className="login__input-wrapper form__input-wrapper">
                   <label className="visually-hidden">E-mail</label>
@@ -97,6 +100,7 @@ SignIn.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   userEmail: PropTypes.string,
   isLoginError: PropTypes.bool.isRequired,
+  onUserEmailClick: PropTypes.func.isRequired,
 };
 
 export default SignIn;

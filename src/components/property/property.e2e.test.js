@@ -27,6 +27,7 @@ const initialState = {
     nearbyOffers: [],
     reviews: [],
     isSending: false,
+    favorites: [],
   },
 };
 
@@ -34,11 +35,13 @@ const expectedActions = [
   {type: ActionType.GET_REVIEWS},
   {type: ActionType.GET_NEARBY_OFFERS},
   {type: ActionType.POST_REVIEW},
+  {type: ActionType.LOAD_FAVORITES},
 ];
 
 const store = mockStore(initialState, expectedActions);
 
 it(`Should not Property component show ReviewsForm to unauthorized user`, () => {
+  window.scrollTo = jest.fn();
   const property = mount(
       <MemoryRouter>
         <Provider store={store}>
@@ -50,6 +53,7 @@ it(`Should not Property component show ReviewsForm to unauthorized user`, () => 
             activeCardCoordinates={[]}
             onRentalCardHover={() => {}}
             onBookmarkClick={() => {}}
+            onUserEmailClick={() => {}}
           />
         </Provider>
       </MemoryRouter>
@@ -59,6 +63,7 @@ it(`Should not Property component show ReviewsForm to unauthorized user`, () => 
 });
 
 it(`Should Property component show ReviewsForm to authorized user`, () => {
+  window.scrollTo = jest.fn();
   const property = mount(
       <MemoryRouter>
         <Provider store={store}>
@@ -70,6 +75,7 @@ it(`Should Property component show ReviewsForm to authorized user`, () => {
             activeCardCoordinates={[]}
             onRentalCardHover={() => {}}
             onBookmarkClick={() => {}}
+            onUserEmailClick={() => {}}
           />
         </Provider>
       </MemoryRouter>

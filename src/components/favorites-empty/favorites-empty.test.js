@@ -1,17 +1,13 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import {MemoryRouter} from 'react-router-dom';
-import SignIn from './sign-in.jsx';
+import FavoritesEmpty from './favorites-empty.jsx';
 
-it(`SignIn should render correctly`, () => {
+it(`Should FavoritesEmpty render correctly`, () => {
   const tree = renderer
     .create(
         <MemoryRouter>
-          <SignIn
-            onSubmit={() => {}}
-            isLoginError={false}
-            onUserEmailClick={() => {}}
-          />
+          <FavoritesEmpty />
         </MemoryRouter>
     )
     .toJSON();

@@ -23,9 +23,10 @@ const initialState = {
     nearbyOffers: [],
     reviews: [],
     isSending: false,
+    favorites: [],
   },
   APP: {
-    currentCity: CITIES[3],
+    currentCity: CITIES[0],
     currentSortType: `Popular`,
     activeCardCoordinates: [],
   },
@@ -48,6 +49,7 @@ Enzyme.configure({
 });
 
 it(`Should render Property component from App component`, () => {
+  window.scrollTo = jest.fn();
   const app = mount(
       <MemoryRouter>
         <Provider store={store}>
@@ -55,13 +57,13 @@ it(`Should render Property component from App component`, () => {
             allOffers={ALL_OFFERS}
             cities={CITIES}
             currentOffers={OFFERS}
-            currentCity={CITIES[3]}
+            currentCity={CITIES[0]}
             onCityClick={() => {}}
             currentSortType={`Popular`}
             onSortTypeClick={() => {}}
             onRentalCardHover={() => {}}
             activeCardCoordinates={[]}
-            login={() => {}}
+            onLogin={() => {}}
           />
         </Provider>
       </MemoryRouter>

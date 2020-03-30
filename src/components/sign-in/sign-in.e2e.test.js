@@ -14,7 +14,11 @@ it(`Should handle submit event`, () => {
 
   const signInPage = mount(
       <MemoryRouter>
-        <SignIn onSubmit={onSubmit} isLoginError={false} />
+        <SignIn
+          onSubmit={onSubmit}
+          isLoginError={false}
+          onUserEmailClick={() => {}}
+        />
       </MemoryRouter>
   );
 
