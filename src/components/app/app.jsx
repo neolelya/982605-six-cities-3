@@ -31,6 +31,7 @@ import {
   getLoginStatus,
   getUserEmail,
 } from '../../reducer/user/selectors';
+import {offersShape} from '../../shape';
 
 const App = (props) => {
   const {
@@ -99,18 +100,14 @@ const App = (props) => {
             );
           }}
         />
-        <Route
-          exact
-          path={AppRoute.LOGIN}
-          render={() => (
-            <SignIn
-              onSubmit={onLogin}
-              isLoginError={isLoginError}
-              userEmail={userEmail}
-              onUserEmailClick={onUserEmailClick}
-            />
-          )}
-        />
+        <Route exact path={AppRoute.LOGIN} >
+          <SignIn
+            onSubmit={onLogin}
+            isLoginError={isLoginError}
+            userEmail={userEmail}
+            onUserEmailClick={onUserEmailClick}
+          />
+        </Route>
         <PrivateRoute
           authorizationStatus={authorizationStatus}
           render={() => (
@@ -128,9 +125,9 @@ const App = (props) => {
 };
 
 App.propTypes = {
-  allOffers: PropTypes.array.isRequired,
+  allOffers: offersShape,
   cities: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-  currentOffers: PropTypes.array.isRequired,
+  currentOffers: offersShape,
   currentCity: PropTypes.string.isRequired,
   onCityClick: PropTypes.func.isRequired,
   currentSortType: PropTypes.string.isRequired,

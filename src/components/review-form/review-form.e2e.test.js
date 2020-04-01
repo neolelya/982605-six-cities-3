@@ -10,13 +10,13 @@ Enzyme.configure({
 });
 
 it(`Should ReviewForm calls a reviewPost callback by authorized user`, () => {
-  const postReview = jest.fn();
+  const postReview = jest.fn().mockResolvedValue(Promise.resolve);
   const formSentPrevention = jest.fn();
 
   const form = mount(
       <MemoryRouter>
         <ReviewForm
-          id={11}
+          id={REVIEWS[0].id}
           onReviewSubmit={postReview}
           isSending={false}
           isError={false}

@@ -5,6 +5,7 @@ import CitiesList from '../cities-list/cities-list.jsx';
 import OffersContainer from '../offers-container/offers-container.jsx';
 import NoOffers from '../no-offers/no-offers.jsx';
 import {ClassName} from '../../consts';
+import {offersShape} from '../../shape';
 
 const Main = (props) => {
   const {
@@ -64,7 +65,7 @@ const Main = (props) => {
 Main.propTypes = {
   cities: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   currentCity: PropTypes.string.isRequired,
-  currentOffers: PropTypes.array.isRequired,
+  currentOffers: offersShape,
   onCityClick: PropTypes.func.isRequired,
   currentSortType: PropTypes.string.isRequired,
   onSortTypeClick: PropTypes.func.isRequired,

@@ -5,11 +5,12 @@ import {MemoryRouter} from 'react-router-dom';
 import configureStore from 'redux-mock-store';
 import App from './app.jsx';
 import Property from '../property/property.jsx';
-import {ALL_OFFERS, CITIES, OFFERS} from '../../tests-mocks';
+import {ALL_OFFERS, CITIES} from '../../tests-mocks';
 import {Provider} from 'react-redux';
 import {createAPI} from '../../api';
 import thunk from 'redux-thunk';
 import {ActionType} from '../../reducer/data/data';
+import {AuthorizationStatus, SortType} from '../../consts';
 
 const api = createAPI();
 const mockStore = configureStore([thunk.withExtraArgument(api)]);
@@ -17,7 +18,7 @@ const mockStore = configureStore([thunk.withExtraArgument(api)]);
 const initialState = {
   DATA: {
     allOffers: ALL_OFFERS,
-    currentOffers: OFFERS,
+    currentOffers: [ALL_OFFERS[0]],
     cities: CITIES,
     isError: false,
     nearbyOffers: [],
@@ -27,11 +28,11 @@ const initialState = {
   },
   APP: {
     currentCity: CITIES[0],
-    currentSortType: `Popular`,
+    currentSortType: SortType.POPULAR,
     activeCardCoordinates: [],
   },
   USER: {
-    authorizationStatus: `UNAUTHORIZED`,
+    authorizationStatus: AuthorizationStatus.UNAUTHORIZED,
     isLoginError: false,
     userEmail: ``,
   },
@@ -56,10 +57,10 @@ it(`Should render Property component from App component`, () => {
           <App
             allOffers={ALL_OFFERS}
             cities={CITIES}
-            currentOffers={OFFERS}
+            currentOffers={[ALL_OFFERS[0]]}
             currentCity={CITIES[0]}
             onCityClick={() => {}}
-            currentSortType={`Popular`}
+            currentSortType={SortType.POPULAR}
             onSortTypeClick={() => {}}
             onRentalCardHover={() => {}}
             activeCardCoordinates={[]}

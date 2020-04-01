@@ -5,6 +5,7 @@ import Map from '../map/map.jsx';
 import Sorting from '../sorting/sorting.jsx';
 import {getSortedOffers} from '../../utils';
 import withToggle from '../../hocs/with-toggle/with-toggle.jsx';
+import {offersShape} from '../../shape';
 
 const SortingWrapped = withToggle(Sorting);
 
@@ -82,7 +83,7 @@ class OffersContainer extends PureComponent {
 
 OffersContainer.propTypes = {
   placesCount: PropTypes.number.isRequired,
-  currentOffers: PropTypes.array.isRequired,
+  currentOffers: offersShape,
   currentSortType: PropTypes.string.isRequired,
   onSortTypeClick: PropTypes.func.isRequired,
   onRentalCardHover: PropTypes.func.isRequired,

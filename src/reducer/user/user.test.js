@@ -1,12 +1,14 @@
 import MockAdapter from 'axios-mock-adapter';
 import {createAPI} from '../../api';
 import {reducer, ActionType, Operation} from './user';
+import {AuthorizationStatus} from '../../consts';
+import {USER_EMAIL} from '../../tests-mocks';
 
 const api = createAPI();
 
 it(`UserReduces without additional information should return initialState`, () => {
   expect(reducer(void 0, {})).toEqual({
-    authorizationStatus: `UNKNOWN`,
+    authorizationStatus: AuthorizationStatus.UNKNOWN,
     isLoginError: false,
     userEmail: ``,
   });
@@ -16,17 +18,17 @@ it(`UserReducer should update authorizationStatus by loaded value`, () => {
   expect(
       reducer(
           {
-            authorizationStatus: `UNAUTHORIZED`,
+            authorizationStatus: AuthorizationStatus.UNAUTHORIZED,
             isLoginError: false,
             userEmail: ``,
           },
           {
             type: ActionType.AUTHORIZE_USER,
-            payload: `AUTHORIZED`,
+            payload: AuthorizationStatus.AUTHORIZED,
           }
       )
   ).toEqual({
-    authorizationStatus: `AUTHORIZED`,
+    authorizationStatus: AuthorizationStatus.AUTHORIZED,
     isLoginError: false,
     userEmail: ``,
   });
@@ -36,7 +38,7 @@ it(`UserReducer should update isLoginError by login error`, () => {
   expect(
       reducer(
           {
-            authorizationStatus: `UNAUTHORIZED`,
+            authorizationStatus: AuthorizationStatus.UNAUTHORIZED,
             isLoginError: false,
             userEmail: ``,
           },
@@ -46,7 +48,7 @@ it(`UserReducer should update isLoginError by login error`, () => {
           }
       )
   ).toEqual({
-    authorizationStatus: `UNAUTHORIZED`,
+    authorizationStatus: AuthorizationStatus.UNAUTHORIZED,
     isLoginError: true,
     userEmail: ``,
   });
@@ -56,19 +58,19 @@ it(`UserReducer should update userEmail by login data`, () => {
   expect(
       reducer(
           {
-            authorizationStatus: `AUTHORIZED`,
+            authorizationStatus: AuthorizationStatus.AUTHORIZED,
             isLoginError: false,
             userEmail: ``,
           },
           {
             type: ActionType.FILL_IN_USER_EMAIL,
-            payload: `email`,
+            payload: USER_EMAIL,
           }
       )
   ).toEqual({
-    authorizationStatus: `AUTHORIZED`,
+    authorizationStatus: AuthorizationStatus.AUTHORIZED,
     isLoginError: false,
-    userEmail: `email`,
+    userEmail: USER_EMAIL,
   });
 });
 
@@ -85,7 +87,7 @@ describe(`Operation should work correctly`, () => {
 
       expect(dispatch).toHaveBeenNthCalledWith(1, {
         type: ActionType.AUTHORIZE_USER,
-        payload: `AUTHORIZED`,
+        payload: AuthorizationStatus.AUTHORIZED,
       });
 
       expect(dispatch).toHaveBeenNthCalledWith(2, {
@@ -99,8 +101,8 @@ describe(`Operation should work correctly`, () => {
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
     const login = Operation.login({
-      email: `email`,
-      password: `password`,
+      email: USER_EMAIL,
+      password: ``,
     });
 
     apiMock.onPost(`/login`).reply(200, []);
@@ -110,7 +112,7 @@ describe(`Operation should work correctly`, () => {
 
       expect(dispatch).toHaveBeenNthCalledWith(3, {
         type: ActionType.FILL_IN_USER_EMAIL,
-        payload: `email`,
+        payload: USER_EMAIL,
       });
     });
   });

@@ -1,6 +1,6 @@
 import {capitalizeFirstLetter} from './utils';
 
-export const offersAdapter = (data) => {
+export const mapServerCityOfferToClient = (data) => {
   return {
     location: {
       city: data.city.name,
@@ -11,37 +11,12 @@ export const offersAdapter = (data) => {
       },
     },
     offers: [
-      {
-        id: data.id,
-        coordinates: {
-          city: data.city.name,
-          latitude: data.location.latitude,
-          longitude: data.location.longitude,
-          zoom: data.location.zoom,
-        },
-        rentalHost: {
-          id: data.host.id,
-          hostName: data.host.name,
-          hostAvatar: data.host.avatar_url,
-          isSuper: data.host.is_pro,
-        },
-        rentalTitle: data.title,
-        rentalImages: [data.preview_image, ...data.images],
-        rentalPrice: data.price,
-        rentalRating: data.rating,
-        rentalType: capitalizeFirstLetter(data.type),
-        isPremium: data.is_premium,
-        isBookmark: data.is_favorite,
-        rentalDescription: [data.description],
-        rentalRoomsQuantity: data.bedrooms,
-        rentalMaxGuestsQuantity: data.max_adults,
-        rentalFeatures: data.goods,
-      },
+      mapServerOfferToClient(data),
     ],
   };
 };
 
-export const offerAdapter = (data) => {
+export const mapServerOfferToClient = (data) => {
   return {
     id: data.id,
     coordinates: {
@@ -82,12 +57,5 @@ export const reviewsAdapter = (data) => {
     rating: data.rating,
     date: new Date(data.date),
     comment: data.comment,
-  };
-};
-
-export const newReviewAdapter = (data) => {
-  return {
-    comment: data.text,
-    rating: data.rating,
   };
 };
