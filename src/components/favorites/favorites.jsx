@@ -5,9 +5,10 @@ import {Link} from 'react-router-dom';
 import Header from '../header/header.jsx';
 import FavoritesEmpty from '../favorites-empty/favorites-empty.jsx';
 import {AppRoute} from '../../consts';
-import FavoritesItem from '../favorite-item/favorites-item.jsx';
+import FavoritesItem from '../favorites-item/favorites-item.jsx';
 import {getFavorites} from '../../reducer/data/selectors';
 import {Operation as DataOperation} from '../../reducer/data/data';
+import {favoritesShape} from '../../shape';
 
 class Favorites extends PureComponent {
   componentDidMount() {
@@ -70,12 +71,7 @@ class Favorites extends PureComponent {
 
 Favorites.propTypes = {
   userEmail: PropTypes.string,
-  favorites: PropTypes.arrayOf(
-      PropTypes.shape({
-        city: PropTypes.string.isRequired,
-        offers: PropTypes.array.isRequired,
-      }).isRequired
-  ).isRequired,
+  favorites: favoritesShape,
   onFavoritesLoad: PropTypes.func.isRequired,
   onBookmarkClick: PropTypes.func.isRequired,
   onRentalCardHover: PropTypes.func.isRequired,

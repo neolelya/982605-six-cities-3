@@ -4,6 +4,7 @@ import {MemoryRouter} from 'react-router-dom';
 import Adapter from 'enzyme-adapter-react-16';
 import Main from './main.jsx';
 import {CITIES, OFFERS} from '../../tests-mocks';
+import {SortType} from '../../consts';
 
 Enzyme.configure({
   adapter: new Adapter(),
@@ -11,7 +12,7 @@ Enzyme.configure({
 
 it(`Should change active city by click`, () => {
   const handleCityClick = jest.fn();
-  const activeCity = `Amsterdam`;
+  const activeCity = CITIES[0];
 
   const mainScreen = mount(
       <MemoryRouter>
@@ -21,7 +22,7 @@ it(`Should change active city by click`, () => {
           currentOffers={OFFERS}
           onCityClick={handleCityClick}
           activeCardCoordinates={[]}
-          currentSortType={`Popular`}
+          currentSortType={SortType.POPULAR}
           onRentalCardHover={() => {}}
           onSortTypeClick={() => {}}
           isError={false}
@@ -33,8 +34,8 @@ it(`Should change active city by click`, () => {
 
   const cities = mainScreen.find(`.locations__item-link`);
 
-  cities.at(5).simulate(`click`);
+  cities.at(1).simulate(`click`);
 
-  expect(handleCityClick.mock.calls[0][0]).toBe(`Paris`);
+  expect(handleCityClick.mock.calls[0][0]).toBe(CITIES[1]);
   expect(handleCityClick.mock.calls[0][0]).not.toMatch(activeCity);
 });

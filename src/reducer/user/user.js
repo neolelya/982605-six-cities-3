@@ -60,7 +60,6 @@ const Operation = {
           dispatch(
               ActionCreator.authorizeUser(AuthorizationStatus.UNAUTHORIZED)
           );
-          throw new Error(error.response.data.error);
         }
       });
   },
@@ -82,7 +81,6 @@ const Operation = {
               ActionCreator.authorizeUser(AuthorizationStatus.UNAUTHORIZED)
           );
           dispatch(ActionCreator.setLoginError(true));
-          throw new Error(`Please, check your login data`);
         }
       });
   },

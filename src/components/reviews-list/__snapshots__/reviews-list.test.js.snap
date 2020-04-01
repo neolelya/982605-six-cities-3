@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Should render ReviewsList correctly 1`] = `
+exports[`Should render ReviewsList correctly with reviews 1`] = `
 <section
   className="property__reviews reviews"
 >
@@ -19,6 +19,65 @@ exports[`Should render ReviewsList correctly 1`] = `
   <ul
     className="reviews__list"
   >
+    <li
+      className="reviews__item"
+    >
+      <div
+        className="reviews__user user"
+      >
+        <div
+          className="reviews__avatar-wrapper user__avatar-wrapper"
+        >
+          <img
+            alt="Reviews avatar"
+            className="reviews__avatar user__avatar"
+            height="54"
+            src="img/avatar-max.jpg"
+            width="54"
+          />
+        </div>
+        <span
+          className="reviews__user-name"
+        >
+          Adam
+        </span>
+      </div>
+      <div
+        className="reviews__info"
+      >
+        <div
+          className="reviews__rating rating"
+        >
+          <div
+            className="reviews__stars rating__stars"
+          >
+            <span
+              style={
+                Object {
+                  "width": "80%",
+                }
+              }
+            />
+            <span
+              className="visually-hidden"
+            >
+              Rating
+            </span>
+          </div>
+        </div>
+        <p
+          className="reviews__text"
+        >
+          Easy Check In: Management did extra mile, and allowed me to check in several hours before. Cleaning of my unit was swiftly organized, and properly introduced.
+        </p>
+        <time
+          className="reviews__time"
+          dateTime="2020-01"
+        >
+          January 2020
+        </time>
+      </div>
+    </li>
     <li
       className="reviews__item"
     >
@@ -72,9 +131,9 @@ exports[`Should render ReviewsList correctly 1`] = `
         </p>
         <time
           className="reviews__time"
-          dateTime="2020-03-15"
+          dateTime="2020-03"
         >
-          March 15, 2020
+          March 2020
         </time>
       </div>
     </li>
@@ -131,72 +190,42 @@ exports[`Should render ReviewsList correctly 1`] = `
         </p>
         <time
           className="reviews__time"
-          dateTime="2020-02-28"
+          dateTime="2020-02"
         >
-          February 28, 2020
-        </time>
-      </div>
-    </li>
-    <li
-      className="reviews__item"
-    >
-      <div
-        className="reviews__user user"
-      >
-        <div
-          className="reviews__avatar-wrapper user__avatar-wrapper"
-        >
-          <img
-            alt="Reviews avatar"
-            className="reviews__avatar user__avatar"
-            height="54"
-            src="img/avatar-max.jpg"
-            width="54"
-          />
-        </div>
-        <span
-          className="reviews__user-name"
-        >
-          Adam
-        </span>
-      </div>
-      <div
-        className="reviews__info"
-      >
-        <div
-          className="reviews__rating rating"
-        >
-          <div
-            className="reviews__stars rating__stars"
-          >
-            <span
-              style={
-                Object {
-                  "width": "80%",
-                }
-              }
-            />
-            <span
-              className="visually-hidden"
-            >
-              Rating
-            </span>
-          </div>
-        </div>
-        <p
-          className="reviews__text"
-        >
-          Easy Check In: Management did extra mile, and allowed me to check in several hours before. Cleaning of my unit was swiftly organized, and properly introduced.
-        </p>
-        <time
-          className="reviews__time"
-          dateTime="2020-01-12"
-        >
-          January 12, 2020
+          February 2020
         </time>
       </div>
     </li>
   </ul>
+  <form
+    action="#"
+    className="reviews__form form"
+    method="post"
+  >
+    Put all of your personal information here...
+  </form>
+</section>
+`;
+
+exports[`Should render ReviewsList correctly without reviews 1`] = `
+<section
+  className="property__reviews reviews"
+>
+  <h2
+    className="reviews__title"
+  >
+    Reviews
+     ·
+     
+    <span
+      className="reviews__amount"
+    >
+      0
+    </span>
+  </h2>
+  <ul
+    className="reviews__list"
+  />
   <form
     action="#"
     className="reviews__form form"

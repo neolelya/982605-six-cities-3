@@ -15,6 +15,7 @@ const ReviewForm = (props) => {
   } = props;
 
   const isSubmitButtonDisabled = !(
+    !isSending &&
     review.length >= OffersRestriction.MIN_REVIEW_LENGTH &&
     review.length <= OffersRestriction.MAX_REVIEW_LENGTH &&
     rating
@@ -26,8 +27,7 @@ const ReviewForm = (props) => {
       review.length <= OffersRestriction.MAX_REVIEW_LENGTH &&
       rating
     ) {
-      onReviewSubmit(id, {comment: review, rating});
-      onFormReset();
+      onReviewSubmit(id, {comment: review, rating}).then(onFormReset);
     }
   };
 

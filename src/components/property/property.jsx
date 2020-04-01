@@ -2,7 +2,7 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import pluralize from 'pluralize';
-import {OffersRestriction, OFFER_TYPES, ClassName} from '../../consts';
+import {OffersRestriction, ClassName} from '../../consts';
 import ReviewsList from '../reviews-list/reviews-list.jsx';
 import ReviewForm from '../review-form/review-form.jsx';
 import Map from '../map/map.jsx';
@@ -16,6 +16,7 @@ import {
   getReviews,
 } from '../../reducer/data/selectors';
 import {Operation as DataOperation} from '../../reducer/data/data';
+import {coordinatesShape, locationShape, offerShape, reviewsShape} from '../../shape';
 
 const ReviewFormWrapped = withReview(ReviewForm);
 
@@ -262,65 +263,25 @@ class Property extends PureComponent {
 }
 
 Property.propTypes = {
-  offer: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    rentalHost: PropTypes.shape({
-      hostAvatar: PropTypes.string.isRequired,
-      hostName: PropTypes.string.isRequired,
-      isSuper: PropTypes.bool.isRequired,
-    }).isRequired,
-    coordinates: PropTypes.shape({
-      latitude: PropTypes.number.isRequired,
-      longitude: PropTypes.number.isRequired,
-      zoom: PropTypes.number.isRequired,
-    }).isRequired,
-    rentalTitle: PropTypes.string.isRequired,
-    rentalImages: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-    rentalPrice: PropTypes.number.isRequired,
-    rentalRating: PropTypes.number.isRequired,
-    rentalType: PropTypes.oneOf(OFFER_TYPES).isRequired,
-    isPremium: PropTypes.bool.isRequired,
-    isBookmark: PropTypes.bool.isRequired,
-    rentalDescription: PropTypes.arrayOf(PropTypes.string.isRequired)
-      .isRequired,
-    rentalRoomsQuantity: PropTypes.number.isRequired,
-    rentalMaxGuestsQuantity: PropTypes.number.isRequired,
-    rentalFeatures: PropTypes.array.isRequired,
-  }).isRequired,
+  offer: offerShape,
   location: PropTypes.shape({
-    cityCoordinates: PropTypes.shape({
-      latitude: PropTypes.number.isRequired,
-      longitude: PropTypes.number.isRequired,
-      zoom: PropTypes.number.isRequired,
-    }).isRequired,
+    cityCoordinates: coordinatesShape,
   }).isRequired,
   offers: PropTypes.arrayOf(
       PropTypes.shape({
-        coordinates: PropTypes.shape({
-          latitude: PropTypes.number.isRequired,
-          longitude: PropTypes.number.isRequired,
-          zoom: PropTypes.number.isRequired,
-        }).isRequired,
+        coordinates: coordinatesShape,
       }).isRequired
   ).isRequired,
   onRentalCardHover: PropTypes.func.isRequired,
   activeCardCoordinates: PropTypes.arrayOf(PropTypes.number.isRequired)
     .isRequired,
-  nearbyOffers: PropTypes.array.isRequired,
-  reviews: PropTypes.arrayOf(
+  nearbyOffers: PropTypes.arrayOf(
       PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        user: PropTypes.shape({
-          id: PropTypes.number.isRequired,
-          name: PropTypes.string.isRequired,
-          isPro: PropTypes.bool.isRequired,
-          avatar: PropTypes.string.isRequired,
-        }).isRequired,
-        rating: PropTypes.number.isRequired,
-        date: PropTypes.object.isRequired,
-        comment: PropTypes.string.isRequired,
+        location: locationShape,
+        offers: PropTypes.arrayOf(offerShape).isRequired
       }).isRequired
   ).isRequired,
+  reviews: reviewsShape,
   userEmail: PropTypes.string,
   onLoadOfferData: PropTypes.func.isRequired,
   onReviewPost: PropTypes.func.isRequired,
@@ -343,8 +304,9 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(DataOperation.getNearbyOffers(id));
   },
   onReviewPost(id, review) {
-    dispatch(DataOperation.postReview(id, review));
+    const postReviewPromise = dispatch(DataOperation.postReview(id, review));
     dispatch(DataOperation.getReviews(id));
+    return postReviewPromise;
   },
   onBookmarkClick(id, status) {
     dispatch(DataOperation.changeFavoriteStatus(id, status));

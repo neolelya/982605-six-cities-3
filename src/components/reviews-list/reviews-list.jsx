@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import pluralize from 'pluralize';
 import {OffersRestriction} from '../../consts';
 import ReviewsItem from '../reviews-item/reviews-item.jsx';
+import {reviewsShape} from '../../shape';
 
 const ReviewsList = (props) => {
   const {reviews, children} = props;
@@ -15,12 +16,11 @@ const ReviewsList = (props) => {
       </h2>
       <ul className="reviews__list">
         {reviews
-          .slice()
-          .sort((a, b) => b.date - a.date)
+          .slice(0, OffersRestriction.MAX_REVIEWS_QUANTITY)
           .map((review) => {
             return <ReviewsItem key={review.id} review={review} />;
           })
-          .slice(0, OffersRestriction.MAX_REVIEWS_QUANTITY)}
+        }
       </ul>
       {children}
     </section>
@@ -28,20 +28,7 @@ const ReviewsList = (props) => {
 };
 
 ReviewsList.propTypes = {
-  reviews: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        user: PropTypes.shape({
-          id: PropTypes.number.isRequired,
-          name: PropTypes.string.isRequired,
-          isPro: PropTypes.bool.isRequired,
-          avatar: PropTypes.string.isRequired,
-        }).isRequired,
-        rating: PropTypes.number.isRequired,
-        date: PropTypes.object.isRequired,
-        comment: PropTypes.string.isRequired,
-      }).isRequired
-  ).isRequired,
+  reviews: reviewsShape,
   children: PropTypes.node.isRequired,
 };
 

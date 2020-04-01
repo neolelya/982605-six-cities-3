@@ -6,7 +6,7 @@ import {Provider} from 'react-redux';
 import {createAPI} from '../../api';
 import {MemoryRouter} from 'react-router-dom';
 import Favorites from './favorites.jsx';
-import {OFFERS} from '../../tests-mocks';
+import {OFFERS, USER_EMAIL} from '../../tests-mocks';
 import {ActionType} from '../../reducer/data/data';
 
 const api = createAPI();
@@ -28,8 +28,28 @@ it(`Should Favorites render correctly with favoritesList data`, () => {
         <MemoryRouter>
           <Provider store={store}>
             <Favorites
-              userEmail={`someEmail@mail.su`}
+              userEmail={USER_EMAIL}
               favorites={OFFERS[0]}
+              onRentalCardHover={() => {}}
+              onBookmarkClick={() => {}}
+              onFavoritesLoad={() => {}}
+            />
+          </Provider>
+        </MemoryRouter>
+    )
+    .toJSON();
+
+  expect(tree).toMatchSnapshot();
+});
+
+it(`Should Favorites render correctly with favoritesList = []`, () => {
+  const tree = renderer
+    .create(
+        <MemoryRouter>
+          <Provider store={store}>
+            <Favorites
+              userEmail={USER_EMAIL}
+              favorites={[]}
               onRentalCardHover={() => {}}
               onBookmarkClick={() => {}}
               onFavoritesLoad={() => {}}

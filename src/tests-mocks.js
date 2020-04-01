@@ -1,4 +1,7 @@
 import {City, RentalType} from './consts';
+import {getOffersByCity, getUniqueCities} from './utils';
+
+export const USER_EMAIL = `someEmail@mail.su`;
 
 export const RentalFeature = {
   WIFI: `Wi-Fi`,
@@ -11,18 +14,9 @@ export const RentalFeature = {
   DRYER: `Dryer`,
 };
 
-export const OFFER_FEATURES = [
-  RentalFeature.WIFI,
-  RentalFeature.PARKING,
-  RentalFeature.HEATING,
-  RentalFeature.KITCHEN,
-  RentalFeature.CABLETV,
-  RentalFeature.DISHWASHER,
-  RentalFeature.WASHINGMACHINE,
-  RentalFeature.DRYER,
-];
+export const OFFER_FEATURES = Object.values(RentalFeature);
 
-export const OFFERS = [
+export const ALL_OFFERS = [
   {
     location: {
       city: City.AMSTERDAM,
@@ -86,6 +80,18 @@ export const OFFERS = [
           },
         ],
       },
+    ],
+  },
+  {
+    location: {
+      city: City.AMSTERDAM,
+      cityCoordinates: {
+        latitude: 52.38333,
+        longitude: 4.9,
+        zoom: 12,
+      },
+    },
+    offers: [
       {
         id: 1,
         coordinates: {
@@ -152,6 +158,18 @@ export const OFFERS = [
           },
         ],
       },
+    ],
+  },
+  {
+    location: {
+      city: City.AMSTERDAM,
+      cityCoordinates: {
+        latitude: 52.38333,
+        longitude: 4.9,
+        zoom: 12,
+      },
+    },
+    offers: [
       {
         id: 2,
         coordinates: {
@@ -198,6 +216,18 @@ export const OFFERS = [
           },
         ],
       },
+    ],
+  },
+  {
+    location: {
+      city: City.AMSTERDAM,
+      cityCoordinates: {
+        latitude: 52.38333,
+        longitude: 4.9,
+        zoom: 12,
+      },
+    },
+    offers: [
       {
         id: 3,
         coordinates: {
@@ -241,64 +271,6 @@ export const OFFERS = [
       },
     ],
   },
-];
-
-export const REVIEWS = [
-  {
-    id: 0,
-    user: {
-      id: 0,
-      name: `Adam`,
-      avatar: `img/avatar-max.jpg`,
-      isPro: true,
-    },
-    rating: 4,
-    date: new Date(2020, 0, 12),
-    comment: `Easy Check In: Management did extra mile, and allowed me to check in several hours before. Cleaning of my unit was swiftly organized, and properly introduced.`,
-  },
-  {
-    id: 1,
-    user: {
-      id: 1,
-      name: `Mary`,
-      avatar: `img/avatar-angelina.jpg`,
-      isPro: false,
-    },
-    rating: 5,
-    date: new Date(2020, 2, 15),
-    comment: `The building is in between the beach and metro station, 5 mins walking distance to both; 5 stops away from the Gothic Quarter by metro.`,
-  },
-  {
-    id: 2,
-    user: {
-      id: 2,
-      name: `Alex`,
-      avatar: `img/avatar.svg`,
-      isPro: true,
-    },
-    rating: 5,
-    date: new Date(2020, 1, 28),
-    comment: `We need a quick place to stay for the night and rented the same day. Was nice and clean. Had parking available for 15€ for the night. Was a little noisy but it ended by 11pm and we were able to get a decent night sleep. Had everything we needed.`,
-  },
-];
-
-export const OFFERS_COORDINATES = [
-  [52.3809553943508, 4.939309666406198],
-  [52.3909553943508, 4.929309666406198],
-  [52.3909553943508, 4.85309666406198],
-  [52.369553943508, 4.85309666406198],
-];
-
-export const CITIES = [
-  `Amsterdam`,
-  `Brussels`,
-  `Cologne`,
-  `Dusseldorf`,
-  `Hamburg`,
-  `Paris`,
-];
-
-export const ALL_OFFERS = [
   {
     location: {
       city: City.PARIS,
@@ -1064,260 +1036,6 @@ export const ALL_OFFERS = [
   },
   {
     location: {
-      city: City.AMSTERDAM,
-      cityCoordinates: {
-        latitude: 52.38333,
-        longitude: 4.9,
-        zoom: 12,
-      },
-    },
-    offers: [
-      {
-        id: 0,
-        coordinates: {
-          latitude: 52.3909553943508,
-          longitude: 4.85309666406198,
-          zoom: 10,
-          city: City.AMSTERDAM,
-        },
-        rentalHost: {
-          id: 0,
-          hostName: `Angelina`,
-          hostAvatar: `img/avatar-angelina.jpg`,
-          isSuper: true,
-        },
-        rentalTitle: `Beautiful & luxurious apartment at great location`,
-        rentalImages: [
-          `img/apartment-01.jpg`,
-          `img/apartment-02.jpg`,
-          `img/apartment-03.jpg`,
-          `img/apartment-small-03.jpg`,
-          `img/apartment-small-04.jpg`,
-        ],
-        rentalPrice: 120,
-        rentalRating: 3.4,
-        rentalType: RentalType.APARTMENT,
-        isPremium: true,
-        isBookmark: true,
-        rentalDescription: [
-          `A bright and charming apartment with 1 bedroom, located close to Museum Square in one of the most cosmopolitan and vibrant districts of Amsterdam "de PIJP".`,
-          `Perfect for short holidays, business trips.`,
-        ],
-        rentalRoomsQuantity: 3,
-        rentalMaxGuestsQuantity: 3,
-        rentalFeatures: [RentalFeature.DRYER, RentalFeature.WASHINGMACHINE],
-        reviews: [
-          {
-            id: 0,
-            name: `Adam`,
-            avatar: `img/avatar-max.jpg`,
-            rating: 4,
-            date: new Date(2020, 0, 12),
-            text: `Easy Check In: Management did extra mile, and allowed me to check in several hours before. Cleaning of my unit was swiftly organized, and properly introduced.`,
-          },
-          {
-            id: 2,
-            name: `Alex`,
-            avatar: `img/avatar.svg`,
-            rating: 5,
-            date: new Date(2020, 1, 28),
-            text: `We need a quick place to stay for the night and rented the same day. Was nice and clean. Had parking available for 15€ for the night. Was a little noisy but it ended by 11pm and we were able to get a decent night sleep. Had everything we needed.`,
-          },
-        ],
-      },
-    ],
-  },
-  {
-    location: {
-      city: City.AMSTERDAM,
-      cityCoordinates: {
-        latitude: 52.38333,
-        longitude: 4.9,
-        zoom: 12,
-      },
-    },
-    offers: [
-      {
-        id: 1,
-        coordinates: {
-          latitude: 52.369553943508,
-          longitude: 4.85309666406198,
-          zoom: 10,
-          city: City.AMSTERDAM,
-        },
-        rentalHost: {
-          id: 1,
-          hostName: `Max`,
-          hostAvatar: `img/avatar-max.jpg`,
-          isSuper: false,
-        },
-        rentalTitle: `Wood and stone place`,
-        rentalImages: [
-          `img/apartment-02.jpg`,
-          `img/apartment-01.jpg`,
-          `img/apartment-03.jpg`,
-          `img/apartment-small-03.jpg`,
-          `img/apartment-small-04.jpg`,
-        ],
-        rentalPrice: 80,
-        rentalRating: 4.1,
-        rentalType: RentalType.HOTEL,
-        isPremium: false,
-        isBookmark: true,
-        rentalDescription: [
-          `This package is special opportunity to connect accommodation in a traditional Dutch cottage located in a birch forest, taste the local food, and snowshoeing/hiking experience.`,
-        ],
-        rentalRoomsQuantity: 2,
-        rentalMaxGuestsQuantity: 2,
-        rentalFeatures: [
-          RentalFeature.DRYER,
-          RentalFeature.WASHINGMACHINE,
-          RentalFeature.CABLETV,
-          RentalFeature.KITCHEN,
-          RentalFeature.KITCHEN,
-        ],
-        reviews: [
-          {
-            id: 0,
-            name: `Adam`,
-            avatar: `img/avatar-max.jpg`,
-            rating: 4,
-            date: new Date(2020, 0, 12),
-            text: `Easy Check In: Management did extra mile, and allowed me to check in several hours before. Cleaning of my unit was swiftly organized, and properly introduced.`,
-          },
-          {
-            id: 1,
-            name: `Mary`,
-            avatar: `img/avatar-angelina.jpg`,
-            rating: 5,
-            date: new Date(2020, 2, 15),
-            text: `The building is in between the beach and metro station, 5 mins walking distance to both; 5 stops away from the Gothic Quarter by metro.`,
-          },
-          {
-            id: 2,
-            name: `Alex`,
-            avatar: `img/avatar.svg`,
-            rating: 5,
-            date: new Date(2020, 1, 28),
-            text: `We need a quick place to stay for the night and rented the same day. Was nice and clean. Had parking available for 15€ for the night. Was a little noisy but it ended by 11pm and we were able to get a decent night sleep. Had everything we needed.`,
-          },
-        ],
-      },
-    ],
-  },
-  {
-    location: {
-      city: City.AMSTERDAM,
-      cityCoordinates: {
-        latitude: 52.38333,
-        longitude: 4.9,
-        zoom: 12,
-      },
-    },
-    offers: [
-      {
-        id: 2,
-        coordinates: {
-          latitude: 52.3909553943508,
-          longitude: 4.929309666406198,
-          zoom: 10,
-          city: City.AMSTERDAM,
-        },
-        rentalHost: {
-          id: 2,
-          hostName: `Angelina`,
-          hostAvatar: `img/avatar-angelina.jpg`,
-          isSuper: true,
-        },
-        rentalTitle: `Stylish and cozy place`,
-        rentalImages: [
-          `img/apartment-03.jpg`,
-          `img/apartment-01.jpg`,
-          `img/apartment-02.jpg`,
-          `img/apartment-small-03.jpg`,
-          `img/apartment-small-04.jpg`,
-        ],
-        rentalPrice: 132,
-        rentalRating: 4.75,
-        rentalType: RentalType.HOUSE,
-        isPremium: true,
-        isBookmark: false,
-        rentalDescription: [
-          `Spacious apartment situated in the city centre (oud-West) of Amsterdam.`,
-          `Walking distance to the Jordaan, Museum Quarter, Anne Frank house and Leidseplein.`,
-          `Supermarket right on the corner.`,
-        ],
-        rentalRoomsQuantity: 4,
-        rentalMaxGuestsQuantity: 7,
-        rentalFeatures: OFFER_FEATURES,
-        reviews: [
-          {
-            id: 2,
-            name: `Alex`,
-            avatar: `img/avatar.svg`,
-            rating: 5,
-            date: new Date(2020, 1, 28),
-            text: `We need a quick place to stay for the night and rented the same day. Was nice and clean. Had parking available for 15€ for the night. Was a little noisy but it ended by 11pm and we were able to get a decent night sleep. Had everything we needed.`,
-          },
-        ],
-      },
-    ],
-  },
-  {
-    location: {
-      city: City.AMSTERDAM,
-      cityCoordinates: {
-        latitude: 52.38333,
-        longitude: 4.9,
-        zoom: 12,
-      },
-    },
-    offers: [
-      {
-        id: 3,
-        coordinates: {
-          latitude: 52.3809553943508,
-          longitude: 4.939309666406198,
-          zoom: 10,
-          city: City.AMSTERDAM,
-        },
-        rentalHost: {
-          id: 3,
-          hostName: `Max`,
-          hostAvatar: `img/avatar-max.jpg`,
-          isSuper: false,
-        },
-        rentalTitle: `Excellent location and free parking`,
-        rentalImages: [
-          `img/room.jpg`,
-          `img/room-small.jpg`,
-          `img/apartment-01.jpg`,
-          `img/apartment-02.jpg`,
-          `img/apartment-03.jpg`,
-          `img/apartment-small-03.jpg`,
-          `img/apartment-small-04.jpg`,
-        ],
-        rentalPrice: 180,
-        rentalRating: 4.5,
-        rentalType: RentalType.APARTMENT,
-        isPremium: false,
-        isBookmark: false,
-        rentalDescription: [
-          `The studio apartments at Wittenberg have been carefully-designed to embrace and enhance the building’s timeless authentic features, whilst incorporating striking yet traditional Dutch interiors.`,
-        ],
-        rentalRoomsQuantity: 2,
-        rentalMaxGuestsQuantity: 4,
-        rentalFeatures: [
-          RentalFeature.DRYER,
-          RentalFeature.WASHINGMACHINE,
-          RentalFeature.PARKING,
-        ],
-        reviews: [],
-      },
-    ],
-  },
-  {
-    location: {
       city: City.HAMBURG,
       cityCoordinates: {
         latitude: 53.57532,
@@ -1826,226 +1544,55 @@ export const ALL_OFFERS = [
   },
 ];
 
-export const COLOGNE_OFFERS = [
+export const REVIEWS = [
   {
-    location: {
-      city: City.COLOGNE,
-      cityCoordinates: {
-        latitude: 50.93333,
-        longitude: 6.95,
-        zoom: 12,
-      },
+    id: 0,
+    user: {
+      id: 0,
+      name: `Adam`,
+      avatar: `img/avatar-max.jpg`,
+      isPro: true,
     },
-    offers: [
-      {
-        id: 0,
-        coordinates: {
-          latitude: 50.93648019581346,
-          longitude: 6.942350261681368,
-          zoom: 10,
-          city: City.COLOGNE,
-        },
-        rentalHost: {
-          id: 0,
-          hostName: `Angelina`,
-          hostAvatar: `img/avatar-angelina.jpg`,
-          isSuper: true,
-        },
-        rentalTitle: `Beautiful & luxurious apartment at great location`,
-        rentalImages: [
-          `img/apartment-01.jpg`,
-          `img/apartment-02.jpg`,
-          `img/apartment-03.jpg`,
-          `img/apartment-small-03.jpg`,
-          `img/apartment-small-04.jpg`,
-        ],
-        rentalPrice: 120,
-        rentalRating: 3.4,
-        rentalType: RentalType.APARTMENT,
-        isPremium: true,
-        isBookmark: true,
-        rentalDescription: [
-          `A bright and charming apartment with 1 bedroom, located close to Museum Square in one of the most cosmopolitan and vibrant districts of Amsterdam "de PIJP".`,
-          `Perfect for short holidays, business trips.`,
-        ],
-        rentalRoomsQuantity: 3,
-        rentalMaxGuestsQuantity: 3,
-        rentalFeatures: [RentalFeature.DRYER, RentalFeature.WASHINGMACHINE],
-        reviews: [
-          {
-            id: 0,
-            name: `Adam`,
-            avatar: `img/avatar-max.jpg`,
-            rating: 4,
-            date: new Date(2020, 0, 12),
-            text: `Easy Check In: Management did extra mile, and allowed me to check in several hours before. Cleaning of my unit was swiftly organized, and properly introduced.`,
-          },
-          {
-            id: 2,
-            name: `Alex`,
-            avatar: `img/avatar.svg`,
-            rating: 5,
-            date: new Date(2020, 1, 28),
-            text: `We need a quick place to stay for the night and rented the same day. Was nice and clean. Had parking available for 15€ for the night. Was a little noisy but it ended by 11pm and we were able to get a decent night sleep. Had everything we needed.`,
-          },
-        ],
-      },
-      {
-        id: 1,
-        coordinates: {
-          latitude: 50.93813790167537,
-          longitude: 6.944528103396974,
-          zoom: 10,
-          city: City.COLOGNE,
-        },
-        rentalHost: {
-          id: 1,
-          hostName: `Max`,
-          hostAvatar: `img/avatar-max.jpg`,
-          isSuper: false,
-        },
-        rentalTitle: `Wood and stone place`,
-        rentalImages: [
-          `img/apartment-02.jpg`,
-          `img/apartment-01.jpg`,
-          `img/apartment-03.jpg`,
-          `img/apartment-small-03.jpg`,
-          `img/apartment-small-04.jpg`,
-        ],
-        rentalPrice: 80,
-        rentalRating: 4.1,
-        rentalType: RentalType.HOTEL,
-        isPremium: false,
-        isBookmark: true,
-        rentalDescription: [
-          `This package is special opportunity to connect accommodation in a traditional Dutch cottage located in a birch forest, taste the local food, and snowshoeing/hiking experience.`,
-        ],
-        rentalRoomsQuantity: 2,
-        rentalMaxGuestsQuantity: 2,
-        rentalFeatures: [
-          RentalFeature.DRYER,
-          RentalFeature.WASHINGMACHINE,
-          RentalFeature.CABLETV,
-          RentalFeature.KITCHEN,
-          RentalFeature.KITCHEN,
-        ],
-        reviews: [
-          {
-            id: 0,
-            name: `Adam`,
-            avatar: `img/avatar-max.jpg`,
-            rating: 4,
-            date: new Date(2020, 0, 12),
-            text: `Easy Check In: Management did extra mile, and allowed me to check in several hours before. Cleaning of my unit was swiftly organized, and properly introduced.`,
-          },
-          {
-            id: 1,
-            name: `Mary`,
-            avatar: `img/avatar-angelina.jpg`,
-            rating: 5,
-            date: new Date(2020, 2, 15),
-            text: `The building is in between the beach and metro station, 5 mins walking distance to both; 5 stops away from the Gothic Quarter by metro.`,
-          },
-          {
-            id: 2,
-            name: `Alex`,
-            avatar: `img/avatar.svg`,
-            rating: 5,
-            date: new Date(2020, 1, 28),
-            text: `We need a quick place to stay for the night and rented the same day. Was nice and clean. Had parking available for 15€ for the night. Was a little noisy but it ended by 11pm and we were able to get a decent night sleep. Had everything we needed.`,
-          },
-        ],
-      },
-      {
-        id: 2,
-        coordinates: {
-          latitude: 50.93216655007104,
-          longitude: 6.943741256017487,
-          zoom: 10,
-          city: City.COLOGNE,
-        },
-        rentalHost: {
-          id: 2,
-          hostName: `Angelina`,
-          hostAvatar: `img/avatar-angelina.jpg`,
-          isSuper: true,
-        },
-        rentalTitle: `Stylish and cozy place`,
-        rentalImages: [
-          `img/apartment-03.jpg`,
-          `img/apartment-01.jpg`,
-          `img/apartment-02.jpg`,
-          `img/apartment-small-03.jpg`,
-          `img/apartment-small-04.jpg`,
-        ],
-        rentalPrice: 132,
-        rentalRating: 4.75,
-        rentalType: RentalType.HOUSE,
-        isPremium: true,
-        isBookmark: false,
-        rentalDescription: [
-          `Spacious apartment situated in the city centre (oud-West) of Amsterdam.`,
-          `Walking distance to the Jordaan, Museum Quarter, Anne Frank house and Leidseplein.`,
-          `Supermarket right on the corner.`,
-        ],
-        rentalRoomsQuantity: 4,
-        rentalMaxGuestsQuantity: 7,
-        rentalFeatures: OFFER_FEATURES,
-        reviews: [
-          {
-            id: 2,
-            name: `Alex`,
-            avatar: `img/avatar.svg`,
-            rating: 5,
-            date: new Date(2020, 1, 28),
-            text: `We need a quick place to stay for the night and rented the same day. Was nice and clean. Had parking available for 15€ for the night. Was a little noisy but it ended by 11pm and we were able to get a decent night sleep. Had everything we needed.`,
-          },
-        ],
-      },
-      {
-        id: 3,
-        coordinates: {
-          latitude: 50.9388574304378,
-          longitude: 6.955421491548595,
-          zoom: 10,
-          city: City.COLOGNE,
-        },
-        rentalHost: {
-          id: 3,
-          hostName: `Max`,
-          hostAvatar: `img/avatar-max.jpg`,
-          isSuper: false,
-        },
-        rentalTitle: `Excellent location and free parking`,
-        rentalImages: [
-          `img/room.jpg`,
-          `img/room-small.jpg`,
-          `img/apartment-01.jpg`,
-          `img/apartment-02.jpg`,
-          `img/apartment-03.jpg`,
-          `img/apartment-small-03.jpg`,
-          `img/apartment-small-04.jpg`,
-        ],
-        rentalPrice: 180,
-        rentalRating: 4.5,
-        rentalType: RentalType.APARTMENT,
-        isPremium: false,
-        isBookmark: false,
-        rentalDescription: [
-          `The studio apartments at Wittenberg have been carefully-designed to embrace and enhance the building’s timeless authentic features, whilst incorporating striking yet traditional Dutch interiors.`,
-        ],
-        rentalRoomsQuantity: 2,
-        rentalMaxGuestsQuantity: 4,
-        rentalFeatures: [
-          RentalFeature.DRYER,
-          RentalFeature.WASHINGMACHINE,
-          RentalFeature.PARKING,
-        ],
-        reviews: [],
-      },
-    ],
+    rating: 4,
+    date: new Date(2020, 0, 12),
+    comment: `Easy Check In: Management did extra mile, and allowed me to check in several hours before. Cleaning of my unit was swiftly organized, and properly introduced.`,
+  },
+  {
+    id: 1,
+    user: {
+      id: 1,
+      name: `Mary`,
+      avatar: `img/avatar-angelina.jpg`,
+      isPro: false,
+    },
+    rating: 5,
+    date: new Date(2020, 2, 15),
+    comment: `The building is in between the beach and metro station, 5 mins walking distance to both; 5 stops away from the Gothic Quarter by metro.`,
+  },
+  {
+    id: 2,
+    user: {
+      id: 2,
+      name: `Alex`,
+      avatar: `img/avatar.svg`,
+      isPro: true,
+    },
+    rating: 5,
+    date: new Date(2020, 1, 28),
+    comment: `We need a quick place to stay for the night and rented the same day. Was nice and clean. Had parking available for 15€ for the night. Was a little noisy but it ended by 11pm and we were able to get a decent night sleep. Had everything we needed.`,
   },
 ];
+
+export const OFFERS_COORDINATES = [
+  [52.3809553943508, 4.939309666406198],
+  [52.3909553943508, 4.929309666406198],
+  [52.3909553943508, 4.85309666406198],
+  [52.369553943508, 4.85309666406198],
+];
+
+export const CITIES = getUniqueCities(ALL_OFFERS);
+
+export const COLOGNE_OFFERS = getOffersByCity(CITIES[2], ALL_OFFERS);
 
 export const FavoriteOffer = {
   id: 1,
@@ -2280,3 +1827,5 @@ export const REVIEWS_RESPONSE = [{
   "date": new Date(2020, 0, 12),
   "comment": `Nice, cozy, warm big bed apartment`,
 }];
+
+export const OFFERS = getOffersByCity(City.AMSTERDAM, ALL_OFFERS);

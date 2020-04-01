@@ -7,7 +7,7 @@ it(`Should ReviewForm render correctly`, () => {
   const tree = renderer
     .create(
         <ReviewForm
-          id={11}
+          id={REVIEWS[0].id}
           onReviewSubmit={() => {}}
           isSending={false}
           isError={false}

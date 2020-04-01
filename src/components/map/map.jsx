@@ -1,6 +1,7 @@
 import React, {PureComponent, createRef} from 'react';
 import leaflet from 'leaflet';
 import PropTypes from 'prop-types';
+import {coordinatesShape} from '../../shape';
 
 class Map extends PureComponent {
   constructor(props) {
@@ -64,7 +65,7 @@ class Map extends PureComponent {
   _getIcon(isActive) {
     return leaflet.icon({
       iconUrl: isActive ? `img/pin-active.svg` : `img/pin.svg`,
-      iconSize: [30, 30],
+      iconSize: [27, 39],
     });
   }
 
@@ -101,11 +102,7 @@ Map.defaultProps = {
 
 Map.propTypes = {
   location: PropTypes.shape({
-    cityCoordinates: PropTypes.shape({
-      latitude: PropTypes.number.isRequired,
-      longitude: PropTypes.number.isRequired,
-      zoom: PropTypes.number.isRequired,
-    }).isRequired,
+    cityCoordinates: coordinatesShape,
   }).isRequired,
   offersCoordinates: PropTypes.arrayOf(
       PropTypes.arrayOf(PropTypes.number.isRequired).isRequired

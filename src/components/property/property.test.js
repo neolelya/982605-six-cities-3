@@ -5,7 +5,7 @@ import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import {Provider} from 'react-redux';
 import Property from './property.jsx';
-import {OFFERS} from '../../tests-mocks';
+import {OFFERS, USER_EMAIL} from '../../tests-mocks';
 import {ActionType} from '../../reducer/data/data';
 import {createAPI} from '../../api';
 
@@ -38,7 +38,7 @@ it(`Should render Property correctly`, () => {
         <MemoryRouter>
           <Provider store={store}>
             <Property
-              userEmail={`someEmail@mail.su`}
+              userEmail={USER_EMAIL}
               offer={OFFERS[0].offers[0]}
               location={OFFERS[0].location}
               offers={OFFERS[0].offers}
