@@ -1,7 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {OffersRestriction} from '../../consts';
 import {formatDate, formatDateTime} from '../../utils';
+import {reviewShape} from '../../shape';
 
 const ReviewsItem = (props) => {
   const {review} = props;
@@ -46,18 +46,7 @@ const ReviewsItem = (props) => {
 };
 
 ReviewsItem.propTypes = {
-  review: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    user: PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
-      isPro: PropTypes.bool.isRequired,
-      avatar: PropTypes.string.isRequired,
-    }).isRequired,
-    rating: PropTypes.number.isRequired,
-    date: PropTypes.object.isRequired,
-    comment: PropTypes.string.isRequired,
-  }).isRequired,
+  review: reviewShape,
 };
 
 export default ReviewsItem;

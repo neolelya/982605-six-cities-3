@@ -2,7 +2,6 @@ import {OffersRestriction, SortType} from './consts';
 
 export const formatDate = (date) => {
   const Option = {
-    day: `numeric`,
     month: `long`,
     year: `numeric`,
   };
@@ -12,17 +11,13 @@ export const formatDate = (date) => {
 
 export const formatDateTime = (date) => {
   let month = `` + (date.getMonth() + 1);
-  let day = `` + date.getDate();
   const year = date.getFullYear();
 
   if (month.length < 2) {
     month = `0` + month;
   }
-  if (day.length < 2) {
-    day = `0` + day;
-  }
 
-  return [year, month, day].join(`-`);
+  return [year, month].join(`-`);
 };
 
 export const capitalizeFirstLetter = (string) => {
@@ -90,3 +85,8 @@ export const getUpdatedFavorites = (updatedOffer, offers) =>
   updatedOffer.isBookmark
     ? [...offers, updatedOffer]
     : offers.filter((offer) => offer.id !== updatedOffer.id);
+
+
+export const getSortedReviews = (reviews) => {
+  return reviews.sort((a, b) => b.date - a.date);
+};

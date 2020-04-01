@@ -11,10 +11,22 @@ const ReviewForm = () => {
   );
 };
 
-it(`Should render ReviewsList correctly`, () => {
+it(`Should render ReviewsList correctly with reviews`, () => {
   const tree = renderer
     .create(
         <ReviewsList reviews={REVIEWS}>
+          <ReviewForm />
+        </ReviewsList>
+    )
+    .toJSON();
+
+  expect(tree).toMatchSnapshot();
+});
+
+it(`Should render ReviewsList correctly without reviews`, () => {
+  const tree = renderer
+    .create(
+        <ReviewsList reviews={[]}>
           <ReviewForm />
         </ReviewsList>
     )

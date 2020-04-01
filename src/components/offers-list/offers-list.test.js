@@ -3,6 +3,7 @@ import renderer from 'react-test-renderer';
 import {MemoryRouter} from 'react-router-dom';
 import OffersList from './offers-list.jsx';
 import {OFFERS} from '../../tests-mocks';
+import {ClassName} from '../../consts';
 
 const RENTAL_OFFER = OFFERS[0].offers;
 
@@ -14,7 +15,7 @@ it(`Should render OffersList correctly`, () => {
             rentalCardsList={RENTAL_OFFER}
             onRentalCardHover={() => {}}
             onBookmarkClick={() => {}}
-            pageClass={`favorites`}
+            pageClass={ClassName.FAVORITES}
           />
         </MemoryRouter>
     )

@@ -1,5 +1,5 @@
 import {
-  getOffersByCity,
+  getOffersByCity, getSortedReviews,
   getUniqueCities,
   getUpdatedCurrentOffers,
   getUpdatedFavorites,
@@ -11,7 +11,7 @@ import {
   OffersRestriction,
   ServerResponseStatusCode,
 } from '../../consts';
-import {offerAdapter, offersAdapter, reviewsAdapter} from '../../adapter';
+import {mapServerOfferToClient, mapServerCityOfferToClient, reviewsAdapter} from '../../adapter';
 
 const initialState = {
   allOffers: [],
@@ -96,7 +96,7 @@ const reducer = (state = initialState, action) => {
 
     case ActionType.GET_REVIEWS:
       return Object.assign({}, state, {
-        reviews: action.payload,
+        reviews: getSortedReviews(action.payload),
       });
 
     case ActionType.GET_NEARBY_OFFERS:
@@ -139,7 +139,7 @@ const Operation = {
       .then((response) => {
         dispatch(
             ActionCreator.loadOffers(
-                response.data.map((offer) => offersAdapter(offer))
+                response.data.map((offer) => mapServerCityOfferToClient(offer))
             )
         );
       })
@@ -168,7 +168,7 @@ const Operation = {
       dispatch(
           ActionCreator.getNearbyOffers(
               response.data
-            .map((offer) => offersAdapter(offer))
+            .map((offer) => mapServerCityOfferToClient(offer))
             .slice(0, OffersRestriction.MAX_NEARBY_OFFERS_QUANTITY)
           )
       );
@@ -176,12 +176,9 @@ const Operation = {
   },
 
   postReview: (id, newReview) => (dispatch, getState, api) => {
+    dispatch(ActionCreator.setSending(true));
     return api
       .post(`/comments/${id}`, newReview)
-      .then((response) => {
-        dispatch(ActionCreator.setSending(true));
-        return response;
-      })
       .then((response) => {
         dispatch(
             ActionCreator.getReviews(
@@ -199,7 +196,7 @@ const Operation = {
     return api.get(`/favorite`).then((response) => {
       dispatch(
           ActionCreator.loadFavorites(
-              response.data.map((favorite) => offerAdapter(favorite))
+              response.data.map((favorite) => mapServerOfferToClient(favorite))
           )
       );
     });
@@ -207,9 +204,9 @@ const Operation = {
 
   changeFavoriteStatus: (id, status) => (dispatch, getState, api) => {
     return api
-      .post(`/favorite/${id}/${status}`)
+      .post(`/favorite/${id}/${Number(status)}`)
       .then((response) => {
-        dispatch(ActionCreator.updateOffer(offerAdapter(response.data)));
+        dispatch(ActionCreator.updateOffer(mapServerOfferToClient(response.data)));
       })
       .catch((error) => {
         if (

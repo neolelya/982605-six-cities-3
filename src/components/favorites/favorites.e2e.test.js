@@ -7,40 +7,53 @@ import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import {createAPI} from '../../api';
 import Favorites from './favorites.jsx';
-import FavoritesEmpty from '../favorites-empty/favorites-empty.jsx';
 import {ActionType} from '../../reducer/data/data';
+import {FAVORITE_RESPONSE, FavoriteOffer, USER_EMAIL} from '../../tests-mocks';
+import MockAdapter from 'axios-mock-adapter';
 
 Enzyme.configure({
   adapter: new Adapter(),
 });
 
 const api = createAPI();
+const apiMock = new MockAdapter(api);
 const mockStore = configureStore([thunk.withExtraArgument(api)]);
 
 const initialState = {
   DATA: {
-    favorites: [],
+    favorites: [FavoriteOffer],
   },
 };
 
-const expectedActions = [{type: ActionType.LOAD_FAVORITES}];
+const expectedActions = [{type: ActionType.LOAD_FAVORITES}, {type: ActionType.UPDATE_OFFER}];
 
 const store = mockStore(initialState, expectedActions);
+store.dispatch = jest.fn();
 
-it(`Should render FavoritesEmpty with favoritesList = []`, () => {
+it(`Should Favorites delete offer from list by isBookmark click`, () => {
+  apiMock
+    .onPost(`/favorite/1/0`)
+    .reply(200, Object.assign({}, FAVORITE_RESPONSE[0], {"is_favorite": false}));
+
+  apiMock
+    .onGet(`/favorite`)
+    .reply(200, []);
+
   const favoritesScreen = mount(
       <MemoryRouter>
         <Provider store={store}>
           <Favorites
-            userEmail={`someEmail@mail.su`}
-            onFavoritesLoad={() => {}}
-            onBookmarkClick={() => {}}
+            userEmail={USER_EMAIL}
             onRentalCardHover={() => {}}
-            favorites={[]}
+            favorites={[FavoriteOffer]}
           />
         </Provider>
       </MemoryRouter>
   );
 
-  expect(favoritesScreen.find(FavoritesEmpty)).toHaveLength(1);
+  const bookmarkButton = favoritesScreen.find(`.place-card__bookmark-button--active`);
+
+  bookmarkButton.simulate(`click`);
+
+  expect(store.dispatch).toHaveBeenCalledTimes(2);
 });

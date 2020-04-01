@@ -3,6 +3,7 @@ import Enzyme, {mount} from 'enzyme';
 import {MemoryRouter} from 'react-router-dom';
 import Adapter from 'enzyme-adapter-react-16';
 import Header from './header.jsx';
+import {USER_EMAIL} from '../../tests-mocks';
 
 Enzyme.configure({
   adapter: new Adapter(),
@@ -15,7 +16,7 @@ it(`Header's onUserEmail click work properly`, () => {
       <MemoryRouter>
         <Header
           onUserEmailClick={onUserEmailClick}
-          userEmail={`someEmail@mail.su`}
+          userEmail={USER_EMAIL}
         />
       </MemoryRouter>
   );

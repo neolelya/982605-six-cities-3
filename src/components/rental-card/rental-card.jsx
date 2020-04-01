@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {OffersRestriction, OFFER_TYPES, ClassName} from '../../consts';
+import {coordinatesShape} from '../../shape';
 
 const RentalCard = (props) => {
   const {
@@ -66,7 +67,7 @@ const RentalCard = (props) => {
             }`}
             type="button"
             onClick={() => {
-              onBookmarkClick(id, isBookmark ? 0 : 1);
+              onBookmarkClick(id, !isBookmark);
             }}
           >
             <svg className="place-card__bookmark-icon" width="18" height="19">
@@ -99,11 +100,7 @@ RentalCard.propTypes = {
   rentalType: PropTypes.oneOf(OFFER_TYPES).isRequired,
   isPremium: PropTypes.bool.isRequired,
   isBookmark: PropTypes.bool.isRequired,
-  coordinates: PropTypes.shape({
-    latitude: PropTypes.number.isRequired,
-    longitude: PropTypes.number.isRequired,
-    zoom: PropTypes.number.isRequired,
-  }).isRequired,
+  coordinates: coordinatesShape,
   onRentalCardHover: PropTypes.func.isRequired,
   onBookmarkClick: PropTypes.func.isRequired,
   pageClass: PropTypes.string.isRequired,

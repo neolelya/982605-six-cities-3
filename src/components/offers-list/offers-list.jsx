@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import RentalCard from '../rental-card/rental-card.jsx';
+import {offerShape} from '../../shape';
 
 const OffersList = (props) => {
   const {
@@ -49,7 +50,7 @@ const OffersList = (props) => {
 };
 
 OffersList.propTypes = {
-  rentalCardsList: PropTypes.array.isRequired,
+  rentalCardsList: PropTypes.arrayOf(offerShape).isRequired,
   onRentalCardHover: PropTypes.func.isRequired,
   onBookmarkClick: PropTypes.func.isRequired,
   pageClass: PropTypes.string.isRequired,

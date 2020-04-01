@@ -2,7 +2,13 @@ import React, {PureComponent, createRef} from 'react';
 import {Redirect} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Header from '../header/header.jsx';
-import {AppRoute, ErrorStyle} from '../../consts';
+import {AppRoute} from '../../consts';
+
+const ErrorStyle = {
+  borderWidth: `2px`,
+  borderRadius: `2px`,
+  borderColor: `red`,
+};
 
 class SignIn extends PureComponent {
   constructor(props) {

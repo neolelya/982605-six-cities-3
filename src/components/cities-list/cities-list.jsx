@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function CitiesList(props) {
+const CitiesList = (props) => {
   const {cities, currentCity, onCityClick} = props;
 
   return (
@@ -24,7 +24,7 @@ function CitiesList(props) {
       ))}
     </ul>
   );
-}
+};
 
 CitiesList.propTypes = {
   cities: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,

@@ -2,12 +2,13 @@ import React from 'react';
 import Enzyme, {mount} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import Sorting from './sorting.jsx';
+import {SortType} from '../../consts';
 
 Enzyme.configure({
   adapter: new Adapter(),
 });
 
-const currentSortType = `Popular`;
+const currentSortType = SortType.POPULAR;
 
 it(`Should sorting element be clicked`, () => {
   const onSortTypeClick = jest.fn();
@@ -45,6 +46,6 @@ it(`Should change active sorting item`, () => {
 
   sortingList.at(3).simulate(`click`);
 
-  expect(onSortTypeClick.mock.calls[0][0]).toBe(`Top rated first`);
+  expect(onSortTypeClick.mock.calls[0][0]).toBe(SortType.TOP_RATED);
   expect(onSortTypeClick.mock.calls[0][0]).not.toMatch(currentSortType);
 });

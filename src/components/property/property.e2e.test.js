@@ -4,7 +4,7 @@ import {MemoryRouter} from 'react-router-dom';
 import Adapter from 'enzyme-adapter-react-16';
 import configureStore from 'redux-mock-store';
 import Property from './property.jsx';
-import {ALL_OFFERS, CITIES, OFFERS} from '../../tests-mocks';
+import {ALL_OFFERS, CITIES, OFFERS, USER_EMAIL} from '../../tests-mocks';
 import {Provider} from 'react-redux';
 import {createAPI} from '../../api';
 import thunk from 'redux-thunk';
@@ -68,7 +68,7 @@ it(`Should Property component show ReviewsForm to authorized user`, () => {
       <MemoryRouter>
         <Provider store={store}>
           <Property
-            userEmail={`someEmail@mail.su`}
+            userEmail={USER_EMAIL}
             offer={OFFERS[0].offers[0]}
             location={OFFERS[0].location}
             offers={OFFERS[0].offers}
