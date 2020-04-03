@@ -62,7 +62,7 @@ const RentalCard = (props) => {
             <b className="place-card__price-value">&euro;{rentalPrice}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <Link to={userEmail ? `#` : `${AppRoute.LOGIN}`}>
+          {userEmail ? (
             <button
               className={`place-card__bookmark-button button ${
                 isBookmark ? `place-card__bookmark-button--active` : ``
@@ -77,7 +77,25 @@ const RentalCard = (props) => {
               </svg>
               <span className="visually-hidden">To bookmarks</span>
             </button>
-          </Link>
+          ) : (
+            <Link to={AppRoute.LOGIN}>
+              <button
+                className={`place-card__bookmark-button button ${
+                  isBookmark ? `place-card__bookmark-button--active` : ``
+                }`}
+                type="button"
+                onClick={() => {
+                  onBookmarkClick(id, !isBookmark);
+                }}
+              >
+                <svg className="place-card__bookmark-icon" width="18" height="19">
+                  <use xlinkHref="#icon-bookmark"></use>
+                </svg>
+                <span className="visually-hidden">To bookmarks</span>
+              </button>
+            </Link>
+          )
+          }
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">

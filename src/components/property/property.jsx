@@ -128,7 +128,7 @@ class Property extends PureComponent {
                 )}
                 <div className="property__name-wrapper">
                   <h1 className="property__name">{rentalTitle}</h1>
-                  <Link to={userEmail ? `#` : `${AppRoute.LOGIN}`}>
+                  {userEmail ? (
                     <button
                       className={`property__bookmark-button button ${
                         isBookmark ? `property__bookmark-button--active` : ``
@@ -147,7 +147,28 @@ class Property extends PureComponent {
                       </svg>
                       <span className="visually-hidden">To bookmarks</span>
                     </button>
-                  </Link>
+                  ) : (
+                    <Link to={userEmail ? `#` : `${AppRoute.LOGIN}`}>
+                      <button
+                        className={`property__bookmark-button button ${
+                          isBookmark ? `property__bookmark-button--active` : ``
+                        }`}
+                        type="button"
+                        onClick={() => {
+                          onBookmarkClick(id, isBookmark ? 0 : 1);
+                        }}
+                      >
+                        <svg
+                          className="property__bookmark-icon"
+                          width="31"
+                          height="33"
+                        >
+                          <use xlinkHref="#icon-bookmark"></use>
+                        </svg>
+                        <span className="visually-hidden">To bookmarks</span>
+                      </button>
+                    </Link>)
+                  }
                 </div>
                 <div className="property__rating rating">
                   <div className="property__stars rating__stars">
