@@ -276,11 +276,16 @@ describe(`Operation should work correctly`, () => {
     apiMock.onGet(`/comments/1`).reply(200, []);
 
     return getReviews(dispatch, () => {}, api).then(() => {
-      expect(dispatch).toHaveBeenCalledTimes(1);
+      expect(dispatch).toHaveBeenCalledTimes(2);
 
       expect(dispatch).toHaveBeenNthCalledWith(1, {
         type: ActionType.GET_REVIEWS,
         payload: [],
+      });
+
+      expect(dispatch).toHaveBeenNthCalledWith(2, {
+        type: ActionType.SET_ERROR,
+        payload: false,
       });
     });
   });
@@ -293,11 +298,16 @@ describe(`Operation should work correctly`, () => {
     apiMock.onGet(`/hotels/1/nearby`).reply(200, []);
 
     return getNearbyOffers(dispatch, () => {}, api).then(() => {
-      expect(dispatch).toHaveBeenCalledTimes(1);
+      expect(dispatch).toHaveBeenCalledTimes(2);
 
       expect(dispatch).toHaveBeenNthCalledWith(1, {
         type: ActionType.GET_NEARBY_OFFERS,
         payload: [],
+      });
+
+      expect(dispatch).toHaveBeenNthCalledWith(2, {
+        type: ActionType.SET_ERROR,
+        payload: false,
       });
     });
   });

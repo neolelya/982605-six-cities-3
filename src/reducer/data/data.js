@@ -157,6 +157,7 @@ const Operation = {
             )
         );
       })
+      .then(() => dispatch(ActionCreator.setError(false)))
       .catch(() => {
         dispatch(ActionCreator.setError(true));
       });
@@ -171,7 +172,7 @@ const Operation = {
             .slice(0, OffersRestriction.MAX_NEARBY_OFFERS_QUANTITY)
           )
       );
-    });
+    }).then(() => dispatch(ActionCreator.setError(false)));
   },
 
   postReview: (id, newReview) => (dispatch, getState, api) => {

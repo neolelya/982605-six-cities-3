@@ -140,31 +140,26 @@ exports[`Should render Property correctly 1`] = `
             >
               Beautiful & luxurious apartment at great location
             </h1>
-            <a
-              href="/"
+            <button
+              className="property__bookmark-button button property__bookmark-button--active"
               onClick={[Function]}
+              type="button"
             >
-              <button
-                className="property__bookmark-button button property__bookmark-button--active"
-                onClick={[Function]}
-                type="button"
+              <svg
+                className="property__bookmark-icon"
+                height="33"
+                width="31"
               >
-                <svg
-                  className="property__bookmark-icon"
-                  height="33"
-                  width="31"
-                >
-                  <use
-                    xlinkHref="#icon-bookmark"
-                  />
-                </svg>
-                <span
-                  className="visually-hidden"
-                >
-                  To bookmarks
-                </span>
-              </button>
-            </a>
+                <use
+                  xlinkHref="#icon-bookmark"
+                />
+              </svg>
+              <span
+                className="visually-hidden"
+              >
+                To bookmarks
+              </span>
+            </button>
           </div>
           <div
             className="property__rating rating"
