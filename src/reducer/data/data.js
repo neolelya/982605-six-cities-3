@@ -156,8 +156,8 @@ const Operation = {
                 response.data.map((review) => reviewsAdapter(review))
             )
         );
+        dispatch(ActionCreator.setError(false));
       })
-      .then(() => dispatch(ActionCreator.setError(false)))
       .catch(() => {
         dispatch(ActionCreator.setError(true));
       });
@@ -172,7 +172,8 @@ const Operation = {
             .slice(0, OffersRestriction.MAX_NEARBY_OFFERS_QUANTITY)
           )
       );
-    }).then(() => dispatch(ActionCreator.setError(false)));
+      dispatch(ActionCreator.setError(false));
+    });
   },
 
   postReview: (id, newReview) => (dispatch, getState, api) => {
