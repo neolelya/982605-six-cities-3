@@ -9,6 +9,7 @@ const OffersList = (props) => {
     onRentalCardHover,
     onBookmarkClick,
     pageClass,
+    userEmail,
   } = props;
 
   return (
@@ -40,6 +41,7 @@ const OffersList = (props) => {
                   onRentalCardHover={onRentalCardHover}
                   onBookmarkClick={onBookmarkClick}
                   pageClass={pageClass}
+                  userEmail={userEmail}
                 />
               </React.Fragment>
             );
@@ -54,6 +56,7 @@ OffersList.propTypes = {
   onRentalCardHover: PropTypes.func.isRequired,
   onBookmarkClick: PropTypes.func.isRequired,
   pageClass: PropTypes.string.isRequired,
+  userEmail: PropTypes.string
 };
 
 export default OffersList;

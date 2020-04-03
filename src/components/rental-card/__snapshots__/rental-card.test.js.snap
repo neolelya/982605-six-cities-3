@@ -50,26 +50,31 @@ exports[`Should render RentalCard correctly with CITY class 1`] = `
           / night
         </span>
       </div>
-      <button
-        className="place-card__bookmark-button button place-card__bookmark-button--active"
+      <a
+        href="/login"
         onClick={[Function]}
-        type="button"
       >
-        <svg
-          className="place-card__bookmark-icon"
-          height="19"
-          width="18"
+        <button
+          className="place-card__bookmark-button button place-card__bookmark-button--active"
+          onClick={[Function]}
+          type="button"
         >
-          <use
-            xlinkHref="#icon-bookmark"
-          />
-        </svg>
-        <span
-          className="visually-hidden"
-        >
-          To bookmarks
-        </span>
-      </button>
+          <svg
+            className="place-card__bookmark-icon"
+            height="19"
+            width="18"
+          >
+            <use
+              xlinkHref="#icon-bookmark"
+            />
+          </svg>
+          <span
+            className="visually-hidden"
+          >
+            To bookmarks
+          </span>
+        </button>
+      </a>
     </div>
     <div
       className="place-card__rating rating"
@@ -160,26 +165,31 @@ exports[`Should render RentalCard correctly with FAVORITES class 1`] = `
           / night
         </span>
       </div>
-      <button
-        className="place-card__bookmark-button button place-card__bookmark-button--active"
+      <a
+        href="/login"
         onClick={[Function]}
-        type="button"
       >
-        <svg
-          className="place-card__bookmark-icon"
-          height="19"
-          width="18"
+        <button
+          className="place-card__bookmark-button button place-card__bookmark-button--active"
+          onClick={[Function]}
+          type="button"
         >
-          <use
-            xlinkHref="#icon-bookmark"
-          />
-        </svg>
-        <span
-          className="visually-hidden"
-        >
-          To bookmarks
-        </span>
-      </button>
+          <svg
+            className="place-card__bookmark-icon"
+            height="19"
+            width="18"
+          >
+            <use
+              xlinkHref="#icon-bookmark"
+            />
+          </svg>
+          <span
+            className="visually-hidden"
+          >
+            To bookmarks
+          </span>
+        </button>
+      </a>
     </div>
     <div
       className="place-card__rating rating"
@@ -270,26 +280,31 @@ exports[`Should render RentalCard correctly with NEAR_PLACES class 1`] = `
           / night
         </span>
       </div>
-      <button
-        className="place-card__bookmark-button button place-card__bookmark-button--active"
+      <a
+        href="/login"
         onClick={[Function]}
-        type="button"
       >
-        <svg
-          className="place-card__bookmark-icon"
-          height="19"
-          width="18"
+        <button
+          className="place-card__bookmark-button button place-card__bookmark-button--active"
+          onClick={[Function]}
+          type="button"
         >
-          <use
-            xlinkHref="#icon-bookmark"
-          />
-        </svg>
-        <span
-          className="visually-hidden"
-        >
-          To bookmarks
-        </span>
-      </button>
+          <svg
+            className="place-card__bookmark-icon"
+            height="19"
+            width="18"
+          >
+            <use
+              xlinkHref="#icon-bookmark"
+            />
+          </svg>
+          <span
+            className="visually-hidden"
+          >
+            To bookmarks
+          </span>
+        </button>
+      </a>
     </div>
     <div
       className="place-card__rating rating"
@@ -380,26 +395,31 @@ exports[`Should render RentalCard correctly with isBookmark = false 1`] = `
           / night
         </span>
       </div>
-      <button
-        className="place-card__bookmark-button button "
+      <a
+        href="/login"
         onClick={[Function]}
-        type="button"
       >
-        <svg
-          className="place-card__bookmark-icon"
-          height="19"
-          width="18"
+        <button
+          className="place-card__bookmark-button button "
+          onClick={[Function]}
+          type="button"
         >
-          <use
-            xlinkHref="#icon-bookmark"
-          />
-        </svg>
-        <span
-          className="visually-hidden"
-        >
-          To bookmarks
-        </span>
-      </button>
+          <svg
+            className="place-card__bookmark-icon"
+            height="19"
+            width="18"
+          >
+            <use
+              xlinkHref="#icon-bookmark"
+            />
+          </svg>
+          <span
+            className="visually-hidden"
+          >
+            To bookmarks
+          </span>
+        </button>
+      </a>
     </div>
     <div
       className="place-card__rating rating"
@@ -483,26 +503,31 @@ exports[`Should render RentalCard correctly with isPremium = false 1`] = `
           / night
         </span>
       </div>
-      <button
-        className="place-card__bookmark-button button place-card__bookmark-button--active"
+      <a
+        href="/login"
         onClick={[Function]}
-        type="button"
       >
-        <svg
-          className="place-card__bookmark-icon"
-          height="19"
-          width="18"
+        <button
+          className="place-card__bookmark-button button place-card__bookmark-button--active"
+          onClick={[Function]}
+          type="button"
         >
-          <use
-            xlinkHref="#icon-bookmark"
-          />
-        </svg>
-        <span
-          className="visually-hidden"
-        >
-          To bookmarks
-        </span>
-      </button>
+          <svg
+            className="place-card__bookmark-icon"
+            height="19"
+            width="18"
+          >
+            <use
+              xlinkHref="#icon-bookmark"
+            />
+          </svg>
+          <span
+            className="visually-hidden"
+          >
+            To bookmarks
+          </span>
+        </button>
+      </a>
     </div>
     <div
       className="place-card__rating rating"

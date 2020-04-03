@@ -52,6 +52,7 @@ const Main = (props) => {
               onRentalCardHover={onRentalCardHover}
               onBookmarkClick={onBookmarkClick}
               pageClass={ClassName.CITY}
+              userEmail={userEmail}
             />
           ) : (
             <NoOffers currentCity={currentCity} isError={isError} />
