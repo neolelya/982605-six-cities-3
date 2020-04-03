@@ -6,7 +6,6 @@ import {
   getUpdatedOffers,
 } from '../../utils';
 import {
-  AppRoute,
   City,
   OffersRestriction,
   ServerResponseStatusCode,
@@ -157,6 +156,7 @@ const Operation = {
                 response.data.map((review) => reviewsAdapter(review))
             )
         );
+        dispatch(ActionCreator.setError(false));
       })
       .catch(() => {
         dispatch(ActionCreator.setError(true));
@@ -172,6 +172,7 @@ const Operation = {
             .slice(0, OffersRestriction.MAX_NEARBY_OFFERS_QUANTITY)
           )
       );
+      dispatch(ActionCreator.setError(false));
     });
   },
 
@@ -214,7 +215,6 @@ const Operation = {
           error.response.status === ServerResponseStatusCode.UNAUTHORIZED
         ) {
           dispatch(ActionCreator.setError(true));
-          window.location.pathname = AppRoute.LOGIN;
         }
       });
   },

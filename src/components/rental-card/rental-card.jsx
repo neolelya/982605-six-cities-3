@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
-import {OffersRestriction, OFFER_TYPES, ClassName} from '../../consts';
+import {OffersRestriction, OFFER_TYPES, ClassName, AppRoute} from '../../consts';
 import {coordinatesShape} from '../../shape';
 
 const RentalCard = (props) => {
@@ -18,6 +18,7 @@ const RentalCard = (props) => {
     onRentalCardHover,
     onBookmarkClick,
     pageClass,
+    userEmail,
   } = props;
 
   const ratingPercent =
@@ -61,20 +62,40 @@ const RentalCard = (props) => {
             <b className="place-card__price-value">&euro;{rentalPrice}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <button
-            className={`place-card__bookmark-button button ${
-              isBookmark ? `place-card__bookmark-button--active` : ``
-            }`}
-            type="button"
-            onClick={() => {
-              onBookmarkClick(id, !isBookmark);
-            }}
-          >
-            <svg className="place-card__bookmark-icon" width="18" height="19">
-              <use xlinkHref="#icon-bookmark"></use>
-            </svg>
-            <span className="visually-hidden">To bookmarks</span>
-          </button>
+          {userEmail ? (
+            <button
+              className={`place-card__bookmark-button button ${
+                isBookmark ? `place-card__bookmark-button--active` : ``
+              }`}
+              type="button"
+              onClick={() => {
+                onBookmarkClick(id, !isBookmark);
+              }}
+            >
+              <svg className="place-card__bookmark-icon" width="18" height="19">
+                <use xlinkHref="#icon-bookmark"></use>
+              </svg>
+              <span className="visually-hidden">To bookmarks</span>
+            </button>
+          ) : (
+            <Link to={AppRoute.LOGIN}>
+              <button
+                className={`place-card__bookmark-button button ${
+                  isBookmark ? `place-card__bookmark-button--active` : ``
+                }`}
+                type="button"
+                onClick={() => {
+                  onBookmarkClick(id, !isBookmark);
+                }}
+              >
+                <svg className="place-card__bookmark-icon" width="18" height="19">
+                  <use xlinkHref="#icon-bookmark"></use>
+                </svg>
+                <span className="visually-hidden">To bookmarks</span>
+              </button>
+            </Link>
+          )
+          }
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
@@ -104,6 +125,7 @@ RentalCard.propTypes = {
   onRentalCardHover: PropTypes.func.isRequired,
   onBookmarkClick: PropTypes.func.isRequired,
   pageClass: PropTypes.string.isRequired,
+  userEmail: PropTypes.string,
 };
 
 export default RentalCard;

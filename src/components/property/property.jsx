@@ -2,7 +2,8 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import pluralize from 'pluralize';
-import {OffersRestriction, ClassName} from '../../consts';
+import {OffersRestriction, ClassName, AppRoute} from '../../consts';
+import {Link} from 'react-router-dom';
 import ReviewsList from '../reviews-list/reviews-list.jsx';
 import ReviewForm from '../review-form/review-form.jsx';
 import Map from '../map/map.jsx';
@@ -127,24 +128,47 @@ class Property extends PureComponent {
                 )}
                 <div className="property__name-wrapper">
                   <h1 className="property__name">{rentalTitle}</h1>
-                  <button
-                    className={`property__bookmark-button button ${
-                      isBookmark ? `property__bookmark-button--active` : ``
-                    }`}
-                    type="button"
-                    onClick={() => {
-                      onBookmarkClick(id, isBookmark ? 0 : 1);
-                    }}
-                  >
-                    <svg
-                      className="property__bookmark-icon"
-                      width="31"
-                      height="33"
+                  {userEmail ? (
+                    <button
+                      className={`property__bookmark-button button ${
+                        isBookmark ? `property__bookmark-button--active` : ``
+                      }`}
+                      type="button"
+                      onClick={() => {
+                        onBookmarkClick(id, isBookmark ? 0 : 1);
+                      }}
                     >
-                      <use xlinkHref="#icon-bookmark"></use>
-                    </svg>
-                    <span className="visually-hidden">To bookmarks</span>
-                  </button>
+                      <svg
+                        className="property__bookmark-icon"
+                        width="31"
+                        height="33"
+                      >
+                        <use xlinkHref="#icon-bookmark"></use>
+                      </svg>
+                      <span className="visually-hidden">To bookmarks</span>
+                    </button>
+                  ) : (
+                    <Link to={AppRoute.LOGIN}>
+                      <button
+                        className={`property__bookmark-button button ${
+                          isBookmark ? `property__bookmark-button--active` : ``
+                        }`}
+                        type="button"
+                        onClick={() => {
+                          onBookmarkClick(id, isBookmark ? 0 : 1);
+                        }}
+                      >
+                        <svg
+                          className="property__bookmark-icon"
+                          width="31"
+                          height="33"
+                        >
+                          <use xlinkHref="#icon-bookmark"></use>
+                        </svg>
+                        <span className="visually-hidden">To bookmarks</span>
+                      </button>
+                    </Link>)
+                  }
                 </div>
                 <div className="property__rating rating">
                   <div className="property__stars rating__stars">
@@ -252,6 +276,7 @@ class Property extends PureComponent {
                   onRentalCardHover={onRentalCardHover}
                   onBookmarkClick={onBookmarkClick}
                   pageClass={ClassName.NEAR_PLACES}
+                  userEmail={userEmail}
                 />
               </div>
             </section>

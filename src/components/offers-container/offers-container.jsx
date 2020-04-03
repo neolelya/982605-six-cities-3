@@ -36,6 +36,7 @@ class OffersContainer extends PureComponent {
       onRentalCardHover,
       onBookmarkClick,
       pageClass,
+      userEmail,
     } = this.props;
 
     const {location, offers} = currentOffers[0];
@@ -64,6 +65,7 @@ class OffersContainer extends PureComponent {
               onRentalCardHover={onRentalCardHover}
               onBookmarkClick={onBookmarkClick}
               pageClass={pageClass}
+              userEmail={userEmail}
             />
           </div>
         </section>
@@ -91,6 +93,7 @@ OffersContainer.propTypes = {
     .isRequired,
   onBookmarkClick: PropTypes.func.isRequired,
   pageClass: PropTypes.string.isRequired,
+  userEmail: PropTypes.string,
 };
 
 export default OffersContainer;

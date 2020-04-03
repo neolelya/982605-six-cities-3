@@ -10,6 +10,7 @@ const FavoritesItem = ({
   favoriteOffers,
   onBookmarkClick,
   onRentalCardHover,
+  userEmail,
 }) => {
 
   return (
@@ -27,6 +28,7 @@ const FavoritesItem = ({
           onRentalCardHover={onRentalCardHover}
           onBookmarkClick={onBookmarkClick}
           pageClass={ClassName.FAVORITES}
+          userEmail={userEmail}
         />
       </div>
     </li>
@@ -38,6 +40,7 @@ FavoritesItem.propTypes = {
   favoriteOffers: PropTypes.arrayOf(offerShape).isRequired,
   onBookmarkClick: PropTypes.func.isRequired,
   onRentalCardHover: PropTypes.func.isRequired,
+  userEmail: PropTypes.string,
 };
 
 export default FavoritesItem;
