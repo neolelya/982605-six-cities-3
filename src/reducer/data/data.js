@@ -6,7 +6,6 @@ import {
   getUpdatedOffers,
 } from '../../utils';
 import {
-  AppRoute,
   City,
   OffersRestriction,
   ServerResponseStatusCode,
@@ -214,7 +213,6 @@ const Operation = {
           error.response.status === ServerResponseStatusCode.UNAUTHORIZED
         ) {
           dispatch(ActionCreator.setError(true));
-          window.location.pathname = AppRoute.LOGIN;
         }
       });
   },

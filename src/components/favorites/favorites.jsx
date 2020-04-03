@@ -43,6 +43,7 @@ class Favorites extends PureComponent {
                         favoriteOffers={favoritesItem.offers}
                         onBookmarkClick={onBookmarkClick}
                         onRentalCardHover={onRentalCardHover}
+                        userEmail={userEmail}
                       />
                     ))}
                   </ul>
