@@ -148,7 +148,7 @@ class Property extends PureComponent {
                       <span className="visually-hidden">To bookmarks</span>
                     </button>
                   ) : (
-                    <Link to={userEmail ? `#` : `${AppRoute.LOGIN}`}>
+                    <Link to={AppRoute.LOGIN}>
                       <button
                         className={`property__bookmark-button button ${
                           isBookmark ? `property__bookmark-button--active` : ``
