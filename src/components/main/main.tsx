@@ -4,12 +4,12 @@ import CitiesList from '../cities-list/cities-list';
 import OffersContainer from '../offers-container/offers-container';
 import NoOffers from '../no-offers/no-offers';
 import {ClassName} from '../../consts';
-import {Coordinate, OffersShape} from '../../shape';
+import {Coordinate, Offers} from '../../type';
 
 interface Props {
   cities: string[];
   currentCity: string;
-  currentOffers: OffersShape;
+  currentOffers: Offers;
   onCityClick: (city: string) => void;
   currentSortType: string;
   onSortTypeClick: (sortType: string) => void;

@@ -9,7 +9,7 @@ type User = {
 
 export type Coordinate = [number, number];
 
-export type ReviewShape = {
+export type Review = {
   id: number;
   user: User;
   rating: number;
@@ -17,32 +17,27 @@ export type ReviewShape = {
   comment: string;
 };
 
-export type ReviewsShape = Array<ReviewShape>;
+export type Reviews = Array<Review>;
 
-export type HostShape = {
+export type Host = {
   id: number;
   hostAvatar: string;
   hostName: string;
   isSuper: boolean;
 };
 
-export type CoordinatesShape = {
+export type Coordinates = {
   latitude: number;
   longitude: number;
   zoom: number;
 };
 
-export type CoordinatesWithCityShape = {
-  latitude: number;
-  longitude: number;
-  zoom: number;
-  city: string;
-};
+export type CoordinatesWithCity = Coordinates & {city: string};
 
-export type OfferShape = {
+export type Offer = {
   id: number;
-  rentalHost: HostShape;
-  coordinates: CoordinatesWithCityShape;
+  rentalHost: Host;
+  coordinates: CoordinatesWithCity;
   rentalTitle: string;
   rentalImages: string[];
   rentalPrice: number;
@@ -56,21 +51,21 @@ export type OfferShape = {
   rentalFeatures: string[];
 };
 
-export type LocationShape = {
+export type Location = {
   city: string;
-  cityCoordinates: CoordinatesShape;
+  cityCoordinates: Coordinates;
 };
 
-type ShapeWithLocation = {
-  location: LocationShape;
-  offers: Array<OfferShape>;
+type OffersWithLocation = {
+  location: Location;
+  offers: Array<Offer>;
 };
 
-export type OffersShape = Array<ShapeWithLocation>;
+export type Offers = Array<OffersWithLocation>;
 
-type ShapeWithCity = {
+type OffersWithCity = {
   city: string;
-  offers: Array<OfferShape>;
+  offers: Array<Offer>;
 };
 
-export type FavoritesShape = Array<ShapeWithCity>;
+export type FavoriteOffers = Array<OffersWithCity>;

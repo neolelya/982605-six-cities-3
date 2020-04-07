@@ -18,8 +18,3 @@ plugins: ['react']
 settings:
   react:
     version: '16'
-
-overrides:
-  - files: ['**/*.tsx']
-    rules:
-      'react/prop-types': 'off'

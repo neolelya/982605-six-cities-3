@@ -1,9 +1,9 @@
 import * as React from 'react';
 import RentalCard from '../rental-card/rental-card';
-import {Coordinate, OfferShape} from '../../shape';
+import {Coordinate, Offer} from '../../type';
 
 interface Props {
-  rentalCardsList: Array<OfferShape>;
+  rentalCardsList: Array<Offer>;
   onRentalCardHover: (coordinate: Coordinate) => void;
   onBookmarkClick: (id: number, status: boolean) => void;
   pageClass: string;

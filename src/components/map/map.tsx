@@ -1,11 +1,11 @@
 import * as React from 'react';
 import * as leaflet from 'leaflet';
-import {CoordinatesShape} from '../../shape';
+import {Coordinates} from '../../type';
 
 type coordinates = number[];
 
 interface Props {
-  location: { cityCoordinates: CoordinatesShape };
+  location: { cityCoordinates: Coordinates };
   offersCoordinates: Array<coordinates>;
   activeCoordinates: coordinates | [];
   activeCardCoordinates: coordinates;

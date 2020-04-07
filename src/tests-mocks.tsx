@@ -1,6 +1,6 @@
 import {City, RentalType} from './consts';
 import {getOffersByCity, getUniqueCities} from './utils';
-import {OfferShape} from "./shape";
+import {Offer} from "./type";
 
 export const USER_EMAIL = `someEmail@mail.su`;
 
@@ -1599,7 +1599,7 @@ export const CITIES = getUniqueCities(ALL_OFFERS);
 
 export const COLOGNE_OFFERS = getOffersByCity(CITIES[2], ALL_OFFERS);
 
-export const FavoriteOffer: OfferShape = {
+export const FavoriteOffer: Offer = {
   id: 1,
   coordinates: {
     latitude: 53.528341000000005,

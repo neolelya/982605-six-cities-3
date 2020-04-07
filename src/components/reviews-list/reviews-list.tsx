@@ -2,10 +2,10 @@ import * as React from 'react';
 import * as pluralize from 'pluralize';
 import {OffersRestriction} from '../../consts';
 import ReviewsItem from '../reviews-item/reviews-item';
-import {ReviewsShape} from '../../shape';
+import {Reviews} from '../../type';
 
 interface Props {
-  reviews: ReviewsShape;
+  reviews: Reviews;
   children: React.ReactNode;
 }
 

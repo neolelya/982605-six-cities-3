@@ -7,11 +7,11 @@ import {AppRoute} from '../../consts';
 import FavoritesItem from '../favorites-item/favorites-item';
 import {getFavorites} from '../../reducer/data/selectors';
 import {Operation as DataOperation} from '../../reducer/data/data';
-import {Coordinate, FavoritesShape} from '../../shape';
+import {Coordinate, FavoriteOffers} from '../../type';
 
 interface Props {
   userEmail?: string;
-  favorites: FavoritesShape;
+  favorites: FavoriteOffers;
   onFavoritesLoad: () => void;
   onBookmarkClick: (id: number, status: boolean) => void;
   onRentalCardHover: (coordinate: Coordinate) => void;
@@ -90,5 +90,5 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-export {Favorites};
+export {FavoriteOffers};
 export default connect(mapStateToProps, mapDispatchToProps)(Favorites);

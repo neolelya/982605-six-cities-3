@@ -4,11 +4,11 @@ import Map from '../map/map';
 import Sorting from '../sorting/sorting';
 import {getSortedOffers} from '../../utils';
 import withToggle from '../../hocs/with-toggle/with-toggle';
-import {Coordinate, OffersShape} from '../../shape';
+import {Coordinate, Offers} from '../../type';
 
 interface Props {
   placesCount: number;
-  currentOffers: OffersShape;
+  currentOffers: Offers;
   currentSortType: string;
   onSortTypeClick: (sortType: string) => void;
   onRentalCardHover: (coordinate: Coordinate) => void;

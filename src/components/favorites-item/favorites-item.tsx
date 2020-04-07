@@ -2,11 +2,11 @@ import * as React from 'react';
 import {Link} from 'react-router-dom';
 import OffersList from '../offers-list/offers-list';
 import {AppRoute, ClassName} from '../../consts';
-import {Coordinate, OfferShape} from '../../shape';
+import {Coordinate, Offer} from '../../type';
 
 interface Props {
   favoriteCity: string;
-  favoriteOffers: Array<OfferShape>;
+  favoriteOffers: Array<Offer>;
   onBookmarkClick: (id: number, stats: boolean) => void;
   onRentalCardHover: (coordinate: Coordinate) => void;
   userEmail?: string;

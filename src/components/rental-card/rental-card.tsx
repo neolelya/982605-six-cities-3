@@ -2,11 +2,12 @@ import * as React from 'react';
 import {Link} from 'react-router-dom';
 import {
   OffersRestriction,
-  OFFER_TYPES,
   ClassName,
   AppRoute,
 } from '../../consts';
-import {Coordinate, CoordinatesShape} from '../../shape';
+import {Coordinate, Coordinates} from '../../type';
+
+type RentalType = `Apartment` | `Room` | `House` | `Hotel`;
 
 interface Props {
   id: number;
@@ -14,10 +15,10 @@ interface Props {
   rentalImages: string[];
   rentalPrice: number;
   rentalRating: number;
-  rentalType: OFFER_TYPES;
+  rentalType: RentalType;
   isPremium: boolean;
   isBookmark: boolean;
-  coordinates: CoordinatesShape;
+  coordinates: Coordinates;
   onRentalCardHover: (coordinate: Coordinate | []) => void;
   onBookmarkClick: (id: number, status: boolean) => void;
   pageClass: string;

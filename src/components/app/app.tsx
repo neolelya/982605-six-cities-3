@@ -30,12 +30,12 @@ import {
   getLoginStatus,
   getUserEmail,
 } from '../../reducer/user/selectors';
-import {Coordinate, OffersShape} from '../../shape';
+import {Coordinate, Offers} from '../../type';
 
 interface Props {
-  allOffers: OffersShape;
+  allOffers: Offers;
   cities: string[];
-  currentOffers: OffersShape;
+  currentOffers: Offers;
   currentCity: string;
   onCityClick: (city: string) => void;
   currentSortType: string;

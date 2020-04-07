@@ -1,10 +1,10 @@
 import * as React from 'react';
 import {OffersRestriction} from '../../consts';
 import {formatDate, formatDateTime} from '../../utils';
-import {ReviewShape} from '../../shape';
+import {Review} from '../../type';
 
 interface Props {
-  review: ReviewShape;
+  review: Review;
 }
 
 const ReviewsItem: React.FC<Props> = (props: Props) => {

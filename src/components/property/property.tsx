@@ -17,22 +17,22 @@ import {
 } from '../../reducer/data/selectors';
 import {Operation as DataOperation} from '../../reducer/data/data';
 import {
-  CoordinatesShape,
-  LocationShape,
-  OfferShape,
-  ReviewsShape,
+  Coordinates,
+  Location,
+  Offer,
+  Reviews,
   Coordinate,
-} from '../../shape';
+} from '../../type';
 
-type nearbyProperties = { location: LocationShape; offers: OfferShape };
+type nearbyProperties = { location: Location; offers: Offer };
 
 interface Props {
-  offer: OfferShape;
-  location: { cityCoordinates: CoordinatesShape };
+  offer: Offer;
+  location: { cityCoordinates: Coordinates };
   onRentalCardHover: (coordinate: Coordinate) => void;
   activeCardCoordinates: number[];
   nearbyOffers: Array<nearbyProperties>;
-  reviews: ReviewsShape;
+  reviews: Reviews;
   userEmail?: string;
   onLoadOfferData: (id: number) => void;
   onReviewPost(
