@@ -8,8 +8,9 @@ import {
   FAVORITE_RESPONSE,
   OFFERS,
   OFFERS_WITH_BOOKMARK,
-  OFFERS_WITHOUT_BOOKMARK, REVIEWS_RESPONSE,
-} from '../../tests-mocks';
+  OFFERS_WITHOUT_BOOKMARK,
+  REVIEWS_RESPONSE,
+} from '../../tests-mocks.tsx';
 import MockAdapter from 'axios-mock-adapter';
 import {createAPI} from '../../api';
 

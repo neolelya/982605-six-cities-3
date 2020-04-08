@@ -2,7 +2,7 @@ import MockAdapter from 'axios-mock-adapter';
 import {createAPI} from '../../api';
 import {reducer, ActionType, Operation} from './user';
 import {AuthorizationStatus} from '../../consts';
-import {USER_EMAIL} from '../../tests-mocks';
+import {USER_EMAIL} from '../../tests-mocks.tsx';
 
 const api = createAPI();
 

@@ -1,5 +1,5 @@
 import {reducer, ActionType, ActionCreator} from '../app/app';
-import {CITIES} from '../../tests-mocks';
+import {CITIES} from '../../tests-mocks.tsx';
 
 it(`Reducer without additional parameters should return initial state`, () => {
   expect(reducer(void 0, {})).toEqual({
