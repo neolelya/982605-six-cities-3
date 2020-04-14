@@ -6,7 +6,7 @@ Choose one of six popular travel cities and get the latest list of rental offers
 
 
 ## Used technologies: 
-* JS (ECMAScript 6)
+* JS (ECMAScript 6 + React)
 * ESLint
 * Build process (Webpack)
 * Redux + Thunk
